@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Brian Kramer, a systems-minded builder focused on product, operations, and AI surface design."
+      content="Brian Kramer designs calm product surfaces, system-friendly workflows, and practical AI interfaces."
     />
     <title>Brian Kramer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,29 +21,22 @@
       <div class="ambient ambient-left"></div>
       <div class="ambient ambient-right"></div>
 
-      <header class="topbar">
-        <a class="brand" href="#top">Brian Kramer</a>
-        <nav class="nav">
-          <a href="#work">Work</a>
-          <a href="#principles">Principles</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      <site-header active="home"></site-header>
 
       <main id="top">
         <section class="hero reveal">
           <div class="hero-copy">
             <p class="eyebrow">Systems, surfaces, and shipping</p>
-            <h1>Designing clear product experiences for complicated systems.</h1>
+            <h1>Building calm, usable interfaces for messy systems.</h1>
             <p class="lede">
-              Brian Kramer builds practical interfaces, resilient workflows, and
-              the connective tissue that helps teams move faster without losing
-              the plot.
+              Brian Kramer shapes product surfaces, operational workflows, and
+              AI-assisted experiences so teams can move quickly without losing
+              clarity.
             </p>
 
             <div class="hero-actions">
-              <a class="button button-primary" href="#contact">Start a conversation</a>
-              <a class="button button-secondary" href="#work">See the scaffold</a>
+              <a class="button button-primary" href="/contact/">Start a conversation</a>
+              <a class="button button-secondary" href="/work/">See recent work</a>
             </div>
           </div>
 
@@ -56,11 +49,11 @@
             <div class="panel-grid">
               <div class="panel-card">
                 <p class="panel-label">Mode</p>
-                <p class="panel-value">Builder</p>
+                <p class="panel-value">Product-minded builder</p>
               </div>
               <div class="panel-card">
                 <p class="panel-label">Bias</p>
-                <p class="panel-value">Clarity</p>
+                <p class="panel-value">Clarity first</p>
               </div>
               <div class="panel-card">
                 <p class="panel-label">Output</p>
@@ -76,33 +69,33 @@
 
         <section id="work" class="section reveal">
           <div class="section-heading">
-            <p class="eyebrow">Work</p>
-            <h2>Scaffolded to support both narrative and execution.</h2>
+            <p class="eyebrow">What I build</p>
+            <h2>Interfaces and systems that make complicated work feel manageable.</h2>
           </div>
 
           <div class="card-grid">
             <article class="card">
-              <p class="card-kicker">01 / Interface</p>
-              <h3>Editorial landing page</h3>
+              <p class="card-kicker">01 / Product</p>
+              <h3>Decision-friendly surfaces</h3>
               <p>
-                A bold, content-first homepage that can be tuned into a portfolio,
-                product site, or personal operating system.
+                Clear pages and flows that help people decide, submit, and move on
+                without friction.
               </p>
             </article>
             <article class="card">
-              <p class="card-kicker">02 / System</p>
-              <h3>Reusable visual language</h3>
+              <p class="card-kicker">02 / Ops</p>
+              <h3>Reusable workflow systems</h3>
               <p>
-                Tokens, spacing, and motion defaults are set up so future pages
-                feel related without copying one another.
+                Lightweight patterns for handoffs, approvals, and repeatable team
+                processes.
               </p>
             </article>
             <article class="card">
-              <p class="card-kicker">03 / Motion</p>
-              <h3>Lightweight reveal behavior</h3>
+              <p class="card-kicker">03 / AI</p>
+              <h3>Connector-aware experiences</h3>
               <p>
-                Small animations and progressive enhancement keep the experience
-                polished without making it fragile.
+                AI surfaces and connector logic that stay useful when the
+                underlying systems change.
               </p>
             </article>
           </div>
@@ -111,17 +104,17 @@
         <section id="principles" class="section reveal">
           <div class="section-heading">
             <p class="eyebrow">Principles</p>
-            <h2>A few rules that keep the site from drifting into generic.</h2>
+            <h2>A few rules that keep the work focused and durable.</h2>
           </div>
 
           <div class="principles">
             <div class="principle">
               <span>1</span>
               <div>
-                <h3>Let the layout do the framing.</h3>
+                <h3>Let structure carry the meaning.</h3>
                 <p>
-                  Strong composition beats decoration. The page should feel
-                  intentional before a single hover state is noticed.
+                  Strong composition beats decoration. Users should understand the
+                  shape of the work before they read every line.
                 </p>
               </div>
             </div>
@@ -130,8 +123,8 @@
               <div>
                 <h3>Keep the system reusable.</h3>
                 <p>
-                  The same variables and component patterns should be able to
-                  power future pages without another rewrite.
+                  The same components, variables, and interaction patterns should
+                  support future pages without another rewrite.
                 </p>
               </div>
             </div>
@@ -140,8 +133,8 @@
               <div>
                 <h3>Ship with restraint.</h3>
                 <p>
-                  Motion, texture, and color should clarify, not compete with the
-                  message.
+                  Motion, texture, and color should clarify the message, not pull
+                  attention away from it.
                 </p>
               </div>
             </div>
@@ -154,16 +147,16 @@
             <h2>Open for focused product, systems, and AI surface work.</h2>
           </div>
           <div class="contact-card">
-            <p>Use this scaffold as a starting point, then shape it around the next real brief.</p>
+            <p>
+              If you have a product surface, workflow, or connector problem that
+              needs a calmer shape, this is a good place to start.
+            </p>
             <a class="button button-primary" href="mailto:hello@briankramer.io">hello@briankramer.io</a>
           </div>
         </section>
       </main>
 
-      <footer class="footer">
-        <span>Built for briankramer.io</span>
-        <span>© <span id="year"></span> Brian Kramer</span>
-      </footer>
+      <site-footer></site-footer>
     </div>
 
     <script type="module" src="./app.js"></script>

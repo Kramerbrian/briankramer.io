@@ -2,11 +2,17 @@
 
 Personal site scaffold for Brian Kramer.
 
-## Contents
+## Pages
 
-- `index.html` - the single-page experience
-- `styles.css` - visual system and layout
-- `app.js` - lightweight progressive enhancement
+- `/` - homepage
+- `/about/` - short bio and working style
+- `/work/` - selected problem spaces and patterns
+- `/contact/` - contact entry point
+
+## Shared pieces
+
+- `app.js` - shared navigation, footer, and reveal behavior
+- `styles.css` - shared visual system
 
 ## Run locally
 
