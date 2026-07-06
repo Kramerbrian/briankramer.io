@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Contact Brian Kramer about product surfaces, workflow systems, or AI connector work."
+      content="Contact Brian Kramer about dealership AI visibility, reputation intelligence, or inventory systems."
     />
     <title>Contact - Brian Kramer</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("bk-theme");
+          var theme =
+            stored === "dark" || stored === "light"
+              ? stored
+              : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,10 +39,11 @@
       <main>
         <section class="page-intro reveal">
           <p class="eyebrow">Contact</p>
-          <h1>Start with the problem, not the solution.</h1>
+          <h1>Start with the leak, not the dashboard.</h1>
           <p class="lede">
-            If there’s a product surface, workflow, or connector that needs a
-            clearer shape, send a note with context and what success looks like.
+            If AI engines aren't citing your inventory, or reputation signals
+            are quietly taxing your ad spend, send a note with context and what
+            fixed looks like.
           </p>
         </section>
 
@@ -41,9 +56,9 @@
           <div class="contact-card">
             <p class="card-kicker">What to include</p>
             <div class="contact-links">
-              <div class="contact-link"><span>Problem</span><span>What’s hard right now</span></div>
-              <div class="contact-link"><span>Context</span><span>What system this touches</span></div>
-              <div class="contact-link"><span>Goal</span><span>What better looks like</span></div>
+              <div class="contact-link"><span>Problem</span><span>Visibility, reputation, or inventory</span></div>
+              <div class="contact-link"><span>Context</span><span>Store size, DMS/CRM, current tools</span></div>
+              <div class="contact-link"><span>Goal</span><span>What fixed looks like</span></div>
             </div>
           </div>
         </section>

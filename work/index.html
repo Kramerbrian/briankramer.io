@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Selected work patterns from Brian Kramer spanning product surfaces, workflow systems, and AI connector layers."
+      content="Selected systems from Brian Kramer spanning AI visibility, reputation intelligence, and agentic inventory tooling for dealerships."
     />
     <title>Work - Brian Kramer</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("bk-theme");
+          var theme =
+            stored === "dark" || stored === "light"
+              ? stored
+              : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,30 +39,38 @@
       <main>
         <section class="page-intro reveal">
           <p class="eyebrow">Work</p>
-          <h1>Selected patterns and problem spaces.</h1>
+          <h1>Selected systems and problem spaces.</h1>
           <p class="lede">
-            This page is intentionally structured around categories instead of a
-            giant gallery, because most good work starts with the kind of problem
-            it solves.
+            This page is structured around the problem each system solves —
+            visibility, trust, or inventory decisions — because that's how
+            dealerships actually experience the work.
           </p>
         </section>
+
+        <figure class="feature-media reveal">
+          <img
+            src="../public/images/beach-showroom-scene.jpg"
+            alt="A glass-walled showroom on a coastal dune displaying a classic convertible"
+            loading="lazy"
+          />
+        </figure>
 
         <section class="section reveal">
           <div class="card-grid">
             <article class="card">
-              <p class="card-kicker">Product surface</p>
-              <h3>Decision paths with less drag.</h3>
-              <p>Clear layouts, focused calls to action, and information hierarchies that reduce hesitation.</p>
+              <p class="card-kicker">AI visibility</p>
+              <h3>Citation readiness scoring.</h3>
+              <p>VIN-level trust scores predicting whether AI engines will cite a listing, with ranked fixes when they won't.</p>
             </article>
             <article class="card">
-              <p class="card-kicker">Workflow system</p>
-              <h3>Operational steps that survive handoff.</h3>
-              <p>Small, repeatable interfaces for approvals, reviews, and recurring team processes.</p>
+              <p class="card-kicker">Reputation</p>
+              <h3>Reputation intelligence &amp; Pulse Cards.</h3>
+              <p>Review, NAP, and star-rating monitoring tied to ad spillage and cost-of-inaction dealers can act on.</p>
             </article>
             <article class="card">
-              <p class="card-kicker">AI connector layer</p>
-              <h3>Surface logic that stays stable.</h3>
-              <p>Designing around changing providers, data sources, and answer-surface constraints.</p>
+              <p class="card-kicker">Inventory</p>
+              <h3>Agentic inventory runtime.</h3>
+              <p>HOLD, REPRIORITIZE, or EXIT decisions surfaced automatically from pricing, appraisal, and acquisition signals.</p>
             </article>
           </div>
         </section>
@@ -56,24 +78,24 @@
         <section class="section reveal">
           <div class="section-heading">
             <p class="eyebrow">Patterns</p>
-            <h2>Reusable pieces that show up across projects.</h2>
+            <h2>Reusable pieces that show up across every dealer build.</h2>
           </div>
 
           <div class="list-grid">
             <article class="list-card">
-              <h3>Content-first landing pages</h3>
+              <h3>Cost-of-inaction scoring</h3>
               <ul>
-                <li>Strong hierarchy</li>
-                <li>Clear paths forward</li>
-                <li>Minimal visual noise</li>
+                <li>Every leak (ad spillage, citation loss, reputation drag) tied to a dollar figure</li>
+                <li>Ranked fix actions, not just diagnostics</li>
+                <li>Explainable to a GM in one sentence</li>
               </ul>
             </article>
             <article class="list-card">
-              <h3>Component-driven surfaces</h3>
+              <h3>Answer-surface connectors</h3>
               <ul>
-                <li>Shared navigation and footer</li>
-                <li>Reusable card systems</li>
-                <li>Consistent spacing tokens</li>
+                <li>Schema, bot-accessibility, and canonical-stability checks</li>
+                <li>Built for how ChatGPT, Perplexity, and Google AI Overviews actually crawl</li>
+                <li>Trend deltas, not just point-in-time snapshots</li>
               </ul>
             </article>
           </div>

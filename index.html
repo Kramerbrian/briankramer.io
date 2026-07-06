@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Brian Kramer designs calm product surfaces, system-friendly workflows, and practical AI interfaces."
+      content="Brian Kramer builds AI visibility, reputation, and inventory systems for automotive dealerships — DealershipAI and ClarityOS."
     />
-    <title>Brian Kramer</title>
+    <title>Brian Kramer — Dealership AI Systems</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("bk-theme");
+          var theme =
+            stored === "dark" || stored === "light"
+              ? stored
+              : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,77 +39,93 @@
 
       <main id="top">
         <section class="hero reveal">
-          <div class="hero-copy">
-            <p class="eyebrow">Systems, surfaces, and shipping</p>
-            <h1>Building calm, usable interfaces for messy systems.</h1>
-            <p class="lede">
-              Brian Kramer shapes product surfaces, operational workflows, and
-              AI-assisted experiences so teams can move quickly without losing
-              clarity.
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="/contact/">Start a conversation</a>
-              <a class="button button-secondary" href="/work/">See recent work</a>
-            </div>
+          <div class="hero-video">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              poster="/public/images/beach-showroom-scene-poster.jpg"
+            >
+              <source src="/public/images/beach-showroom-scene.mp4" type="video/mp4" />
+            </video>
           </div>
 
-          <aside class="hero-panel">
-            <div class="panel-card panel-card-large">
-              <p class="panel-label">Current focus</p>
-              <p class="panel-value">Answer surfaces, connector patterns, and design systems that stay legible under pressure.</p>
+          <div class="hero-content">
+            <div class="hero-copy">
+              <p class="eyebrow">DealershipAI &amp; ClarityOS</p>
+              <h1>AI visibility and trust systems for dealerships.</h1>
+              <p class="lede">
+                Brian Kramer builds the systems that decide whether AI engines,
+                shoppers, and Google trust a dealership's inventory — citation
+                readiness, reputation intelligence, and agentic inventory tools
+                built from twenty years on dealership floors.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button-primary" href="/contact/">Start a conversation</a>
+                <a class="button button-secondary" href="/work/">See the systems</a>
+              </div>
             </div>
 
-            <div class="panel-grid">
-              <div class="panel-card">
-                <p class="panel-label">Mode</p>
-                <p class="panel-value">Product-minded builder</p>
+            <aside class="hero-panel">
+              <div class="panel-card panel-card-large">
+                <p class="panel-label">Current focus</p>
+                <p class="panel-value">AI citation readiness, reputation Pulse Cards, and VIN-level trust scoring for dealer inventory.</p>
               </div>
-              <div class="panel-card">
-                <p class="panel-label">Bias</p>
-                <p class="panel-value">Clarity first</p>
+
+              <div class="panel-grid">
+                <div class="panel-card">
+                  <p class="panel-label">Background</p>
+                  <p class="panel-value">Dealership operations</p>
+                </div>
+                <div class="panel-card">
+                  <p class="panel-label">Bias</p>
+                  <p class="panel-value">Trust before traffic</p>
+                </div>
+                <div class="panel-card">
+                  <p class="panel-label">Output</p>
+                  <p class="panel-value">Production AI systems</p>
+                </div>
+                <div class="panel-card">
+                  <p class="panel-label">Base</p>
+                  <p class="panel-value">Naples, FL</p>
+                </div>
               </div>
-              <div class="panel-card">
-                <p class="panel-label">Output</p>
-                <p class="panel-value">Reusable systems</p>
-              </div>
-              <div class="panel-card">
-                <p class="panel-label">Location</p>
-                <p class="panel-value">Remote-friendly</p>
-              </div>
-            </div>
-          </aside>
+            </aside>
+          </div>
         </section>
 
         <section id="work" class="section reveal">
           <div class="section-heading">
             <p class="eyebrow">What I build</p>
-            <h2>Interfaces and systems that make complicated work feel manageable.</h2>
+            <h2>Systems that make dealerships legible to AI and buyers.</h2>
           </div>
 
           <div class="card-grid">
             <article class="card">
-              <p class="card-kicker">01 / Product</p>
-              <h3>Decision-friendly surfaces</h3>
+              <p class="card-kicker">01 / AI Visibility</p>
+              <h3>Citation readiness scoring</h3>
               <p>
-                Clear pages and flows that help people decide, submit, and move on
-                without friction.
+                VIN-level trust scores that predict whether ChatGPT, Perplexity,
+                and Google AI Overviews will cite a listing — and what's blocking
+                it.
               </p>
             </article>
             <article class="card">
-              <p class="card-kicker">02 / Ops</p>
-              <h3>Reusable workflow systems</h3>
+              <p class="card-kicker">02 / Reputation</p>
+              <h3>Reputation intelligence</h3>
               <p>
-                Lightweight patterns for handoffs, approvals, and repeatable team
-                processes.
+                Review, NAP, and star-rating monitoring tied directly to ad
+                spillage and cost-of-inaction math dealers can act on.
               </p>
             </article>
             <article class="card">
-              <p class="card-kicker">03 / AI</p>
-              <h3>Connector-aware experiences</h3>
+              <p class="card-kicker">03 / Inventory</p>
+              <h3>Agentic inventory runtime</h3>
               <p>
-                AI surfaces and connector logic that stay useful when the
-                underlying systems change.
+                HOLD, REPRIORITIZE, or EXIT decisions surfaced automatically from
+                pricing, appraisal, and acquisition signals.
               </p>
             </article>
           </div>
@@ -111,20 +141,20 @@
             <div class="principle">
               <span>1</span>
               <div>
-                <h3>Let structure carry the meaning.</h3>
+                <h3>Trust is the product, traffic is a side effect.</h3>
                 <p>
-                  Strong composition beats decoration. Users should understand the
-                  shape of the work before they read every line.
+                  If AI engines and buyers can't verify a listing, no amount of ad
+                  spend fixes it. Fix trust signals first.
                 </p>
               </div>
             </div>
             <div class="principle">
               <span>2</span>
               <div>
-                <h3>Keep the system reusable.</h3>
+                <h3>Built from the floor, not the boardroom.</h3>
                 <p>
-                  The same components, variables, and interaction patterns should
-                  support future pages without another rewrite.
+                  Every system here started as a real workflow problem inside a
+                  dealership — acquisition, appraisal, or reputation.
                 </p>
               </div>
             </div>
@@ -133,8 +163,8 @@
               <div>
                 <h3>Ship with restraint.</h3>
                 <p>
-                  Motion, texture, and color should clarify the message, not pull
-                  attention away from it.
+                  Dashboards and scores only earn their place if they change a
+                  decision. Otherwise they're noise.
                 </p>
               </div>
             </div>
@@ -144,12 +174,13 @@
         <section id="contact" class="section contact reveal">
           <div>
             <p class="eyebrow">Contact</p>
-            <h2>Open for focused product, systems, and AI surface work.</h2>
+            <h2>Open for dealership AI visibility and systems work.</h2>
           </div>
           <div class="contact-card">
             <p>
-              If you have a product surface, workflow, or connector problem that
-              needs a calmer shape, this is a good place to start.
+              If AI engines aren't citing your inventory, or your reputation
+              signals are quietly taxing your ad spend, this is a good place to
+              start.
             </p>
             <a class="button button-primary" href="mailto:hello@briankramer.io">hello@briankramer.io</a>
           </div>

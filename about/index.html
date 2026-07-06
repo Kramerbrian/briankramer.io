@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="About Brian Kramer, a product and systems builder focused on clarity, durability, and practical AI surfaces."
+      content="About Brian Kramer — automotive retail executive building AI visibility and trust systems for dealerships."
     />
     <title>About - Brian Kramer</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("bk-theme");
+          var theme =
+            stored === "dark" || stored === "light"
+              ? stored
+              : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,11 +40,12 @@
         <section class="page-intro page-intro-with-photo reveal">
           <div class="page-intro-copy">
             <p class="eyebrow">About</p>
-            <h1>Practical design for people working inside messy systems.</h1>
+            <h1>Twenty years on dealership floors, now building the systems that run them.</h1>
             <p class="lede">
-              Brian Kramer works at the intersection of product, operations, and AI
-              surfaces, with a bias toward things that are understandable, useful,
-              and easy to hand off.
+              Brian Kramer is an automotive retail executive and entrepreneur in
+              Naples, FL — former operations leadership at Germain Toyota,
+              builder of DealershipAI and ClarityOS, and author of a book on
+              trust-based dealership operations.
             </p>
           </div>
           <div class="page-intro-photo">
@@ -48,20 +63,20 @@
           <div class="list-grid">
             <article class="list-card">
               <p class="card-kicker">Approach</p>
-              <h3>Start with the user decision.</h3>
+              <h3>Start with the acquisition decision.</h3>
               <ul>
-                <li>Reduce ambiguity before adding features.</li>
-                <li>Make the next action obvious.</li>
-                <li>Keep the system easy to explain.</li>
+                <li>Fix trust and pricing signals before adding ad spend.</li>
+                <li>Make the next VIN-level decision obvious.</li>
+                <li>Keep every score explainable to a GM in one sentence.</li>
               </ul>
             </article>
             <article class="list-card">
               <p class="card-kicker">What matters</p>
-              <h3>Useful, maintainable, and calm.</h3>
+              <h3>Useful, auditable, and fast.</h3>
               <ul>
-                <li>Interfaces that stay readable under pressure.</li>
-                <li>Workflows that survive real handoffs.</li>
-                <li>Components that can be reused without regret.</li>
+                <li>Systems that survive a real dealership handoff, not just a demo.</li>
+                <li>Reputation and inventory signals tied to dollars, not vanity metrics.</li>
+                <li>AI visibility built for how ChatGPT and Google actually cite listings.</li>
               </ul>
             </article>
           </div>
@@ -70,29 +85,29 @@
         <section class="section reveal">
           <div class="section-heading">
             <p class="eyebrow">Timeline</p>
-            <h2>How the work usually evolves.</h2>
+            <h2>From dealership floor to dealership software.</h2>
           </div>
 
           <div class="timeline">
             <div class="timeline-entry">
               <div class="timeline-year">Now</div>
               <div>
-                <strong>Building answer surfaces and connector-aware experiences.</strong>
-                <p>Focused on systems that make AI output and product workflows easier to trust.</p>
+                <strong>Building DealershipAI and ClarityOS.</strong>
+                <p>AI citation readiness, reputation intelligence, and agentic inventory tooling for dealer groups.</p>
               </div>
             </div>
             <div class="timeline-entry">
               <div class="timeline-year">Earlier</div>
               <div>
-                <strong>Shipping operational tooling and internal systems.</strong>
-                <p>Work centered on reducing manual friction and improving repeatability across teams.</p>
+                <strong>Operations leadership at Germain Toyota of Naples.</strong>
+                <p>Used car acquisition, appraisal, pricing, and dealership operations at the floor level.</p>
               </div>
             </div>
             <div class="timeline-entry">
               <div class="timeline-year">Always</div>
               <div>
-                <strong>Prefers clarity over cleverness.</strong>
-                <p>Designs that are explainable, maintainable, and hard to misuse win by default.</p>
+                <strong>Prefers trust over traffic.</strong>
+                <p>Systems that are explainable, auditable, and hard to game win by default — in software and on the lot.</p>
               </div>
             </div>
           </div>
