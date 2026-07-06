@@ -320,6 +320,48 @@ h1 {
   max-width: 62ch;
 }
 
+.page-intro-with-photo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.page-intro-copy h1,
+.page-intro-copy .lede {
+  max-width: none;
+}
+
+.page-intro-photo {
+  justify-self: end;
+  width: 100%;
+  max-width: 320px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: var(--surface-strong);
+}
+
+.page-intro-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+@media (max-width: 720px) {
+  .page-intro-with-photo {
+    grid-template-columns: 1fr;
+  }
+
+  .page-intro-photo {
+    justify-self: start;
+    max-width: 220px;
+  }
+}
+
 .list-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
