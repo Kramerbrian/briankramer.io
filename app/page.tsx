@@ -3,6 +3,14 @@ import { HeroGlassPanel } from '@/components/HeroGlassPanel';
 import { GlassCard } from '@/components/GlassCard';
 import { LinkButton } from '@/components/Button';
 import { pressMentions } from '@/content/press';
+import { playbookEntries } from '@/content/playbook/entries';
+
+const pillarLabels: Record<string, string> = {
+  acquisition: 'Acquisition',
+  appraisal: 'Appraisal',
+  trust: 'Trust',
+  'ai-search': 'AI search',
+};
 
 interface HomePageProps {
   searchParams?: { waitlist?: string };
@@ -191,6 +199,51 @@ export default function HomePage({ searchParams }: HomePageProps) {
         <div className="mt-8 text-center md:hidden">
           <Link href="/writing" className="text-sm font-medium text-accent">
             All essays →
+          </Link>
+        </div>
+      </section>
+
+      <section className="container-page pb-24">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow">Playbook</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+              Run it this week.
+            </h2>
+          </div>
+          <Link
+            href="/playbook"
+            className="hidden text-sm font-medium text-accent hover:text-accent-hover md:inline"
+          >
+            All playbooks →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {playbookEntries.map((entry) => (
+            <Link
+              key={entry.slug}
+              href={`/playbook/${entry.slug}`}
+              className="group block rounded-2xl border border-line bg-surface/70 p-8 shadow-glass backdrop-blur-xl transition-all duration-200 hover:border-line-strong hover:shadow-glass-lift"
+            >
+              <p className="eyebrow text-accent">
+                {pillarLabels[entry.pillar] ?? entry.pillar}
+              </p>
+              <h3 className="mt-3 text-xl font-semibold leading-snug text-ink md:text-2xl">
+                {entry.title}
+              </h3>
+              <p className="mt-3 text-base leading-relaxed text-ink-muted">{entry.dek}</p>
+              <div className="mt-6 flex items-center justify-between text-xs text-ink-faint">
+                <span>{entry.timeToRun}</span>
+                <span className="text-accent transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-8 text-center md:hidden">
+          <Link href="/playbook" className="text-sm font-medium text-accent">
+            All playbooks →
           </Link>
         </div>
       </section>

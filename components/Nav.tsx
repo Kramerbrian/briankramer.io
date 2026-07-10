@@ -3,6 +3,7 @@ import { Logo } from './Logo';
 
 const links = [
   { href: '/writing', label: 'Writing' },
+  { href: '/playbook', label: 'Playbook' },
   { href: '/podcast', label: 'Podcast' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
