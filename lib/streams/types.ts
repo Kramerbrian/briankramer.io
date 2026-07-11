@@ -23,6 +23,7 @@ export interface Stream {
   summary: string;
   sourcePlatform: SourcePlatform;
   sourceUrl: string | null;
+  sourceVerified: boolean;
   topicPillar: TopicPillar | null;
   series: string | null;
   showName: string | null;
