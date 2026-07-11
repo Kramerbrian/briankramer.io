@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/utils';
 import { getEssaySlugs } from '@/content/essays';
-import { playbookEntries } from '@/content/playbook/entries';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -27,12 +26,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const playbookRoutes: MetadataRoute.Sitemap = playbookEntries.map((entry) => ({
-    url: `${base}/playbook/${entry.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...essayRoutes, ...playbookRoutes];
+  return [...staticRoutes, ...essayRoutes];
 }
