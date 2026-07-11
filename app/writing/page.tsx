@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Writing',
   description:
     'Essays on dealer operations, acquisition, trust, and digital transformation from Brian Kramer.',
+  alternates: { canonical: '/writing' },
 };
 
 const pillarLabels: Record<string, string> = {
