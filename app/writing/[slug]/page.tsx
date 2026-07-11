@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { EssayBody } from '@/components/EssayBody';
 import { getEssay, getEssaySlugs } from '@/content/essays';
 
@@ -27,6 +28,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: essay.title,
     description: essay.dek,
+    alternates: { canonical: `/writing/${essay.slug}` },
   };
 }
 
@@ -42,6 +44,7 @@ export default function EssayPage({ params }: Props) {
 
   return (
     <article className="container-prose pt-16 pb-24 md:pt-24">
+      <Script id={`schema-essay-${essay.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: essay.title, description: essay.dek, datePublished: essay.publishDate, dateModified: essay.publishDate, mainEntityOfPage: `https://www.briankramer.io/writing/${essay.slug}`, author: { '@type': 'Person', name: 'Brian Kramer', url: 'https://www.briankramer.io/about' } }) }} />
       <Link
         href="/writing"
         className="text-sm font-medium text-accent hover:text-accent-hover"
