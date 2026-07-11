@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { GlassCard } from '@/components/GlassCard';
-import { getAllPodcasts, TOTAL_PODCAST_COUNT } from '@/content/podcasts/seed';
+import { getAllPodcasts } from '@/content/podcasts/seed';
 
 export const metadata: Metadata = {
   title: 'Podcast',
