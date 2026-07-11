@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     template: '%s — Brian Kramer',
   },
   description: siteConfig.description,
+  alternates: { canonical: '/' },
   authors: [{ name: siteConfig.author.name, url: siteConfig.url }],
   creator: siteConfig.author.name,
   openGraph: {
