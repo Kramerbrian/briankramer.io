@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { GlassCard } from '@/components/GlassCard';
 import { getAllPodcasts, TOTAL_PODCAST_COUNT } from '@/content/podcasts/seed';
 
 export const metadata: Metadata = {
   title: 'Podcast',
   description:
-    'Podcast appearances on dealer operations, acquisition, trust, and digital transformation.',
+    'Verified podcast appearances on dealer operations, acquisition, trust, and digital transformation.',
+  alternates: { canonical: '/podcast' },
 };
 
 const pillarLabels: Record<string, string> = {
@@ -30,12 +32,12 @@ export default function PodcastPage() {
 
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
+      <Script id="schema-podcast" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Brian Kramer Podcast', url: 'https://www.briankramer.io/podcast', isPartOf: { '@type': 'WebSite', name: 'Brian Kramer', url: 'https://www.briankramer.io' } }) }} />
       <p className="eyebrow">Podcast</p>
-      <h1 className="mt-3 text-display font-semibold text-ink">61 appearances. One thread.</h1>
+      <h1 className="mt-3 text-display font-semibold text-ink">Podcast conversations. One thread.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
         Conversations on dealer operations, acquisition economics, trust, and what comes after
-        paperless. Showing {podcasts.length} of {TOTAL_PODCAST_COUNT} — full catalog importing
-        soon.
+        paperless. The archive is being verified before links are published.
       </p>
 
       <ul className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -70,7 +72,7 @@ export default function PodcastPage() {
                     month: 'short',
                   })}
                 </time>
-                {pod.sourceUrl && (
+                {pod.sourceVerified && pod.sourceUrl ? (
                   <a
                     href={pod.sourceUrl}
                     target="_blank"
@@ -79,6 +81,8 @@ export default function PodcastPage() {
                   >
                     Listen on {platformLabels[pod.sourcePlatform] ?? 'Web'} →
                   </a>
+                ) : (
+                  <span className="text-xs text-ink-faint">Source verification pending</span>
                 )}
               </div>
             </GlassCard>
