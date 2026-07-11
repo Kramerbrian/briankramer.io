@@ -9,6 +9,7 @@ const CORE_PUBLIC_ROUTES = [
   '/contact',
   '/writing',
   '/podcast',
+  '/playlist',
   '/playbook',
   '/newsletter',
 ] as const;
