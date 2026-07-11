@@ -128,6 +128,172 @@ If you can't see it separately, you can't manage it. And you'll default back to 
 
 The service drive isn't a sales problem. It's a search problem. Treat it like one.`,
   },
+  {
+    slug: 'look-to-book',
+    title: 'The Look-to-Book number every dealer should track',
+    dek: 'You know your close rate on retail. Do you know your close rate on appraisal? That gap is the most under-measured lever in used-car acquisition.',
+    topicPillar: 'appraisal',
+    readingMinutes: 6,
+    publishDate: '2026-02-10',
+    featured: false,
+    body: `Every 20-group meeting talks about closing ratio on retail traffic. Almost nobody talks about closing ratio on appraisal traffic. That silence is expensive.
+
+Look-to-Book is the appraisal equivalent of close rate. A Look is any customer who received a real appraisal number — walk-in, phone, online tool, service drive, doesn't matter. A Book is any Look that ended in you owning the vehicle. Trade, pure buy, private-party purchase — all count.
+
+If you can't define those two words without arguing, you don't have a metric. You have a vibe.
+
+## Instrument the top of the funnel
+
+Every appraiser writes down every appraisal. Even the ones that don't buy. Even the ones you don't want. Especially those.
+
+Your rejections are as diagnostic as your wins. A store that only logs the cars it books is measuring vanity, not process.
+
+The report is simple: Looks, Books, Look-to-Book rate, by appraiser, weekly. Not a punishment. A mirror. Your best appraiser might sit at 45%. Your worst at 12%. The gap is training, judgment, and confidence — all coachable.
+
+## Separate the losses
+
+A walk is the customer choosing to keep their vehicle. That's usually a pricing problem — you didn't stretch, or you didn't explain the number.
+
+A loss to a competitor is a market problem — someone else stretched harder, or moved faster, or earned more trust before the number landed.
+
+Different diagnoses. Different fixes. If you lump them together as "didn't buy," you will coach the wrong thing.
+
+## Set a floor and a ceiling — then prove them locally
+
+Under-measured stores often bid scared. Over-measured stores sometimes overpay or get lucky and call it skill.
+
+I won't hand you a universal healthy range. Ranges only matter when they come from your inventory strategy, your market, and a comparable dataset. Build the report first. Then set a floor and a ceiling your UCM can defend in the meeting.
+
+## Treat it like Close Ratio
+
+Bring Look-to-Book to the same table where you argue retail close rate. Same cadence. Same ownership. Same expectation that a number without a name next to it is theater.
+
+Used cars are an appraisal game dressed up as a sales game. Measure the game you're actually playing.`,
+  },
+  {
+    slug: 'digital-trust-audit',
+    title: 'The digital trust audit: what your store looks like before a customer walks in',
+    dek: 'Most shoppers decide on a dealer before they call. If you have not audited what they see, you are running blind.',
+    topicPillar: 'trust',
+    readingMinutes: 6,
+    publishDate: '2026-01-22',
+    featured: false,
+    body: `Trust used to be a handshake on the lot. Now it is a first-screen problem.
+
+Shoppers read reviews. Many of them decide on a dealer before they call. That means your Google presence, your phone greeting, and your VDP are not marketing assets. They are the front door.
+
+If you have not audited what a stranger sees, you are managing the store you remember — not the store the market is shopping.
+
+## Search yourself like a customer
+
+Incognito. Phone. A browser you never use.
+
+Type the store name. Type "[make] dealer near me." Type "[store name] reviews." Screenshot the first screen. That screen is your storefront now.
+
+Then read your last 50 Google reviews out loud. Not the star rating — the words. Themes over headlines. If three people name the same salesperson in bad reviews, that is data. If four mention the F&I upsell, that is data.
+
+## Answer the old ones
+
+Respond to every review over 30 days old that you have not answered. Especially the negative ones. Especially the old ones.
+
+A public, specific, non-defensive response to a two-year-old one-star review does more for future shoppers than most of your paid media. Silence reads as agreement.
+
+## Audit the phone and the VDP
+
+Call your own BDC. Sales, service, parts. From an unknown number. Time the pickup. Grade the greeting. Note whether they got your name, your vehicle, and a callback number.
+
+Then pick three used vehicles at random. Look at the VDP as a stranger would. Are the photos in? Is the price the price, or is it a number after unadvertised fees? Is there a walk-around? Would you buy this vehicle from this listing?
+
+Most stores discover they are not as good as their brand story claims. That discovery is the point.
+
+## Fix two things this quarter
+
+Don't try to fix everything. Pick the two most-mentioned problems from the audit and put a person's name against each with a 90-day deadline. Then re-run the audit.
+
+Trust is a compounding practice, not a project. Bad reviews are not a marketing problem — they are a Quality Score tax and a CPL premium. Trust compounds. The lack of it compounds faster.`,
+  },
+  {
+    slug: 'paperless-lessons',
+    title: 'What paperless actually taught me about dealer operations',
+    dek: 'Leading an end-to-end paperless transaction was never about the PDF. It was about removing friction that operators had learned to live with.',
+    topicPillar: 'digital-transformation',
+    readingMinutes: 7,
+    publishDate: '2025-12-12',
+    featured: false,
+    body: `In 2020 I helped lead what we believed was the first end-to-end paperless automotive transaction. People still ask me about the tech stack. That is the wrong question.
+
+Paperless was never about the PDF. It was about forcing every step of the deal to justify why it still required a printer, a wet signature, or a file cabinet.
+
+## Friction is a process confession
+
+Every piece of paper in a dealership is a confession that two systems do not talk, or that a person does not trust the system, or that a compliance step was designed for a world that no longer exists.
+
+When you remove the paper, you do not remove the work. You expose it. The desk that "always needed a wet signature" suddenly has to explain why. The F&I process that "couldn't be digital" has to name the real blocker — product, policy, habit, or fear.
+
+That exposure is the value. The software is just the flashlight.
+
+## Operators, not IT, own the outcome
+
+The stores that made paperless stick treated it as an operating change with a named owner on the floor. The stores that stalled treated it as an IT project with a go-live date and a hope.
+
+Same tools. Different ownership. Different result.
+
+If your GM cannot explain the new deal flow in one minute, you do not have a digital process. You have a pilot.
+
+## Trust travels with the customer
+
+Customers did not celebrate paperless because it was modern. They celebrated it because it was clearer. Fewer surprises. Fewer "we need you to come back and sign this." Fewer moments where the deal felt like a maze designed for the store's convenience.
+
+Clarity is a trust product. Paper was often the fog.
+
+## What comes after paperless
+
+Paperless was table stakes. The next fight is AI-native retail — structured data, stable URLs, citation-ready facts, and decision systems that help operators move faster without guessing.
+
+The lesson from 2020 still holds: do not buy the tool to look current. Buy the change that removes an excuse. Then measure whether the excuse is actually gone.`,
+  },
+  {
+    slug: 'dealer-ai-schema',
+    title: 'Dealer AI schema: the boring work that decides if ChatGPT names you',
+    dek: 'AI models read structured data first. Half of dealer sites have broken or missing schema. That is a design problem, not a marketing problem.',
+    topicPillar: 'ai-search',
+    readingMinutes: 6,
+    publishDate: '2026-01-08',
+    featured: false,
+    body: `When a shopper asks ChatGPT or Perplexity for the best dealer in town, the model does not care about your billboard. It cares whether it can lift clean facts about you with confidence.
+
+Schema is how you hand those facts over. Boring. Technical. Decisive.
+
+## Start with the homepage contract
+
+Your homepage should serve valid AutoDealer or LocalBusiness markup: name, address, phone, hours, geo coordinates, department information. Not a marketing paragraph pretending to be data. Actual structured fields a model can parse.
+
+Run Google's Rich Results Test. Fix what is broken. Half the dealer sites I have audited fail this basic check. If the model cannot trust your identity block, it will cite someone else's.
+
+## Make the about page quotable
+
+The about page is the highest-leverage piece of content for AI visibility. Write facts in complete sentences: ownership, history, community involvement, awards, staff.
+
+Not brand poetry. Facts a model can lift and attribute. If your about page could belong to any store in the group after a find-and-replace, it will not help you get named.
+
+## Stabilize the VDP
+
+Canonical URLs. Valid Product or Vehicle schema. Clean titles. A sold state at the same URL instead of a 404 the moment the car leaves.
+
+AI trains on what it can revisit. Ghost pages teach models that your inventory is unreliable. Unreliable sources get skipped.
+
+## Third-party proof still matters
+
+Schema gets you into the conversation. Third-party mentions help you win it — local business journals, chamber listings, industry press, podcast appearances, awards with your store name and city attached.
+
+One good third-party mention often beats a pile of paid backlinks the model does not trust.
+
+## Re-check monthly
+
+Ask the models the same questions every month. Screenshot the answers. Log whether you are named more, less, or not at all. Watch competitors.
+
+AI visibility is not a one-time SEO ticket. It is a beat. The dealers who treat schema like a living operating surface will show up in the answers. The ones who treat it like a web-provider checkbox will keep paying the invisible tax.`,
+  },
 ];
 
 export function getAllEssays(): EssayEntry[] {
