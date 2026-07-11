@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'About',
   description:
     'Brian Kramer is EVP of Dealer Growth & Success at Cars Commerce. 27 years in automotive retail, 19 as a General Manager.',
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {
