@@ -4,6 +4,7 @@ import { siteConfig } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Reach Brian Kramer for speaking, consulting, book, or press.',
+  alternates: { canonical: '/contact' },
 };
 
 const topics = ['Speaking', 'Consulting', 'The Best End User', 'Press', 'Other'];
