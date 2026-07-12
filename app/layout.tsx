@@ -79,9 +79,6 @@ const personSchema = {
     'Vehicle appraisal',
     'AI search visibility',
   ],
-  award: [
-    'Automotive News 40 Under 40',
-  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
