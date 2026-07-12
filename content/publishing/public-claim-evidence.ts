@@ -4,6 +4,10 @@
  * Classifies claims that appear, or could reappear, on the public site.
  * This registry governs public treatment only. It does not alter doctrine,
  * manuscript source, playbook source, or formula knowledge.
+ *
+ * Source-validation queue for named publications and biography holds:
+ * content/press.ts → sourceValidationQueue
+ * Human-readable mirror: docs/public-claim-source-queue.md
  */
 
 export type PublicClaimEvidenceClass =
@@ -93,7 +97,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'app/about/page.tsx',
     'About page and credentials label this as biography evidence with ledger confirmation pending.',
     'label',
-    'Do not present as audited industry data until the ledger/source record is verified.',
+    'Queue: svq-germain-7500-retail-volume. Do not present as audited industry data until ledger/source record is verified.',
   ),
   record(
     'bio-paperless-first-2020',
@@ -113,7 +117,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Credential remains citation-pending; Person schema award claim removed from app/layout.tsx.',
     'label',
-    'Needs primary Automotive News citation URL/date before verified treatment.',
+    'Queue: svq-automotive-news-40-under-40. Needs primary Automotive News citation URL/date before verified treatment.',
   ),
   record(
     'bio-google-dealer-advisory-board',
@@ -123,7 +127,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Credentials list labels roster confirmation pending.',
     'label',
-    'Needs board roster, invitation, or other primary artifact.',
+    'Queue: svq-google-dealer-advisory-board. Needs board roster, invitation, or other primary artifact.',
   ),
   record(
     'bio-web3-first-transaction',
@@ -133,7 +137,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Credentials use early wording; absolute first is not asserted.',
     'qualify',
-    'Keep qualified until source-validated.',
+    'Queue: svq-early-web3-transaction. Keep qualified until source-validated. Never upgrade to first without primary source.',
   ),
 
   // PR #4 named-publication labels.
@@ -145,7 +149,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Public press mention labeled Source validation pending.',
     'label',
-    'No URL added because no primary source URL is verified.',
+    'Queue: svq-wsj-mention. No URL added because no primary source URL is verified.',
   ),
   record(
     'press-automotive-news-source-pending',
@@ -155,7 +159,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Public press mention labeled citation pending; related credential remains pending.',
     'label',
-    'Do not mark verified until the primary Automotive News citation is supplied.',
+    'Queue: svq-automotive-news-40-under-40. Do not mark verified until primary Automotive News citation is supplied.',
   ),
   record(
     'press-fandi-source-pending',
@@ -165,7 +169,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Public press mention labeled Source validation pending.',
     'label',
-    'No URL added because no primary source URL is verified.',
+    'Queue: svq-fandi-mention. No URL added because no primary source URL is verified.',
   ),
   record(
     'press-digital-dealer-source-pending',
@@ -175,7 +179,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Public press mention labeled Source validation pending.',
     'label',
-    'No URL added because no primary source URL is verified.',
+    'Queue: svq-digital-dealer-mention. No URL added because no primary source URL is verified.',
   ),
   record(
     'press-jalopnik-source-pending',
@@ -185,7 +189,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Public press mention labeled Source validation pending.',
     'label',
-    'No URL added because no primary source URL is verified.',
+    'Queue: svq-jalopnik-mention. No URL added because no primary source URL is verified.',
   ),
   record(
     'press-pbs-viewpoint-source-pending',
@@ -195,7 +199,7 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'content/press.ts',
     'Public press mention labeled Appearance citation pending.',
     'label',
-    'No URL added because no primary appearance citation is verified.',
+    'Queue: svq-pbs-viewpoint-appearance. No URL added because no primary appearance citation is verified.',
   ),
 
   // PR #4 provisional public treatments.
@@ -238,6 +242,56 @@ export const publicClaimEvidence: PublicClaimEvidenceRecord[] = [
     'Person JSON-LD does not include award while Automotive News citation is pending.',
     'remove',
     'Schema must not carry unverified award claims.',
+  ),
+  record(
+    'pub-publishing-records-index',
+    'Canonical publishing records index links public content to approved claim IDs.',
+    'source-validation',
+    'verified',
+    'content/publishing/records.ts',
+    'Internal contentId slugs, drift-review dates, and approvedClaimIds are governance metadata.',
+    'publish',
+    'Content IDs and drift-review stamps are not public factual claims.',
+  ),
+  record(
+    'pub-newsletter-editions-index',
+    'Newsletter edition index surfaces verified LinkedIn Automotive Update summaries.',
+    'source-validation',
+    'qualified',
+    'content/newsletter/editions.ts',
+    'Edition list uses verified LinkedIn source URLs; summaries avoid held benchmarks.',
+    'qualify',
+    'Edition years in contentId slugs are routing metadata, not standalone public claims.',
+  ),
+  record(
+    'pub-site-default-description',
+    'Default site and metadata description for Brian Kramer public pages.',
+    'biography-evidence',
+    'qualified',
+    'lib/utils.ts',
+    'Shared description references EVP role and The Best End User book title in progress.',
+    'qualify',
+    'Book title reference is product naming, not a publication-readiness claim.',
+  ),
+  record(
+    'pub-book-title-reference',
+    'The Best End User book title appears in contact, waitlist, and navigation surfaces.',
+    'source-validation',
+    'pending',
+    'app/page.tsx',
+    'Book title used with In progress treatment; no release date asserted.',
+    'label',
+    'Title references must stay paired with in-progress or pending language.',
+  ),
+  record(
+    'pub-playbook-coming-soon-gate',
+    'Playbook public index remains gated until source material is verified.',
+    'source-validation',
+    'pending',
+    'app/playbook/page.tsx',
+    'Playbook page states first set will publish when source material is ready.',
+    'label',
+    'Do not present playbook entries as verified until publishing records authorize release.',
   ),
 
   // Approved doctrine mirrored in public essays.
