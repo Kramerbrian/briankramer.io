@@ -5,12 +5,12 @@ export interface PressMention {
 }
 
 export const pressMentions: PressMention[] = [
-  { publication: 'The Wall Street Journal' },
-  { publication: 'Automotive News', note: 'Automotive News “40 Under 40” recognition (citation pending)' },
-  { publication: 'F&I Magazine' },
-  { publication: 'Digital Dealer Magazine' },
-  { publication: 'Jalopnik' },
-  { publication: 'PBS "Viewpoint" with Dennis Quaid' },
+  { publication: 'The Wall Street Journal', note: 'Source validation pending' },
+  { publication: 'Automotive News', note: 'Automotive News “40 Under 40” recognition; citation pending' },
+  { publication: 'F&I Magazine', note: 'Source validation pending' },
+  { publication: 'Digital Dealer Magazine', note: 'Source validation pending' },
+  { publication: 'Jalopnik', note: 'Source validation pending' },
+  { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Appearance citation pending' },
 ];
 
 export interface Credential {
