@@ -1,6 +1,6 @@
 import type { PodcastAppearance } from '@/lib/streams/types';
 
-/** Provisional archive entries. Source links stay unpublished until each record is verified. */
+/** Provisional archive — entries remain public as titles only until sources are verified. */
 export const podcastAppearances: PodcastAppearance[] = [
   {
     id: 'pod-001',
@@ -27,7 +27,7 @@ export const podcastAppearances: PodcastAppearance[] = [
     contentType: 'podcast',
     title: 'From paperless to AI-native retail',
     summary:
-      'Lessons from leading the first end-to-end paperless transaction — and what comes next for dealers.',
+      'Lessons from helping lead an early end-to-end paperless transaction — and what comes next for dealers.',
     sourcePlatform: 'apple-podcasts',
     sourceVerified: false,
     sourceUrl: null,
@@ -44,9 +44,9 @@ export const podcastAppearances: PodcastAppearance[] = [
     id: 'pod-003',
     slug: 'used-car-weekly-look-to-book',
     contentType: 'podcast',
-    title: 'The Look-to-Book metric most stores ignore',
+    title: 'The Look-to-Book metric many stores still under-measure',
     summary:
-      'Why appraisal close rate is the single most under-measured lever in used-car acquisition.',
+      'Why appraisal close rate remains an under-measured lever in used-car acquisition.',
     sourcePlatform: 'youtube',
     sourceVerified: false,
     sourceUrl: null,
@@ -84,7 +84,7 @@ export const podcastAppearances: PodcastAppearance[] = [
     contentType: 'podcast',
     title: 'AI search visibility for dealers',
     summary:
-      'What ChatGPT, Perplexity, and Gemini say when shoppers ask for the best dealer in town.',
+      'What ChatGPT, Perplexity, and Gemini say when shoppers ask which dealers to consider locally.',
     sourcePlatform: 'youtube',
     sourceVerified: false,
     sourceUrl: null,
@@ -103,7 +103,7 @@ export const podcastAppearances: PodcastAppearance[] = [
     contentType: 'podcast',
     title: 'EVP perspective: dealer growth at scale',
     summary:
-      'Moving from single-store GM to platform-level dealer success — what changes and what doesn\'t.',
+      "Moving from single-store GM to platform-level dealer success — what changes and what doesn't.",
     sourcePlatform: 'other',
     sourceVerified: false,
     sourceUrl: null,
@@ -122,7 +122,7 @@ export const podcastAppearances: PodcastAppearance[] = [
     contentType: 'podcast',
     title: 'Retail leadership in Southwest Florida',
     summary:
-      'Building Germain Toyota into a 7,500-unit institution and the operator habits that survived the transition.',
+      'Building Germain Toyota of Naples during high-volume retail years, and the operator habits that survived the transition.',
     sourcePlatform: 'apple-podcasts',
     sourceVerified: false,
     sourceUrl: null,
@@ -139,7 +139,7 @@ export const podcastAppearances: PodcastAppearance[] = [
     id: 'pod-008',
     slug: 'automotive-news-40-under-40',
     contentType: 'podcast',
-    title: 'Inaugural 40 Under 40: what the award actually measures',
+    title: 'Automotive News 40 Under 40: what the recognition actually measures',
     summary:
       'Recognition is a lagging indicator. The habits that earn it are leading.',
     sourcePlatform: 'other',
@@ -155,6 +155,25 @@ export const podcastAppearances: PodcastAppearance[] = [
     durationMinutes: 22,
   },
 ];
+
+/** True only when the record is verified and the URL is a non-placeholder absolute http(s) link. */
+export function canPublishPodcastListenLink(pod: {
+  sourceVerified: boolean;
+  sourceUrl: string | null;
+}): pod is { sourceVerified: true; sourceUrl: string } {
+  if (!pod.sourceVerified || !pod.sourceUrl) return false;
+  try {
+    const url = new URL(pod.sourceUrl);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return false;
+    const path = url.pathname.toLowerCase();
+    if (path === '/example' || path === '/example2' || /\/example\d*$/i.test(path)) {
+      return false;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 export function getAllPodcasts(): PodcastAppearance[] {
   return [...podcastAppearances].sort(

@@ -6,7 +6,7 @@ import { siteConfig } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Brian Kramer is EVP of Dealer Growth & Success at Cars Commerce. 27 years in automotive retail, 19 as a General Manager.',
+    'Brian Kramer is EVP of Dealer Growth & Success at Cars Commerce. Career GM tenure in automotive retail; biography figures on this page are pending source validation.',
   alternates: { canonical: '/about' },
 };
 
@@ -27,10 +27,11 @@ export default function AboutPage() {
                 people who buy from them.
               </p>
               <p>
-                Before Cars Commerce, I spent 19 years as a General Manager — publicly traded,
+                Before Cars Commerce, I spent two decades as a General Manager — publicly traded,
                 privately held, import, domestic, and luxury stores across Ohio and Florida. Most
-                recently as GM of Germain Toyota of Naples and Germain Lincoln of Naples, where we
-                retailed more than 7,500 vehicles a year.
+                recently as GM of Germain Toyota of Naples and Germain Lincoln of Naples, where store
+                volume in those years was reported above 7,500 retail vehicles annually (biography
+                evidence; ledger confirmation pending).
               </p>
               <p>
                 I care about the parts of retail that don&apos;t photograph well: appraisal discipline,

@@ -12,7 +12,6 @@ export const metadata: Metadata = {
     template: '%s — Brian Kramer',
   },
   description: siteConfig.description,
-  alternates: { canonical: '/' },
   authors: [{ name: siteConfig.author.name, url: siteConfig.url }],
   creator: siteConfig.author.name,
   openGraph: {
@@ -81,7 +80,7 @@ const personSchema = {
     'AI search visibility',
   ],
   award: [
-    'Automotive News 40 Under 40 (inaugural class)',
+    'Automotive News 40 Under 40',
   ],
 };
 

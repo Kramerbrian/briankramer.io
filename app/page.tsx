@@ -1,8 +1,16 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { HeroGlassPanel } from '@/components/HeroGlassPanel';
 import { GlassCard } from '@/components/GlassCard';
 import { LinkButton } from '@/components/Button';
 import { pressMentions } from '@/content/press';
+import { siteConfig } from '@/lib/utils';
+
+export const metadata: Metadata = {
+  title: { absolute: siteConfig.title },
+  description: siteConfig.description,
+  alternates: { canonical: '/' },
+};
 
 interface HomePageProps {
   searchParams?: { waitlist?: string };
@@ -21,8 +29,9 @@ export default function HomePage({ searchParams }: HomePageProps) {
               Dealer growth, earned through trust.
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-              27 years in automotive retail — 19 as a General Manager, now leading dealer growth at
-              Cars Commerce. I write, teach, and build for operators who treat trust as the moat.
+              Two decades in automotive retail — most of them as a General Manager, now leading
+              dealer growth at Cars Commerce. I write, teach, and build for operators who treat
+              trust as an operating system.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <LinkButton href="/writing" variant="primary">
@@ -70,8 +79,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
             <p className="eyebrow text-accent">03 · Digital transformation</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Paperless, and beyond</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Led the first end-to-end paperless automotive transaction in 2020. Now working on
-              what comes after: AI-native retail.
+              Helped lead an early end-to-end paperless automotive transaction in 2020. Now
+              working on what comes after: AI-native retail.
             </p>
           </GlassCard>
         </div>
@@ -184,7 +193,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
             slug="service-drive-acquisition"
             eyebrow="Acquisition"
             title="Service drive is a search problem, not a sales problem"
-            dek="Why the best acquisition programs look like SREs at work, not appraisers with clipboards."
+            dek="Why strong acquisition programs look like SREs at work, not appraisers with clipboards."
             minutes={6}
           />
         </div>

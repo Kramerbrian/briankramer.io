@@ -9,7 +9,7 @@ export const siteConfig = {
   name: 'Brian Kramer',
   title: 'Brian Kramer — EVP, Cars Commerce',
   description:
-    'EVP at Cars Commerce focused on dealer growth and success. 27 years in automotive retail, from GM to executive. Writing The Best End User.',
+    'EVP at Cars Commerce focused on dealer growth and success. Career GM and executive tenure in automotive retail. Writing The Best End User.',
   url: 'https://www.briankramer.io',
   ogImage: 'https://www.briankramer.io/opengraph-image',
   author: {

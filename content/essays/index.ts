@@ -68,12 +68,12 @@ You don't need an agency for this. You need an afternoon and a browser you never
 4. Pick three VDPs at random. Check schema, canonical URL, and what happens when the vehicle sells.
 5. Set a monthly cadence to repeat step 1 and log the trend.
 
-AI visibility isn't a project. It's a beat — the new local SEO. The dealers who show up in these answers in 2027 are the ones who started treating their digital footprint like a citable source of record in 2026.`,
+AI visibility isn't a project. It's a beat — the new local SEO. Dealers who treat their digital footprint like a citable source of record now are the ones positioned to show up in these answers later.`,
   },
   {
     slug: 'service-drive-acquisition',
     title: 'Service drive is a search problem, not a sales problem',
-    dek: 'Why the best acquisition programs look like SREs at work, not appraisers with clipboards.',
+    dek: 'Why strong acquisition programs look like SREs at work, not appraisers with clipboards.',
     topicPillar: 'acquisition',
     readingMinutes: 6,
     publishDate: '2026-02-28',
@@ -90,13 +90,13 @@ If you can't see each stage separately, you can't optimize it. And most stores c
 
 That's like reporting organic search traffic and paid traffic as one number. You'd never do that in digital. Don't do it in acquisition.
 
-## The 90-second SLA
+## A fast response SLA
 
-The single highest-leverage change I've seen: a 90-second SLA from RO write-up to used-car buyer notification.
+One operating change that has consistently paid off in stores I've run: a short SLA from RO write-up to used-car buyer notification — on the order of about 90 seconds when the lane allows it.
 
 Your service advisor writes the ticket. Your used-car team decides whether that vehicle is worth an offer. Those two people almost never talk. Fix that first.
 
-Every RO over a threshold defined by the store gets a text with year, make, model, mileage, and VIN to a used-car buyer before the customer leaves the write-up desk. Not a batch at end of day. Not a sticky note on the dispatcher's monitor. A text, in 90 seconds.
+Every RO over a threshold defined by the store gets a text with year, make, model, mileage, and VIN to a used-car buyer before the customer leaves the write-up desk. Not a batch at end of day. Not a sticky note on the dispatcher's monitor. A text, while the customer is still at the desk.
 
 The buyer doesn't need to close on the drive. They need to plant the seed. Walk out, introduce themselves, hand the customer a printed number. That's the offer window.
 
@@ -104,7 +104,7 @@ The buyer doesn't need to close on the drive. They need to plant the seed. Walk 
 
 The offer itself should be informed by auto-decoded VIN data, book value, and remaining payoff or KBB trade — calculated in real time, not pulled from a binder.
 
-When the equity signal supports an offer, make the offer while the relationship is warm. The math takes 30 seconds with the right tools. The hesitation takes weeks when you do it manually.
+When the equity signal supports an offer, make the offer while the relationship is warm. With the right tools, the math is quick enough to happen in the moment. The hesitation takes weeks when you do it manually.
 
 ## Give the advisor a stake
 
@@ -112,11 +112,11 @@ Your service advisor is not paid to sell you cars. They are paid to sell hours a
 
 The operating hypothesis is that aligned incentives and a visible response timer can improve drive-sourced acquisition. Measure the result locally before generalizing it.
 
-## Follow up in 48 hours
+## Follow up while the offer is still warm
 
-The customer left thinking about the offer. Their spouse got home. The number percolated. Two days is the sweet spot: past the emotional reflex to say no, before the moment fades.
+The customer left thinking about the offer. Their spouse got home. The number percolated. In practice, a follow-up within about two days (illustrative cadence — prove it locally) often beats both an immediate hard close and a week-later cold call.
 
-Anything longer and you're competing with CarMax again. The service drive gave you a warm lead with built-in trust — they already do business with you. Don't squander that with a seven-day follow-up cadence designed for cold internet leads.
+Anything longer and you're competing with CarMax again. The service drive gave you a warm lead with built-in trust — they already do business with you. Don't squander that with a long follow-up cadence designed for cold internet leads.
 
 ## Report it as its own channel
 
@@ -131,7 +131,7 @@ The service drive isn't a sales problem. It's a search problem. Treat it like on
   {
     slug: 'look-to-book',
     title: 'The Look-to-Book number every dealer should track',
-    dek: 'You know your close rate on retail. Do you know your close rate on appraisal? That gap is the most under-measured lever in used-car acquisition.',
+    dek: 'You know your close rate on retail. Do you know your close rate on appraisal? That gap is still under-measured in used-car acquisition.',
     topicPillar: 'appraisal',
     readingMinutes: 6,
     publishDate: '2026-02-10',
@@ -148,7 +148,7 @@ Every appraiser writes down every appraisal. Even the ones that don't buy. Even 
 
 Your rejections are as diagnostic as your wins. A store that only logs the cars it books is measuring vanity, not process.
 
-The report is simple: Looks, Books, Look-to-Book rate, by appraiser, weekly. Not a punishment. A mirror. Your best appraiser might sit at 45%. Your worst at 12%. The gap is training, judgment, and confidence — all coachable.
+The report is simple: Looks, Books, Look-to-Book rate, by appraiser, weekly. Not a punishment. A mirror. Illustrative only: one store's spread might look like a strong appraiser near the mid-forties and a weak one near the low teens — your numbers will differ. The gap is training, judgment, and confidence — all coachable.
 
 ## Separate the losses
 
@@ -173,14 +173,14 @@ Used cars are an appraisal game dressed up as a sales game. Measure the game you
   {
     slug: 'digital-trust-audit',
     title: 'The digital trust audit: what your store looks like before a customer walks in',
-    dek: 'Most shoppers decide on a dealer before they call. If you have not audited what they see, you are running blind.',
+    dek: 'Many shoppers form a dealer preference before they call. If you have not audited what they see, you are running blind.',
     topicPillar: 'trust',
     readingMinutes: 6,
     publishDate: '2026-01-22',
     featured: false,
     body: `Trust used to be a handshake on the lot. Now it is a first-screen problem.
 
-Shoppers read reviews. Many of them decide on a dealer before they call. That means your Google presence, your phone greeting, and your VDP are not marketing assets. They are the front door.
+Shoppers read reviews. Many of them form a dealer preference before they call. That means your Google presence, your phone greeting, and your VDP are not marketing assets. They are the front door.
 
 If you have not audited what a stranger sees, you are managing the store you remember — not the store the market is shopping.
 
@@ -190,13 +190,13 @@ Incognito. Phone. A browser you never use.
 
 Type the store name. Type "[make] dealer near me." Type "[store name] reviews." Screenshot the first screen. That screen is your storefront now.
 
-Then read your last 50 Google reviews out loud. Not the star rating — the words. Themes over headlines. If three people name the same salesperson in bad reviews, that is data. If four mention the F&I upsell, that is data.
+Then read a recent block of Google reviews out loud — start with your last several dozen if you have them. Not the star rating — the words. Themes over headlines. If several people name the same salesperson in bad reviews, that is data. If several mention the F&I upsell, that is data.
 
 ## Answer the old ones
 
-Respond to every review over 30 days old that you have not answered. Especially the negative ones. Especially the old ones.
+Respond to unanswered reviews that have aged past your response SLA — for many stores, anything older than about a month is already late. Especially the negative ones. Especially the old ones.
 
-A public, specific, non-defensive response to a two-year-old one-star review does more for future shoppers than most of your paid media. Silence reads as agreement.
+A public, specific, non-defensive response to an old one-star review often does more for future shoppers than another round of paid media. Silence reads as agreement.
 
 ## Audit the phone and the VDP
 
@@ -208,14 +208,14 @@ Most stores discover they are not as good as their brand story claims. That disc
 
 ## Fix two things this quarter
 
-Don't try to fix everything. Pick the two most-mentioned problems from the audit and put a person's name against each with a 90-day deadline. Then re-run the audit.
+Don't try to fix everything. Pick the two most-mentioned problems from the audit and put a person's name against each with a short, dated deadline (a quarter is a common operator cadence — prove yours locally). Then re-run the audit.
 
 Trust is a compounding practice, not a project. Bad reviews are not a marketing problem — they are a Quality Score tax and a CPL premium. Trust compounds. The lack of it compounds faster.`,
   },
   {
     slug: 'paperless-lessons',
     title: 'What paperless actually taught me about dealer operations',
-    dek: 'Leading an end-to-end paperless transaction was never about the PDF. It was about removing friction that operators had learned to live with.',
+    dek: 'Helping lead an early end-to-end paperless transaction was never about the PDF. It was about removing friction that operators had learned to live with.',
     topicPillar: 'digital-transformation',
     readingMinutes: 7,
     publishDate: '2025-12-12',
@@ -255,7 +255,7 @@ The lesson from 2020 still holds: do not buy the tool to look current. Buy the c
   {
     slug: 'dealer-ai-schema',
     title: 'Dealer AI schema: the boring work that decides if ChatGPT names you',
-    dek: 'AI models read structured data first. Half of dealer sites have broken or missing schema. That is a design problem, not a marketing problem.',
+    dek: 'AI models read structured data first. In audits I have run, broken or missing schema is common enough to treat as a design problem, not a marketing problem.',
     topicPillar: 'ai-search',
     readingMinutes: 6,
     publishDate: '2026-01-08',
@@ -268,11 +268,11 @@ Schema is how you hand those facts over. Boring. Technical. Decisive.
 
 Your homepage should serve valid AutoDealer or LocalBusiness markup: name, address, phone, hours, geo coordinates, department information. Not a marketing paragraph pretending to be data. Actual structured fields a model can parse.
 
-Run Google's Rich Results Test. Fix what is broken. Half the dealer sites I have audited fail this basic check. If the model cannot trust your identity block, it will cite someone else's.
+Run Google's Rich Results Test. Fix what is broken. In dealer-site audits I have run, broken or missing schema shows up often enough that I treat the check as non-optional. If the model cannot trust your identity block, it will cite someone else's.
 
 ## Make the about page quotable
 
-The about page is the highest-leverage piece of content for AI visibility. Write facts in complete sentences: ownership, history, community involvement, awards, staff.
+The about page is high-leverage content for AI visibility. Write facts in complete sentences: ownership, history, community involvement, awards, staff.
 
 Not brand poetry. Facts a model can lift and attribute. If your about page could belong to any store in the group after a find-and-replace, it will not help you get named.
 

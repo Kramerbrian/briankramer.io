@@ -1,32 +1,38 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { getCanonicalContentByPath } from '@/content/publishing/records';
+import { collectionPageJsonLd, metadataFromRecord } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Playbook',
-  description: 'Dealer operating playbooks are being prepared for publication.',
-  alternates: { canonical: '/playbook' },
-};
+const playbookRecord = getCanonicalContentByPath('/playbook');
+
+export const metadata: Metadata = playbookRecord
+  ? {
+      ...metadataFromRecord(playbookRecord),
+      title: { absolute: 'Playbook — Brian Kramer' },
+    }
+  : {
+      title: 'Playbook',
+      description: 'Dealer operating playbooks are being prepared for publication.',
+      alternates: { canonical: '/playbook' },
+    };
 
 export default function PlaybookPage() {
+  const schema = playbookRecord
+    ? collectionPageJsonLd({ record: playbookRecord })
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Operating tools, coming soon.',
+        description: 'Dealer operating playbooks are being prepared for publication.',
+        url: 'https://www.briankramer.io/playbook',
+      };
+
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
       <Script
         id="schema-playbook"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'CollectionPage',
-            name: 'Brian Kramer Playbook',
-            url: 'https://www.briankramer.io/playbook',
-            description: 'Dealer operating playbooks are being prepared for publication.',
-            isPartOf: {
-              '@type': 'WebSite',
-              name: 'Brian Kramer',
-              url: 'https://www.briankramer.io',
-            },
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <p className="eyebrow">Playbook</p>
       <h1 className="mt-3 text-display font-semibold text-ink">Operating tools, coming soon.</h1>
