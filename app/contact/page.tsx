@@ -21,9 +21,9 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <p className="eyebrow">Contact</p>
-          <h1 className="mt-3 text-display font-semibold text-ink">Let's talk.</h1>
+          <h1 className="mt-3 text-display font-semibold text-ink">Let&apos;s talk.</h1>
           <p className="mt-6 text-lg leading-relaxed text-ink-muted">
-            Speaking inquiries, consulting, book, or press. If you're a dealer, an OEM, or a
+            Speaking inquiries, consulting, book, or press. If you&apos;re a dealer, an OEM, or a
             builder in this space — write.
           </p>
 
@@ -101,7 +101,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             </div>
             <div className="mt-6">
               <label htmlFor="topic" className="mb-2 block text-sm font-medium text-ink">
-                What's this about?
+                What&apos;s this about?
               </label>
               <select
                 id="topic"

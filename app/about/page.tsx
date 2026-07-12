@@ -6,7 +6,7 @@ import { siteConfig } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Brian Kramer is EVP of Dealer Growth & Success at Cars Commerce. 27 years in automotive retail, 19 as a General Manager.',
+    'Brian Kramer is EVP of Dealer Growth & Success at Cars Commerce. Career GM tenure in automotive retail; biography figures on this page are pending source validation.',
   alternates: { canonical: '/about' },
 };
 
@@ -22,18 +22,19 @@ export default function AboutPage() {
             </h1>
             <div className="prose mt-8 max-w-none">
               <p>
-                I'm EVP, Dealer Growth &amp; Success at Cars Commerce, where I lead the work of
+                I&apos;m EVP, Dealer Growth &amp; Success at Cars Commerce, where I lead the work of
                 helping dealers grow through better tools, better data, and better trust with the
                 people who buy from them.
               </p>
               <p>
-                Before Cars Commerce, I spent 19 years as a General Manager — publicly traded,
+                Before Cars Commerce, I spent two decades as a General Manager — publicly traded,
                 privately held, import, domestic, and luxury stores across Ohio and Florida. Most
-                recently as GM of Germain Toyota of Naples and Germain Lincoln of Naples, where we
-                retailed more than 7,500 vehicles a year.
+                recently as GM of Germain Toyota of Naples and Germain Lincoln of Naples, where store
+                volume in those years was reported above 7,500 retail vehicles annually (biography
+                evidence; ledger confirmation pending).
               </p>
               <p>
-                I care about the parts of retail that don't photograph well: appraisal discipline,
+                I care about the parts of retail that don&apos;t photograph well: appraisal discipline,
                 service-drive acquisition, the honest math behind a used-car deal, and the daily
                 operator reps that turn a store from a lot into an institution.
               </p>

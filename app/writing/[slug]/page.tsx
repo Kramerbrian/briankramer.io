@@ -4,6 +4,11 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { EssayBody } from '@/components/EssayBody';
 import { getEssay, getEssaySlugs } from '@/content/essays';
+import {
+  articleJsonLd,
+  getEssayPublishingRecord,
+  metadataFromRecord,
+} from '@/lib/seo';
 
 const pillarLabels: Record<string, string> = {
   acquisition: 'Acquisition',
@@ -25,6 +30,12 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const essay = getEssay(params.slug);
   if (!essay) return {};
+
+  const record = getEssayPublishingRecord(essay.slug);
+  if (record) {
+    return metadataFromRecord(record);
+  }
+
   return {
     title: essay.title,
     description: essay.dek,
@@ -36,15 +47,51 @@ export default function EssayPage({ params }: Props) {
   const essay = getEssay(params.slug);
   if (!essay) notFound();
 
-  const formattedDate = new Date(essay.publishDate).toLocaleDateString('en-US', {
+  const record = getEssayPublishingRecord(essay.slug);
+  const datePublished = record?.datePublished ?? essay.publishDate;
+  const dateModified = record?.dateModified ?? essay.publishDate;
+  const description = record?.approvedSummary ?? essay.dek;
+  const headline = record?.canonicalTitle ?? essay.title;
+
+  const formattedDate = new Date(datePublished).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 
+  const schema = record
+    ? articleJsonLd({ record, topicPillar: essay.topicPillar })
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline,
+        description,
+        datePublished,
+        dateModified,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.briankramer.io/writing/${essay.slug}`,
+        },
+        author: {
+          '@type': 'Person',
+          name: 'Brian Kramer',
+          url: 'https://www.briankramer.io/about',
+        },
+        publisher: {
+          '@type': 'Person',
+          name: 'Brian Kramer',
+          url: 'https://www.briankramer.io',
+        },
+        keywords: ['Brian Kramer', 'automotive retail', essay.topicPillar],
+      };
+
   return (
     <article className="container-prose pt-16 pb-24 md:pt-24">
-      <Script id={`schema-essay-${essay.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: essay.title, description: essay.dek, datePublished: essay.publishDate, dateModified: essay.publishDate, mainEntityOfPage: `https://www.briankramer.io/writing/${essay.slug}`, author: { '@type': 'Person', name: 'Brian Kramer', url: 'https://www.briankramer.io/about' } }) }} />
+      <Script
+        id={`schema-essay-${essay.slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <Link
         href="/writing"
         className="text-sm font-medium text-accent hover:text-accent-hover"
@@ -55,11 +102,11 @@ export default function EssayPage({ params }: Props) {
       <p className="eyebrow mt-8 text-accent">
         {pillarLabels[essay.topicPillar] ?? essay.topicPillar}
       </p>
-      <h1 className="mt-3 text-display font-semibold text-ink">{essay.title}</h1>
+      <h1 className="mt-3 text-display font-semibold text-ink">{headline}</h1>
       <p className="mt-5 text-lg leading-relaxed text-ink-muted">{essay.dek}</p>
 
       <div className="mt-6 flex items-center gap-4 text-sm text-ink-faint">
-        <time dateTime={essay.publishDate}>{formattedDate}</time>
+        <time dateTime={datePublished}>{formattedDate}</time>
         <span aria-hidden="true">·</span>
         <span>{essay.readingMinutes} min read</span>
       </div>
