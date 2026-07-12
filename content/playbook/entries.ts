@@ -23,15 +23,15 @@ export const playbookEntries: PlaybookEntry[] = [
     slug: 'service-drive-sourcing',
     pillar: 'acquisition',
     title: 'Service-drive sourcing: the acquisition channel you already own',
-    dek: 'Every day, trade-ready vehicles roll through your service drive. Many stores let them roll right back out.',
+    dek: 'Trade-ready vehicles roll through your service drive. Many stores let them roll right back out.',
     audience: 'GM, UCM, Service Director, Acquisition Manager',
-    timeToRun: 'Two weeks to install; short daily run cadence once live',
+    timeToRun: 'Short installation period; brief daily run cadence once live',
     steps: [
       {
         n: 1,
         headline: 'Get every RO through a used-car eye before it leaves the lane.',
         detail:
-          'Your service advisors write the ticket. Your used-car team decides whether that vehicle is worth an offer. Those two people almost never talk. Fix that first. Set a short SLA from write-up to buyer notification (illustrative operator cadence: about 90 seconds when the lane allows). Every RO over a store-defined threshold gets a text with year/make/model/mileage/VIN to a used-car buyer before the customer leaves the write-up desk.',
+          'Your service advisors write the ticket. Your used-car team decides whether that vehicle is worth an offer. Those roles often do not talk. Fix that handoff. Set a short SLA from write-up to buyer notification; exact timing must be proven locally. Every RO over a store-defined threshold gets a text with year/make/model/mileage/VIN to a used-car buyer before the customer leaves the write-up desk.',
       },
       {
         n: 2,
@@ -49,19 +49,19 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 4,
         headline: 'Follow up while the offer is still warm.',
         detail:
-          'The customer left the store thinking about the offer. Their spouse got home. The number percolated. An illustrative cadence is follow-up within about two days — prove the window locally. Anything much longer and you are competing with CarMax again.',
+          'The customer left the store thinking about the offer. Their spouse got home. The number percolated. Follow up while the relationship is still warm, then prove the timing window locally. If the moment fades, you are competing with CarMax again.',
       },
       {
         n: 5,
         headline: 'Track close rate on drive-sourced offers, not just volume.',
         detail:
-          'How many offers made, how many accepted, gross per unit. Diagnose offer quality and follow-up speed from the channel report. Do not apply a universal close-rate floor, ceiling, or healthy band without a defined comparable dataset.',
+          'Track offers made, offers accepted, and gross per unit. Diagnose offer quality and follow-up speed from the channel report. Do not apply a universal close-rate floor, ceiling, or healthy band without a defined comparable dataset.',
       },
       {
         n: 6,
         headline: 'Report it as its own channel.',
         detail:
-          "Service-drive acquisition is not 'used-car buying.' It has its own funnel, its own economics, its own weekly report. If you can't see it separately, you can't manage it. And you'll default back to auction — which is where margin goes to die.",
+          "Service-drive acquisition is not 'used-car buying.' It has its own funnel, its own economics, its own weekly report. If you can't see it separately, you can't manage it. Auction dependency becomes the default when the consumer-source channel is unmanaged.",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const playbookEntries: PlaybookEntry[] = [
     title: 'The Look-to-Book number every dealer should track',
     dek: 'You know your close rate on retail. Do you know your close rate on appraisal? That gap is still under-measured in used-car acquisition.',
     audience: 'UCM, GM',
-    timeToRun: 'One afternoon to build the report; ongoing discipline daily',
+    timeToRun: 'Build the report once; run the discipline daily',
     steps: [
       {
         n: 1,
@@ -117,7 +117,7 @@ export const playbookEntries: PlaybookEntry[] = [
     title: 'The digital trust audit: what your store looks like before a customer walks in',
     dek: 'Many shoppers form a dealer preference before they call. If you have not audited what they see, you are running blind.',
     audience: 'GM, Marketing Director, Fixed Ops Director',
-    timeToRun: 'Half a day quarterly. First one takes longer.',
+    timeToRun: 'Short quarterly audit cadence; first pass may take longer',
     steps: [
       {
         n: 1,
@@ -135,7 +135,7 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 3,
         headline: 'Respond to unanswered reviews that have aged past your SLA.',
         detail:
-          'Especially the negative ones. Especially the old ones. A public, specific, non-defensive response to an old one-star review often does more for future shoppers than another round of paid media.',
+          'Especially the negative ones. Especially the old ones. A public, specific, non-defensive response to an old negative review often does more for future shoppers than another round of paid media.',
       },
       {
         n: 4,
@@ -151,9 +151,9 @@ export const playbookEntries: PlaybookEntry[] = [
       },
       {
         n: 6,
-        headline: 'Score your trust surface. Set two things to fix this quarter.',
+        headline: 'Score your trust surface. Set a short list to fix this quarter.',
         detail:
-          "Don't try to fix everything. Pick the two most-mentioned problems from steps 2-5 and put a person's name against each with a short, dated deadline. Then re-run the audit. This is a compounding practice, not a project.",
+          "Don't try to fix everything. Pick the most-mentioned problems from the audit and put a person's name against each with a short, dated deadline. Then re-run the audit. This is a compounding practice, not a project.",
       },
     ],
   },
@@ -163,7 +163,7 @@ export const playbookEntries: PlaybookEntry[] = [
     title: 'AI search visibility quick-start: showing up when ChatGPT recommends a dealer',
     dek: 'Perplexity, ChatGPT, Gemini, and Google AI Overviews already answer shopper questions about local dealers. Whether they mention you is a design problem, not a marketing problem.',
     audience: 'Marketing Director, GM, Web Provider',
-    timeToRun: 'One week to install the fundamentals; ongoing to maintain',
+    timeToRun: 'Install the fundamentals; maintain on a recurring cadence',
     steps: [
       {
         n: 1,
@@ -175,19 +175,19 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 2,
         headline: 'Make sure your store schema is right.',
         detail:
-          'Your website should serve valid AutoDealer or LocalBusiness schema.org markup on the homepage — name, address, phone, hours, geo coordinates, department information. In audits I have run, broken or missing schema is common enough to treat as non-optional. AI models read structured data first.',
+          'Your website should serve valid AutoDealer or LocalBusiness schema.org markup on the homepage — name, address, phone, hours, geo coordinates, department information. In audits I have run, broken or missing schema is common enough to treat as non-optional. Structured data is one machine-readable input models can use.',
       },
       {
         n: 3,
         headline: 'Own the "about" page like it will be quoted.',
         detail:
-          'Because it will. The about page is high-leverage content for AI visibility. Real facts: ownership, history, community involvement, awards, staff. Not marketing prose. Facts, in complete sentences, that a model can lift and cite.',
+          'The about page is high-leverage content for AI visibility. Real facts: ownership, history, community involvement, awards, staff. Not marketing prose. Facts, in complete sentences, that a model can lift and cite.',
       },
       {
         n: 4,
         headline: 'Get named in third-party sources.',
         detail:
-          'AI models weight sources they trust. Local business journal profiles, chamber of commerce listings, industry press, podcast appearances, awards. One clear third-party mention with your store name and city often beats a pile of paid backlinks.',
+          'AI models weight sources they trust. Local business journal profiles, chamber of commerce listings, industry press, podcast appearances, awards. A clear third-party mention with your store name and city often beats a pile of paid backlinks.',
       },
       {
         n: 5,
@@ -199,7 +199,7 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 6,
         headline: 'Re-check monthly. Publish the trend.',
         detail:
-          "AI visibility isn't a one-time fix. Set a monthly cadence: repeat step 1, log the answers, watch the trend. Are you being named more? Fewer? Are your competitors gaining? Treat it like a beat, not a project.",
+          "AI visibility isn't a one-time fix. Set a monthly cadence: repeat your baseline probe, log the answers, watch the trend. Are you being named more? Fewer? Are your competitors gaining? Treat it like a beat, not a project.",
       },
     ],
   },
