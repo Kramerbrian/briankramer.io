@@ -29,9 +29,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
               Dealer growth, earned through trust.
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-              Two decades in automotive retail — most of them as a General Manager, now leading
-              dealer growth at Cars Commerce. I write, teach, and build for operators who treat
-              trust as an operating system.
+              Automotive retail operator and executive, now leading dealer growth at Cars Commerce.
+              I write, teach, and build for operators who treat trust as an operating system.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <LinkButton href="/writing" variant="primary">
@@ -60,27 +59,27 @@ export default function HomePage({ searchParams }: HomePageProps) {
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <GlassCard as="article" className="p-8">
-            <p className="eyebrow text-accent">01 · Acquisition</p>
+            <p className="eyebrow text-accent">Acquisition</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Used-vehicle sourcing</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Service-drive first, auction last. The economics of the acquisition funnel decide the
-              store, not the sales floor.
+              Service-drive sourcing before auction dependency. The economics of the acquisition
+              funnel decide the store, not the sales floor.
             </p>
           </GlassCard>
           <GlassCard as="article" className="p-8">
-            <p className="eyebrow text-accent">02 · Trust</p>
+            <p className="eyebrow text-accent">Trust</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Trust as an operating system</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Bad reviews aren&apos;t a marketing problem — they&apos;re a Quality Score tax and a CPL
-              premium. Trust compounds; the lack of it compounds faster.
+              Bad reviews aren&apos;t just a marketing problem; they can become a paid-media drag.
+              Trust compounds; the lack of it compounds faster.
             </p>
           </GlassCard>
           <GlassCard as="article" className="p-8">
-            <p className="eyebrow text-accent">03 · Digital transformation</p>
+            <p className="eyebrow text-accent">Digital transformation</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Paperless, and beyond</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Helped lead an early end-to-end paperless automotive transaction in 2020. Now
-              working on what comes after: AI-native retail.
+              Helped lead an early end-to-end paperless automotive transaction; source validation
+              remains in progress. Now working on what comes after: AI-native retail.
             </p>
           </GlassCard>
         </div>
@@ -89,14 +88,14 @@ export default function HomePage({ searchParams }: HomePageProps) {
       <section className="bg-bg-alt py-24 md:py-32">
         <div className="container-page grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <p className="eyebrow">A book · Coming 2026</p>
+            <p className="eyebrow">A book · In progress</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
               The Best End User
             </h2>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">
               A field manual for dealers who want to earn the last customer, not just the next one.
-              Built from two decades of GM reps, appraisal spreadsheets, and the trust math that
-              actually moves a store.
+              Built from GM reps, appraisal spreadsheets, and the trust math that actually moves a
+              store.
             </p>
             {waitlistStatus === '1' && (
               <p className="mt-8 rounded-2xl border border-accent/30 bg-accent-soft px-5 py-4 text-sm text-ink">
@@ -157,7 +156,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
                   </div>
                   <div className="flex items-end justify-between">
                     <div className="h-px w-16 bg-white/40" />
-                    <p className="text-[11px] uppercase tracking-widest text-white/60">2026</p>
+                    <p className="text-[11px] uppercase tracking-widest text-white/60">In progress</p>
                   </div>
                 </div>
               </div>
