@@ -20,7 +20,7 @@ export const essays: EssayEntry[] = [
     readingMinutes: 7,
     publishDate: '2026-03-15',
     featured: true,
-    body: `A customer asks ChatGPT: "Who's the best Toyota dealer near me?" The model answers with three store names. Yours is not one of them, and you may never see the missed consideration.
+    body: `A customer asks ChatGPT: "Who's the best Toyota dealer near me?" The model answers with a short list of store names. Yours is not one of them, and you may never see the missed consideration.
 
 This isn't a ranking problem in the traditional sense. AI models don't crawl your site the way Googlebot does, score your backlinks, or weigh your Quality Score. They synthesize answers from structured data, third-party mentions, and content they can quote with confidence. If your digital footprint doesn't give them clean facts to lift, you don't exist in the answer.
 
@@ -28,25 +28,25 @@ This isn't a ranking problem in the traditional sense. AI models don't crawl you
 
 Your Vehicle Detail Page is the atomic unit of dealer SEO. For AI visibility, it's worse than invisible — it's unstable.
 
-Many dealer sites 404 or redirect the moment a vehicle sells. The URL that Perplexity indexed last Tuesday is a ghost page today. Models learn that your inventory is unreliable. They stop citing it.
+Some dealer sites 404 or redirect the moment a vehicle sells. A URL that Perplexity indexed recently can become a ghost page later. Models learn that your inventory is unreliable. They stop citing it.
 
 The fix isn't complicated, but it requires your web provider to cooperate:
 
 - Serve a "sold" state at the same canonical URL instead of redirecting to search results
 - Include valid Product or Vehicle schema on every VDP — year, make, model, VIN, price, mileage, availability
-- Keep titles human-readable, not templated noise like "2024 Toyota Camry SE 2.5L 4-Cyl FWD Sedan Stock #T24091"
+- Keep titles human-readable instead of templated inventory noise
 
-Broken or missing schema is common enough to make an audit worthwhile. AI reads structured data first. If it's absent, the model moves on to your competitor's CarGurus listing.
+Broken or missing schema is common enough to make an audit worthwhile. Structured data is one of the machine-readable inputs models can use. If it's absent, the model may move on to a source it can parse with more confidence.
 
 ## What AI models actually weight
 
 Across repeated checks in ChatGPT, Perplexity, Gemini, and Google AI Overviews, a useful pattern is:
 
-1. **Schema.org markup** on the homepage (AutoDealer or LocalBusiness with geo coordinates, hours, departments)
-2. **About page content** written in complete sentences with real facts — ownership, history, awards, community involvement
-3. **Third-party mentions** — local business journal profiles, chamber listings, industry press, podcast appearances
-4. **Review volume and recency** on Google — not the star rating, the actual text
-5. **Stable, citable URLs** that don't break when inventory turns
+- **Schema.org markup** on the homepage (AutoDealer or LocalBusiness with geo coordinates, hours, departments)
+- **About page content** written in complete sentences with real facts — ownership, history, awards, community involvement
+- **Third-party mentions** — local business journal profiles, chamber listings, industry press, podcast appearances
+- **Review volume and recency** on Google — not the star rating, the actual text
+- **Stable, citable URLs** that don't break when inventory turns
 
 Notice what's not on the list: paid backlinks, keyword density, meta descriptions. AI search is a citation problem, not a keyword problem.
 
@@ -56,19 +56,19 @@ When AI skips your store, the cost doesn't show up in any dashboard. There's no 
 
 But you can estimate it. When shoppers begin with an AI query, every omission from an answer can remove a dealership from the consideration set before its team is contacted.
 
-I call it the invisible tax. It doesn't hit your CRM. It hits your market share in the consideration set — the list of three stores a customer is willing to call. If you're not on that list, your BDC never gets the chance to blow the call.
+I call it the invisible tax. It doesn't hit your CRM. It hits your market share in the consideration set — the stores a customer is willing to call. If you're not on that list, your BDC never gets the chance to blow the call.
 
 ## What to do this week
 
 You don't need an agency for this. You need an afternoon and a browser you never use.
 
-1. Open ChatGPT, Perplexity, and Gemini. Ask each: "Which are the best [your brand] dealers in [your city]?" Screenshot everything. That's your baseline.
-2. Audit your homepage schema with Google's Rich Results Test. Fix what's broken.
-3. Rewrite your about page as facts, not marketing. One paragraph on ownership. One on history. One on community. Complete sentences.
-4. Pick three VDPs at random. Check schema, canonical URL, and what happens when the vehicle sells.
-5. Set a monthly cadence to repeat step 1 and log the trend.
+- Open ChatGPT, Perplexity, and Gemini. Ask each: "Which are the best [your brand] dealers in [your city]?" Screenshot everything. That's your baseline.
+- Audit your homepage schema with Google's Rich Results Test. Fix what's broken.
+- Rewrite your about page as facts, not marketing. Include ownership, history, and community proof in complete sentences.
+- Pick a few VDPs at random. Check schema, canonical URL, and what happens when the vehicle sells.
+- Set a monthly cadence to repeat the probe and log the trend.
 
-AI visibility isn't a project. It's a beat — the new local SEO. Dealers who treat their digital footprint like a citable source of record now are the ones positioned to show up in these answers later.`,
+AI visibility isn't a project. It's a beat — the new local SEO. Dealers who treat their digital footprint like a citable source of record now are positioned to show up in these answers later.`,
   },
   {
     slug: 'service-drive-acquisition',
@@ -86,13 +86,13 @@ The difference is framing. Sales thinks about the deal on the floor. Infrastruct
 
 Think about your service drive the way an SRE thinks about a search index. Vehicles arrive (indexed). Some match your buy criteria (retrieved). Your buyer makes an offer (ranked). The customer accepts or rejects (clicked or bounced).
 
-If you can't see each stage separately, you can't optimize it. And most stores can't see it at all. Service-drive acquisition gets lumped into "used-car buying" on the same report as auction purchases and street buys. Different economics, same line item.
+If you can't see each stage separately, you can't optimize it. And many stores can't see it at all. Service-drive acquisition gets lumped into "used-car buying" on the same report as auction purchases and street buys. Different economics, same line item.
 
 That's like reporting organic search traffic and paid traffic as one number. You'd never do that in digital. Don't do it in acquisition.
 
 ## A fast response SLA
 
-One operating change that has consistently paid off in stores I've run: a short SLA from RO write-up to used-car buyer notification — on the order of about 90 seconds when the lane allows it.
+One operating change that has paid off in stores I've run: a short SLA from RO write-up to used-car buyer notification — about 90 seconds is an illustrative target when the lane allows it, not a universal benchmark.
 
 Your service advisor writes the ticket. Your used-car team decides whether that vehicle is worth an offer. Those two people almost never talk. Fix that first.
 
@@ -114,7 +114,7 @@ The operating hypothesis is that aligned incentives and a visible response timer
 
 ## Follow up while the offer is still warm
 
-The customer left thinking about the offer. Their spouse got home. The number percolated. In practice, a follow-up within about two days (illustrative cadence — prove it locally) often beats both an immediate hard close and a week-later cold call.
+The customer left thinking about the offer. Their spouse got home. The number percolated. In practice, prompt follow-up while the relationship is still warm often beats both an immediate hard close and a cold call after the moment has faded.
 
 Anything longer and you're competing with CarMax again. The service drive gave you a warm lead with built-in trust — they already do business with you. Don't squander that with a long follow-up cadence designed for cold internet leads.
 
@@ -148,7 +148,7 @@ Every appraiser writes down every appraisal. Even the ones that don't buy. Even 
 
 Your rejections are as diagnostic as your wins. A store that only logs the cars it books is measuring vanity, not process.
 
-The report is simple: Looks, Books, Look-to-Book rate, by appraiser, weekly. Not a punishment. A mirror. Illustrative only: one store's spread might look like a strong appraiser near the mid-forties and a weak one near the low teens — your numbers will differ. The gap is training, judgment, and confidence — all coachable.
+The report is simple: Looks, Books, Look-to-Book rate, by appraiser, weekly. Not a punishment. A mirror. Illustrative only: one store's spread might show a strong appraiser materially ahead of a weaker one — your numbers will differ. The gap is training, judgment, and confidence — all coachable.
 
 ## Separate the losses
 
@@ -190,27 +190,27 @@ Incognito. Phone. A browser you never use.
 
 Type the store name. Type "[make] dealer near me." Type "[store name] reviews." Screenshot the first screen. That screen is your storefront now.
 
-Then read a recent block of Google reviews out loud — start with your last several dozen if you have them. Not the star rating — the words. Themes over headlines. If several people name the same salesperson in bad reviews, that is data. If several mention the F&I upsell, that is data.
+Then read a recent block of Google reviews out loud. Not the star rating — the words. Themes over headlines. If several people name the same salesperson in bad reviews, that is data. If several mention the F&I upsell, that is data.
 
 ## Answer the old ones
 
-Respond to unanswered reviews that have aged past your response SLA — for many stores, anything older than about a month is already late. Especially the negative ones. Especially the old ones.
+Respond to unanswered reviews that have aged past your response SLA. Especially the negative ones. Especially the old ones.
 
-A public, specific, non-defensive response to an old one-star review often does more for future shoppers than another round of paid media. Silence reads as agreement.
+A public, specific, non-defensive response to an old negative review often does more for future shoppers than another round of paid media. Silence reads as agreement.
 
 ## Audit the phone and the VDP
 
 Call your own BDC. Sales, service, parts. From an unknown number. Time the pickup. Grade the greeting. Note whether they got your name, your vehicle, and a callback number.
 
-Then pick three used vehicles at random. Look at the VDP as a stranger would. Are the photos in? Is the price the price, or is it a number after unadvertised fees? Is there a walk-around? Would you buy this vehicle from this listing?
+Then pick a few used vehicles at random. Look at the VDP as a stranger would. Are the photos in? Is the price the price, or is it a number after unadvertised fees? Is there a walk-around? Would you buy this vehicle from this listing?
 
-Most stores discover they are not as good as their brand story claims. That discovery is the point.
+Many stores discover they are not as good as their brand story claims. That discovery is the point.
 
-## Fix two things this quarter
+## Fix a small set of things this quarter
 
-Don't try to fix everything. Pick the two most-mentioned problems from the audit and put a person's name against each with a short, dated deadline (a quarter is a common operator cadence — prove yours locally). Then re-run the audit.
+Don't try to fix everything. Pick the most-mentioned problems from the audit and put a person's name against each with a short, dated deadline. Then re-run the audit.
 
-Trust is a compounding practice, not a project. Bad reviews are not a marketing problem — they are a Quality Score tax and a CPL premium. Trust compounds. The lack of it compounds faster.`,
+Trust is a compounding practice, not a project. Bad reviews are not just a marketing problem; they can become a paid-media drag. Trust compounds. The lack of it compounds faster.`,
   },
   {
     slug: 'paperless-lessons',
@@ -220,13 +220,13 @@ Trust is a compounding practice, not a project. Bad reviews are not a marketing 
     readingMinutes: 7,
     publishDate: '2025-12-12',
     featured: false,
-    body: `In 2020 I helped lead what we believed was the first end-to-end paperless automotive transaction. People still ask me about the tech stack. That is the wrong question.
+    body: `I helped lead what we believed was an early end-to-end paperless automotive transaction. People still ask me about the tech stack. That is the wrong question.
 
 Paperless was never about the PDF. It was about forcing every step of the deal to justify why it still required a printer, a wet signature, or a file cabinet.
 
 ## Friction is a process confession
 
-Every piece of paper in a dealership is a confession that two systems do not talk, or that a person does not trust the system, or that a compliance step was designed for a world that no longer exists.
+Every piece of paper in a dealership is a confession that systems do not talk, or that a person does not trust the system, or that a compliance step was designed for a world that no longer exists.
 
 When you remove the paper, you do not remove the work. You expose it. The desk that "always needed a wet signature" suddenly has to explain why. The F&I process that "couldn't be digital" has to name the real blocker — product, policy, habit, or fear.
 
@@ -238,7 +238,7 @@ The stores that made paperless stick treated it as an operating change with a na
 
 Same tools. Different ownership. Different result.
 
-If your GM cannot explain the new deal flow in one minute, you do not have a digital process. You have a pilot.
+If your GM cannot explain the new deal flow quickly and clearly, you do not have a digital process. You have a pilot.
 
 ## Trust travels with the customer
 
@@ -250,12 +250,12 @@ Clarity is a trust product. Paper was often the fog.
 
 Paperless was table stakes. The next fight is AI-native retail — structured data, stable URLs, citation-ready facts, and decision systems that help operators move faster without guessing.
 
-The lesson from 2020 still holds: do not buy the tool to look current. Buy the change that removes an excuse. Then measure whether the excuse is actually gone.`,
+The lesson still holds: do not buy the tool to look current. Buy the change that removes an excuse. Then measure whether the excuse is actually gone.`,
   },
   {
     slug: 'dealer-ai-schema',
     title: 'Dealer AI schema: the boring work that decides if ChatGPT names you',
-    dek: 'AI models read structured data first. In audits I have run, broken or missing schema is common enough to treat as a design problem, not a marketing problem.',
+    dek: 'Structured data is one of the machine-readable inputs models can use. In audits I have run, broken or missing schema is common enough to treat as a design problem, not a marketing problem.',
     topicPillar: 'ai-search',
     readingMinutes: 6,
     publishDate: '2026-01-08',
@@ -286,13 +286,13 @@ AI trains on what it can revisit. Ghost pages teach models that your inventory i
 
 Schema gets you into the conversation. Third-party mentions help you win it — local business journals, chamber listings, industry press, podcast appearances, awards with your store name and city attached.
 
-One good third-party mention often beats a pile of paid backlinks the model does not trust.
+A clear third-party mention often beats a pile of paid backlinks the model does not trust.
 
 ## Re-check monthly
 
 Ask the models the same questions every month. Screenshot the answers. Log whether you are named more, less, or not at all. Watch competitors.
 
-AI visibility is not a one-time SEO ticket. It is a beat. The dealers who treat schema like a living operating surface will show up in the answers. The ones who treat it like a web-provider checkbox will keep paying the invisible tax.`,
+AI visibility is not a one-time SEO ticket. It is a beat. Dealers who treat schema like a living operating surface are better positioned to show up in the answers. Dealers who treat it like a web-provider checkbox keep paying the invisible tax.`,
   },
 ];
 
