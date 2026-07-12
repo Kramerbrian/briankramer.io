@@ -78,7 +78,6 @@ export default function PlaylistPage() {
             width="100%"
             height="352"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            allowFullScreen
             loading="lazy"
           />
         </GlassCard>
