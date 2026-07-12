@@ -6,7 +6,7 @@ import { getAllPodcasts } from '@/content/podcasts/seed';
 export const metadata: Metadata = {
   title: 'Podcast',
   description:
-    'Verified podcast appearances on dealer operations, acquisition, trust, and digital transformation.',
+    'Provisional podcast appearance archive under source verification before listen links are published.',
   alternates: { canonical: '/podcast' },
 };
 
@@ -32,7 +32,25 @@ export default function PodcastPage() {
 
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
-      <Script id="schema-podcast" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Brian Kramer Podcast', url: 'https://www.briankramer.io/podcast', isPartOf: { '@type': 'WebSite', name: 'Brian Kramer', url: 'https://www.briankramer.io' } }) }} />
+      <Script
+        id="schema-podcast"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Brian Kramer Podcast',
+            description:
+              'Provisional podcast appearance archive under source verification before listen links are published.',
+            url: 'https://www.briankramer.io/podcast',
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'Brian Kramer',
+              url: 'https://www.briankramer.io',
+            },
+          }),
+        }}
+      />
       <p className="eyebrow">Podcast</p>
       <h1 className="mt-3 text-display font-semibold text-ink">Podcast conversations. One thread.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
