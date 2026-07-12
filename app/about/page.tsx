@@ -22,7 +22,7 @@ export default function AboutPage() {
             </h1>
             <div className="prose mt-8 max-w-none">
               <p>
-                I'm EVP, Dealer Growth &amp; Success at Cars Commerce, where I lead the work of
+                I&apos;m EVP, Dealer Growth &amp; Success at Cars Commerce, where I lead the work of
                 helping dealers grow through better tools, better data, and better trust with the
                 people who buy from them.
               </p>
@@ -33,7 +33,7 @@ export default function AboutPage() {
                 retailed more than 7,500 vehicles a year.
               </p>
               <p>
-                I care about the parts of retail that don't photograph well: appraisal discipline,
+                I care about the parts of retail that don&apos;t photograph well: appraisal discipline,
                 service-drive acquisition, the honest math behind a used-car deal, and the daily
                 operator reps that turn a store from a lot into an institution.
               </p>

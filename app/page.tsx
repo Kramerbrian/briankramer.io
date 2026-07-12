@@ -62,7 +62,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
             <p className="eyebrow text-accent">02 · Trust</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Trust as an operating system</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Bad reviews aren't a marketing problem — they're a Quality Score tax and a CPL
+              Bad reviews aren&apos;t a marketing problem — they&apos;re a Quality Score tax and a CPL
               premium. Trust compounds; the lack of it compounds faster.
             </p>
           </GlassCard>
