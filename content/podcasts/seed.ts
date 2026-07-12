@@ -1,6 +1,6 @@
 import type { PodcastAppearance } from '@/lib/streams/types';
 
-/** Seed entries — representative sample; full catalog (61) to be imported. */
+/** Provisional archive entries. Source links stay unpublished until each record is verified. */
 export const podcastAppearances: PodcastAppearance[] = [
   {
     id: 'pod-001',
@@ -11,7 +11,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'How review velocity, phone experience, and VDP quality compound into acquisition economics.',
     sourcePlatform: 'spotify',
     sourceVerified: false,
-    sourceUrl: 'https://open.spotify.com/show/example',
+    sourceUrl: null,
     topicPillar: 'trust',
     series: null,
     showName: 'The Automotive Leadership Edge',
@@ -30,7 +30,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'Lessons from leading the first end-to-end paperless transaction — and what comes next for dealers.',
     sourcePlatform: 'apple-podcasts',
     sourceVerified: false,
-    sourceUrl: 'https://podcasts.apple.com/example',
+    sourceUrl: null,
     topicPillar: 'digital-transformation',
     series: null,
     showName: 'Dealer Talk',
@@ -49,7 +49,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'Why appraisal close rate is the single most under-measured lever in used-car acquisition.',
     sourcePlatform: 'youtube',
     sourceVerified: false,
-    sourceUrl: 'https://www.youtube.com/@briankramer',
+    sourceUrl: null,
     topicPillar: 'appraisal',
     series: null,
     showName: 'Used Car Weekly',
@@ -68,7 +68,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'Turning RO volume into acquisition volume with SLAs, equity math, and advisor incentives.',
     sourcePlatform: 'spotify',
     sourceVerified: false,
-    sourceUrl: 'https://open.spotify.com/show/example2',
+    sourceUrl: null,
     topicPillar: 'acquisition',
     series: null,
     showName: 'Fixed Ops Matters',
@@ -87,7 +87,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'What ChatGPT, Perplexity, and Gemini say when shoppers ask for the best dealer in town.',
     sourcePlatform: 'youtube',
     sourceVerified: false,
-    sourceUrl: 'https://www.youtube.com/@briankramer',
+    sourceUrl: null,
     topicPillar: 'ai-search',
     series: null,
     showName: 'Digital Dealer Podcast',
@@ -106,7 +106,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'Moving from single-store GM to platform-level dealer success — what changes and what doesn\'t.',
     sourcePlatform: 'other',
     sourceVerified: false,
-    sourceUrl: 'https://www.linkedin.com/in/kramerbrian/',
+    sourceUrl: null,
     topicPillar: 'leadership',
     series: null,
     showName: 'Cars Commerce Live',
@@ -125,7 +125,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'Building Germain Toyota into a 7,500-unit institution and the operator habits that survived the transition.',
     sourcePlatform: 'apple-podcasts',
     sourceVerified: false,
-    sourceUrl: 'https://podcasts.apple.com/example2',
+    sourceUrl: null,
     topicPillar: 'leadership',
     series: null,
     showName: 'Southwest Florida Business Radio',
@@ -144,7 +144,7 @@ export const podcastAppearances: PodcastAppearance[] = [
       'Recognition is a lagging indicator. The habits that earn it are leading.',
     sourcePlatform: 'other',
     sourceVerified: false,
-    sourceUrl: 'https://www.autonews.com/',
+    sourceUrl: null,
     topicPillar: 'leadership',
     series: null,
     showName: 'Automotive News Podcast',
@@ -155,8 +155,6 @@ export const podcastAppearances: PodcastAppearance[] = [
     durationMinutes: 22,
   },
 ];
-
-export const TOTAL_PODCAST_COUNT = 61;
 
 export function getAllPodcasts(): PodcastAppearance[] {
   return [...podcastAppearances].sort(
