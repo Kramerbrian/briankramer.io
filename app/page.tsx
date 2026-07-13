@@ -223,10 +223,11 @@ export default function HomePage({ searchParams }: HomePageProps) {
       <section className="border-y border-line bg-surface-muted py-12">
         <div className="container-page">
           <p className="eyebrow text-center">Featured in</p>
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-ink-muted">
+          <ul className="mt-6 grid grid-cols-1 gap-4 text-center text-sm text-ink-muted sm:grid-cols-2 lg:grid-cols-3">
             {pressMentions.map((p) => (
-              <li key={p.publication} className="whitespace-nowrap">
-                {p.publication}
+              <li key={p.publication} className="rounded-xl border border-line bg-surface/70 p-4">
+                <p className="font-medium text-ink">{p.publication}</p>
+                {p.note && <p className="mt-1 text-xs text-ink-faint">{p.note}</p>}
               </li>
             ))}
           </ul>

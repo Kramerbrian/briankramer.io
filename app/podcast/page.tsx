@@ -67,6 +67,10 @@ export default function PodcastPage() {
         Conversations on dealer operations, acquisition economics, trust, and what comes after
         paperless. The archive is being verified before links are published.
       </p>
+      <p className="mt-6 max-w-2xl rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm leading-relaxed text-ink-muted">
+        Provisional archive: titles, dates, hosts, and durations are not source-verified yet.
+        Listen links stay hidden until the source record is verified.
+      </p>
 
       <ul className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
         {podcasts.map((pod) => (
