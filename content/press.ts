@@ -6,10 +6,26 @@ export interface PressMention {
 
 export const pressMentions: PressMention[] = [
   { publication: 'The Wall Street Journal', note: 'Source validation pending' },
-  { publication: 'Automotive News', note: 'Automotive News “40 Under 40” recognition; citation pending' },
-  { publication: 'F&I Magazine', note: 'Source validation pending' },
-  { publication: 'Digital Dealer Magazine', note: 'Source validation pending' },
-  { publication: 'Jalopnik', note: 'Source validation pending' },
+  {
+    publication: 'Automotive News',
+    note: '2012 Retail 40 Under 40 — primary award page',
+    url: 'https://www.autonews.com/awards/2012-40u40-brian-kramer/',
+  },
+  {
+    publication: 'F&I Magazine',
+    note: 'F&I Showroom, Dec 2020 — The Future Is Digital at Germain Toyota of Naples',
+    url: 'https://fi-magazine.mydigitalpublication.com/articles/the-future-is-digital-at-germain-toyota-of-naples',
+  },
+  {
+    publication: 'Digital Dealer Magazine',
+    note: 'Nov 2020 interview — Germain Toyota of Naples',
+    url: 'https://read.nxtbook.com/digital_dealer/dealer_magazine/dealer_magazine_november_2020/interview_with_brian_kramer.html',
+  },
+  {
+    publication: 'Jalopnik',
+    note: 'Oct 2021 quote — Good Luck With Your Carvana Purchase',
+    url: 'https://www.jalopnik.com/good-luck-with-your-carvana-purchase-1847916850/',
+  },
   { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Appearance citation pending' },
 ];
 
@@ -22,7 +38,8 @@ export interface Credential {
 export const credentials: Credential[] = [
   {
     label: 'Automotive News “40 Under 40” recognition',
-    detail: 'Biography evidence; primary award citation pending',
+    detail: '2012 Retail 40 Under 40 — Lexus of Clearwater, AutoNation (Automotive News award page)',
+    year: '2012',
   },
   {
     label: 'Former member, Google Dealer Advisory Board',
@@ -44,7 +61,7 @@ export const credentials: Credential[] = [
 ];
 
 /** Source-validation queue status. Nothing is verified here without primary or durable source. */
-export type SourceValidationStatus = 'pending' | 'qualified';
+export type SourceValidationStatus = 'pending' | 'qualified' | 'verified';
 
 /** Public treatment allowed while a queue item remains unverified. */
 export type SourceValidationTreatment = 'label' | 'qualify' | 'remove';
@@ -90,8 +107,8 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     queueId: 'svq-automotive-news-40-under-40',
     claimIds: ['press-automotive-news-source-pending', 'bio-an-40-under-40'],
     currentPublicClaim:
-      'Homepage press lists Automotive News with “40 Under 40” recognition; citation pending. About credentials repeat the recognition with primary award citation pending. Person schema award property remains removed.',
-    currentStatus: 'pending',
+      'Homepage press lists Automotive News with verified primary award URL (2012 Retail 40 Under 40). About credentials cite the same award page. Person schema award property remains removed pending a separate schema decision.',
+    currentStatus: 'verified',
     exactSourceNeeded:
       'Official Automotive News 40 Under 40 honoree record naming Brian Kramer with award year/class and publication or announcement date.',
     acceptableEvidenceTypes: [
@@ -108,14 +125,14 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
       'content/podcasts/seed.ts (provisional archive entry only)',
     ],
     removalTrigger:
-      'Do not add Person schema award or verified URL until primary AN citation is supplied. Remove credential if honoree status cannot be substantiated.',
+      'Primary source verified: https://www.autonews.com/awards/2012-40u40-brian-kramer/. Person schema award remains out of scope for this patch.',
   },
   {
     queueId: 'svq-fandi-mention',
     claimIds: ['press-fandi-source-pending'],
     currentPublicClaim:
-      'Homepage “Featured in” lists F&I Magazine with note: Source validation pending. No URL is published.',
-    currentStatus: 'pending',
+      'Homepage “Featured in” lists F&I Magazine with verified F&I Showroom Dec 2020 primary URL: The Future Is Digital at Germain Toyota of Naples.',
+    currentStatus: 'verified',
     exactSourceNeeded:
       'Primary F&I Magazine article, profile, or interview URL naming Brian Kramer with headline and publication date.',
     acceptableEvidenceTypes: [
@@ -126,14 +143,15 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     publicTreatmentUntilVerified: 'label',
     remainPublic: true,
     publicSurfaces: ['app/page.tsx (Featured in)', 'content/press.ts'],
-    removalTrigger: 'Remove from pressMentions if no primary F&I citation is found after source search.',
+    removalTrigger:
+      'Primary source verified: https://fi-magazine.mydigitalpublication.com/articles/the-future-is-digital-at-germain-toyota-of-naples',
   },
   {
     queueId: 'svq-digital-dealer-mention',
     claimIds: ['press-digital-dealer-source-pending'],
     currentPublicClaim:
-      'Homepage “Featured in” lists Digital Dealer Magazine with note: Source validation pending. No URL is published.',
-    currentStatus: 'pending',
+      'Homepage “Featured in” lists Digital Dealer Magazine with verified Nov 2020 interview URL naming Brian Kramer / Germain Toyota of Naples.',
+    currentStatus: 'verified',
     exactSourceNeeded:
       'Primary Digital Dealer Magazine article, profile, or interview URL naming Brian Kramer with headline and publication date.',
     acceptableEvidenceTypes: [
@@ -145,14 +163,14 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     remainPublic: true,
     publicSurfaces: ['app/page.tsx (Featured in)', 'content/press.ts'],
     removalTrigger:
-      'Remove from pressMentions if no primary Digital Dealer citation is found after source search.',
+      'Primary source verified: https://read.nxtbook.com/digital_dealer/dealer_magazine/dealer_magazine_november_2020/interview_with_brian_kramer.html',
   },
   {
     queueId: 'svq-jalopnik-mention',
     claimIds: ['press-jalopnik-source-pending'],
     currentPublicClaim:
-      'Homepage “Featured in” lists Jalopnik with note: Source validation pending. No URL is published.',
-    currentStatus: 'pending',
+      'Homepage “Featured in” lists Jalopnik with verified primary URL quoting Brian Kramer (Good Luck With Your Carvana Purchase).',
+    currentStatus: 'verified',
     exactSourceNeeded:
       'Primary Jalopnik article or post URL naming Brian Kramer with headline and publication date.',
     acceptableEvidenceTypes: [
@@ -163,7 +181,8 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     publicTreatmentUntilVerified: 'label',
     remainPublic: true,
     publicSurfaces: ['app/page.tsx (Featured in)', 'content/press.ts'],
-    removalTrigger: 'Remove from pressMentions if no primary Jalopnik citation is found after source search.',
+    removalTrigger:
+      'Primary source verified: https://www.jalopnik.com/good-luck-with-your-carvana-purchase-1847916850/',
   },
   {
     queueId: 'svq-pbs-viewpoint-appearance',
