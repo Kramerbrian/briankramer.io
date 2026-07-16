@@ -1,10 +1,12 @@
 # Public Claim Source-Validation Queue
 
-**Status:** OPEN — no item verified without primary or durable source  
+**Status:** OPEN — pending items remain unlabeled as verified until primary sources clear  
 **Machine-readable authority:** `content/press.ts` → `sourceValidationQueue`  
 **Evidence registry:** `content/publishing/public-claim-evidence.ts` (linked by `claimIds`)
 
-Nothing in this queue is verified from memory. URLs are not published until a primary source artifact is supplied and reviewed.
+Nothing in this queue is verified from memory. URLs are published only when a primary source artifact is supplied and reviewed.
+
+**Cleared in this pass (primary URLs published):** Automotive News 40 Under 40; F&I Showroom; Digital Dealer Magazine; Jalopnik.
 
 ---
 
@@ -23,63 +25,63 @@ Nothing in this queue is verified from memory. URLs are not published until a pr
 
 ---
 
-## 2. Automotive News 40 Under 40
+## 2. Automotive News 40 Under 40 — VERIFIED
 
 | Field | Value |
 |---|---|
 | **Queue ID** | `svq-automotive-news-40-under-40` |
 | **Claim IDs** | `press-automotive-news-source-pending`, `bio-an-40-under-40` |
-| **Current public claim** | Homepage press lists Automotive News with “40 Under 40” recognition; citation pending. About credentials repeat recognition with primary award citation pending. Person schema `award` property remains removed. |
-| **Current status** | `pending` |
-| **Exact source needed** | Official Automotive News 40 Under 40 honoree record naming Brian Kramer with award year/class and publication or announcement date. |
-| **Acceptable evidence types** | AN official award/honoree page URL; AN published honoree announcement with date; durable archived capture of AN page with URL and timestamp |
-| **Public treatment until verified** | `label` — citation pending on all surfaces |
-| **Remain public?** | **Yes** — biographical credential with pending label. Do not restore Person schema award until primary AN citation supplied. |
+| **Current public claim** | Homepage press lists Automotive News with verified primary award URL. About credentials cite **2012 Retail 40 Under 40** (Lexus of Clearwater – AutoNation). Person schema `award` property remains removed. |
+| **Current status** | `verified` |
+| **Primary source URL** | https://www.autonews.com/awards/2012-40u40-brian-kramer/ |
+| **Exact evidence** | Automotive News award page: Brian Kramer, 35, General manager, Lexus of Clearwater – AutoNation; 2012 Retail 40 Under 40. |
+| **Public treatment** | `publish` — primary URL + year/class from award page only |
+| **Remain public?** | **Yes**. Do not broaden beyond award-page facts. Person schema award stays out of this patch. |
 
 ---
 
-## 3. F&I Magazine
+## 3. F&I Magazine — VERIFIED
 
 | Field | Value |
 |---|---|
 | **Queue ID** | `svq-fandi-mention` |
 | **Claim IDs** | `press-fandi-source-pending` |
-| **Current public claim** | Homepage “Featured in” lists F&I Magazine with note: **Source validation pending**. No URL published. |
-| **Current status** | `pending` |
-| **Exact source needed** | Primary F&I Magazine article, profile, or interview URL naming Brian Kramer with headline and publication date. |
-| **Acceptable evidence types** | F&I Magazine permalink; Wayback/archived publisher URL; print issue citation (volume, issue, date, page, headline) |
-| **Public treatment until verified** | `label` |
-| **Remain public?** | **Yes** — with pending label. Remove if no primary citation found. |
+| **Current public claim** | Homepage “Featured in” lists F&I Magazine with verified F&I Showroom Dec 2020 article URL. |
+| **Current status** | `verified` |
+| **Primary source URL** | https://fi-magazine.mydigitalpublication.com/articles/the-future-is-digital-at-germain-toyota-of-naples |
+| **Exact evidence** | F&I Showroom (Bobit), December 2020 — “The Future Is Digital at Germain Toyota of Naples” (Kate Spatafora); names Brian Kramer. |
+| **Public treatment** | `publish` — primary URL + issue/title only |
+| **Remain public?** | **Yes** |
 
 ---
 
-## 4. Digital Dealer Magazine
+## 4. Digital Dealer Magazine — VERIFIED
 
 | Field | Value |
 |---|---|
 | **Queue ID** | `svq-digital-dealer-mention` |
 | **Claim IDs** | `press-digital-dealer-source-pending` |
-| **Current public claim** | Homepage “Featured in” lists Digital Dealer Magazine with note: **Source validation pending**. No URL published. |
-| **Current status** | `pending` |
-| **Exact source needed** | Primary Digital Dealer Magazine article, profile, or interview URL naming Brian Kramer with headline and publication date. |
-| **Acceptable evidence types** | Digital Dealer Magazine permalink; Wayback/archived publisher URL; print or digital issue citation with date and headline |
-| **Public treatment until verified** | `label` |
-| **Remain public?** | **Yes** — with pending label. Remove if no primary citation found. |
+| **Current public claim** | Homepage “Featured in” lists Digital Dealer Magazine with verified Nov 2020 interview URL. |
+| **Current status** | `verified` |
+| **Primary source URL** | https://read.nxtbook.com/digital_dealer/dealer_magazine/dealer_magazine_november_2020/interview_with_brian_kramer.html |
+| **Exact evidence** | Digital Dealer / Dealer Magazine, November 2020 — interview with Brian Kramer of Germain Toyota of Naples. |
+| **Public treatment** | `publish` — primary magazine URL only |
+| **Remain public?** | **Yes** |
 
 ---
 
-## 5. Jalopnik
+## 5. Jalopnik — VERIFIED
 
 | Field | Value |
 |---|---|
 | **Queue ID** | `svq-jalopnik-mention` |
 | **Claim IDs** | `press-jalopnik-source-pending` |
-| **Current public claim** | Homepage “Featured in” lists Jalopnik with note: **Source validation pending**. No URL published. |
-| **Current status** | `pending` |
-| **Exact source needed** | Primary Jalopnik article or post URL naming Brian Kramer with headline and publication date. |
-| **Acceptable evidence types** | Jalopnik.com permalink; Wayback/archived publisher URL; syndicated repost only if it traces to original Jalopnik URL |
-| **Public treatment until verified** | `label` |
-| **Remain public?** | **Yes** — with pending label. Remove if no primary citation found. |
+| **Current public claim** | Homepage “Featured in” lists Jalopnik with verified primary article URL quoting Brian Kramer. |
+| **Current status** | `verified` |
+| **Primary source URL** | https://www.jalopnik.com/good-luck-with-your-carvana-purchase-1847916850/ |
+| **Exact evidence** | Jalopnik — “Good Luck With Your Carvana Purchase” quotes Brian Kramer, general manager of Germain Toyota of Naples, Fla. (originally published Oct 22, 2021). |
+| **Public treatment** | `publish` — primary Jalopnik URL only |
+| **Remain public?** | **Yes** |
 
 ---
 
@@ -147,5 +149,5 @@ Nothing in this queue is verified from memory. URLs are not published until a pr
 
 1. No item moves to `verified` without a supplied primary or durable source artifact.
 2. No URL is added to `pressMentions` until the matching queue item is cleared.
-3. Person schema `award` stays removed until `svq-automotive-news-40-under-40` is verified.
+3. Person schema `award` stays removed in this patch even though `svq-automotive-news-40-under-40` is verified (schema change is a separate decision).
 4. Doctrine, manuscript source, playbook source, and formula knowledge are out of scope for this queue.

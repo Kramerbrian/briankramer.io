@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "check:public-claims": "node scripts/check-public-claims.mjs",
-    "check:content-governance": "node scripts/check-content-governance.mjs && npm run check:public-claims"
+    "test:public-claims": "node scripts/test-public-claims.mjs",
+    "check:content-governance": "node scripts/check-content-governance.mjs && npm run check:public-claims && npm run test:public-claims"
   },
   "dependencies": {
     "next": "14.2.15",
