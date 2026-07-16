@@ -199,6 +199,20 @@ function extractRegistrySourcePaths(src) {
   return paths;
 }
 
+
+function extractRecordEvidenceStatus(src, claimId) {
+  // Positional record(claimId, claimText, evidenceClass, evidenceStatus, ...)
+  const positional = new RegExp(
+    `record\\(\\s*'${claimId}'\\s*,\\s*'[^']*'\\s*,\\s*'[^']*'\\s*,\\s*'([^']*)'`,
+  ).exec(src);
+  if (positional) return positional[1];
+  // Object-style claimId + evidenceStatus near the same record block.
+  const objectBlock = new RegExp(
+    `claimId:\\s*'${claimId}'[\\s\\S]{0,240}?evidenceStatus:\\s*'([^']*)'`,
+  ).exec(src);
+  return objectBlock?.[1] ?? null;
+}
+
 function shouldSkipLine(trimmed) {
   if (!trimmed) return true;
   if (LINE_SKIP_RES.some((re) => re.test(trimmed))) return true;
@@ -382,9 +396,7 @@ export function runPublicClaimGovernance(rootDir = process.cwd()) {
     ['press-jalopnik-source-pending', 'Jalopnik'],
   ];
   for (const [claimId, publication] of verifiedPressClaimToPublication) {
-    const verifiedInRegistry = new RegExp(
-      `record\\(\\s*'${claimId}'[\\s\\S]*?'verified'`,
-    ).test(evidenceSrc);
+    const verifiedInRegistry = extractRecordEvidenceStatus(evidenceSrc, claimId) === 'verified';
     if (!verifiedInRegistry) continue;
     const entry = pressEntries.find((item) => item.publication === publication);
     if (!entry || !pressEntryHasVerifiedUrl(entry)) {

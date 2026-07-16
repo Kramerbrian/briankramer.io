@@ -5,6 +5,19 @@
  * one mutation. The test runner writes trees to a temp dir and asserts.
  *
  * No production content files are modified by these fixtures.
+ *
+ * Acceptance matrix (required fail/pass proofs):
+ *   FAIL — Person schema Automotive News award          → fail-person-schema-award
+ *   FAIL — Homepage “Coming 2026”                       → fail-coming-2026
+ *   FAIL — Named publication without pending label      → fail-named-publication-no-label
+ *   FAIL — Podcast duration without provisional label   → fail-podcast-duration-no-provisional
+ *   FAIL — Held 70% / 35% / $2,000 claims               → fail-held-70-35-2000
+ *   FAIL — “first” / “leading” without registry coverage → fail-first-leading-no-coverage
+ *   PASS — Pending publication with visible label       → pass-pending-publication-label
+ *   PASS — Book “In progress”                           → pass-book-in-progress
+ *   PASS — Podcast provisional archive disclaimer       → pass-podcast-provisional
+ *   PASS — Verified/qualified claim with registry coverage
+ *        → pass-verified-registry-coverage, pass-qualified-registry-coverage
  */
 
 /** Required claim IDs the live gate expects in the evidence registry. */
@@ -20,17 +33,28 @@ const REQUIRED_RECORDS = [
   ['schema-person-award-removed', 'app/layout.tsx'],
 ];
 
+/**
+ * @param {Array<[string, string] | [string, string, string, string]>} extraRecords
+ *   [id, sourcePath] or [id, sourcePath, evidenceStatus, publicTreatment]
+ */
 function evidenceRegistry(extraRecords = []) {
-  const rows = [...REQUIRED_RECORDS, ...extraRecords]
+  const requiredRows = REQUIRED_RECORDS.map(
+    ([id, sourcePath]) => [id, sourcePath, 'pending', 'label'],
+  );
+  const extraRows = extraRecords.map((row) => {
+    const [id, sourcePath, evidenceStatus = 'pending', publicTreatment = 'label'] = row;
+    return [id, sourcePath, evidenceStatus, publicTreatment];
+  });
+  const rows = [...requiredRows, ...extraRows]
     .map(
-      ([id, sourcePath]) => `  record(
+      ([id, sourcePath, evidenceStatus, publicTreatment]) => `  record(
     '${id}',
     '${id} fixture claim.',
     'source-validation',
-    'pending',
+    '${evidenceStatus}',
     '${sourcePath}',
     'Fixture registry coverage.',
-    'label',
+    '${publicTreatment}',
     'Fixture note.',
   ),`,
     )
@@ -178,9 +202,12 @@ export const FIXTURE_CASES = [
   {
     id: 'fail-person-schema-award',
     expect: 'fail',
-    errorIncludes: ['Unsupported Person schema award claim appears in app/layout.tsx'],
+    errorIncludes: [
+      'Unsupported Person schema award claim appears in app/layout.tsx',
+    ],
     build: () =>
       passingScaffold({
+        // award value is Automotive News 40 Under 40 (see layoutFile).
         'app/layout.tsx': layoutFile({ withAward: true }),
       }),
   },
@@ -385,11 +412,26 @@ export default function AboutPage() {
     build: () =>
       passingScaffold({
         'content/publishing/public-claim-evidence.ts': evidenceRegistry([
-          ['pub-fixture-covered-claim', 'components/CoveredClaim.tsx'],
+          ['pub-fixture-covered-claim', 'components/CoveredClaim.tsx', 'verified', 'publish'],
         ]),
         'content/publishing/records.ts': recordsFile(['pub-fixture-covered-claim']),
         'components/CoveredClaim.tsx': `export function CoveredClaim() {
   return <p>A leading operator narrative with first-party operating proof.</p>;
+}
+`,
+      }),
+  },
+  {
+    id: 'pass-qualified-registry-coverage',
+    expect: 'pass',
+    build: () =>
+      passingScaffold({
+        'content/publishing/public-claim-evidence.ts': evidenceRegistry([
+          ['pub-fixture-qualified-claim', 'components/QualifiedClaim.tsx', 'qualified', 'qualify'],
+        ]),
+        'content/publishing/records.ts': recordsFile(['pub-fixture-qualified-claim']),
+        'components/QualifiedClaim.tsx': `export function QualifiedClaim() {
+  return <p>A leading desk practice with first-pass proof still being qualified.</p>;
 }
 `,
       }),
