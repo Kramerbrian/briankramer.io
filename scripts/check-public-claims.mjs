@@ -207,6 +207,8 @@ function isPublicScanFile(rel) {
   if (rel.startsWith(DOCTRINE_PREFIX)) return false;
   if (rel === EVIDENCE_PATH) return false;
   if (rel.startsWith('scripts/')) return false;
+  // Automated tests are not public marketing surfaces.
+  if (/\.(test|spec)\.[cm]?[jt]sx?$/.test(rel)) return false;
   return true;
 }
 
