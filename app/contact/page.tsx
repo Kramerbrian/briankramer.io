@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 const topics = ['Speaking', 'Consulting', 'The Best End User', 'Press', 'Other'];
 
 interface ContactPageProps {
-  searchParams?: { sent?: string };
+  searchParams?: Promise<{ sent?: string }>;
 }
 
-export default function ContactPage({ searchParams }: ContactPageProps) {
-  const sent = searchParams?.sent;
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const sent = (await searchParams)?.sent;
 
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
