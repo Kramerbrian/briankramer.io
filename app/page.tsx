@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 };
 
 interface HomePageProps {
-  searchParams?: { waitlist?: string };
+  searchParams?: Promise<{ waitlist?: string }>;
 }
 
-export default function HomePage({ searchParams }: HomePageProps) {
-  const waitlistStatus = searchParams?.waitlist;
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const waitlistStatus = (await searchParams)?.waitlist;
 
   return (
     <>
