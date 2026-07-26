@@ -83,7 +83,12 @@ const personSchema = {
   ],
 };
 
-const enableVercelInsights = process.env.VERCEL === '1';
+const enableVercelInsights =
+  process.env.VERCEL === '1' ||
+  process.env.VERCEL_ENV === 'production' ||
+  process.env.VERCEL_ENV === 'preview' ||
+  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ||
+  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
