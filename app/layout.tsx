@@ -83,13 +83,6 @@ const personSchema = {
   ],
 };
 
-const enableVercelInsights =
-  process.env.VERCEL === '1' ||
-  process.env.VERCEL_ENV === 'production' ||
-  process.env.VERCEL_ENV === 'preview' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview';
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -103,12 +96,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
-        {enableVercelInsights && (
-          <>
-            <Analytics />
-            <SpeedInsights />
-          </>
-        )}
+        <Analytics />
+        <SpeedInsights />
         <Script
           id="schema-person"
           type="application/ld+json"

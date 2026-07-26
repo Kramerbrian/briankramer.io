@@ -24,6 +24,10 @@ for (const route of routes) {
     const consoleErrors: string[] = [];
     const pageErrors: string[] = [];
 
+    await page.route('**/_vercel/**', async (route) => {
+      await route.fulfill({ status: 204, contentType: 'application/javascript', body: '' });
+    });
+
     page.on('console', (message) => {
       if (message.type() === 'error') {
         consoleErrors.push(message.text());
@@ -41,6 +45,10 @@ for (const route of routes) {
   });
 
   test(`${route} does not expose internal status language`, async ({ page }) => {
+    await page.route('**/_vercel/**', async (route) => {
+      await route.fulfill({ status: 204, contentType: 'application/javascript', body: '' });
+    });
+
     await page.goto(route, { waitUntil: 'networkidle' });
 
     const publicText = await page.locator('body').innerText();
