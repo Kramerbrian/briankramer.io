@@ -36,8 +36,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
               <LinkButton href="/writing" variant="primary">
                 Read the essays
               </LinkButton>
-              <LinkButton href="/podcast" variant="subtle">
-                Explore podcast archive
+              <LinkButton href="/newsletter" variant="subtle">
+                Read the newsletter
               </LinkButton>
             </div>
           </div>
