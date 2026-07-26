@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { siteConfig } from '@/lib/utils';
@@ -96,8 +94,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
-        <Analytics />
-        <SpeedInsights />
+        <Script
+          src="/_vercel/insights/script.js"
+          strategy="afterInteractive"
+          data-sdkn="@vercel/analytics/next"
+          data-sdkv="2.0.1"
+        />
+        <Script
+          src="/_vercel/speed-insights/script.js"
+          strategy="afterInteractive"
+          data-sdkn="@vercel/speed-insights/next"
+          data-sdkv="2.0.0"
+        />
         <Script
           id="schema-person"
           type="application/ld+json"

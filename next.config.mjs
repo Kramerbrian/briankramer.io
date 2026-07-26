@@ -28,7 +28,6 @@ const contentSecurityPolicyReportOnly = [
 
 const permissionsPolicy = [
   'accelerometer=()',
-  'ambient-light-sensor=()',
   'browsing-topics=()',
   'camera=()',
   'display-capture=()',
