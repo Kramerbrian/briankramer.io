@@ -95,6 +95,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <Script
+          id="vercel-observability-queue"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html:
+              'window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.si=window.si||function(){(window.siq=window.siq||[]).push(arguments)};',
+          }}
+        />
+        <Script
           src="/_vercel/insights/script.js"
           strategy="afterInteractive"
           data-sdkn="@vercel/analytics/next"
