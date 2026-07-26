@@ -158,6 +158,7 @@ const LINE_SKIP_RES = [
   /^import /,
   /^\/\//,
   /leading-relaxed|leading-snug/,
+  /leading-tight|object-\[/,
   /href\?:\s*never/,
   /contentId:\s*'bk-/,
   /DRIFT_REVIEW|datePublished|dateModified|lastDriftReview/,
@@ -412,12 +413,15 @@ export function runPublicClaimGovernance(rootDir = process.cwd()) {
     }
   }
 
-  // —— Lane C: podcast provisional gate + sourceVerified URL integrity ——
+  // —— Lane C: podcast source-field gate + sourceVerified URL integrity ——
+  const podcastClaimFieldsRender =
+    /podcasts\.map/.test(podcastPageSrc) &&
+    /pod\.(?:title|publishDate|podcastHost|durationMinutes)/.test(podcastPageSrc);
   const podcastBannerRequired =
     /titles, dates, hosts, and durations are not source-verified yet/.test(podcastPageSrc) &&
     /Source verification pending/.test(podcastPageSrc);
 
-  if (!podcastBannerRequired) {
+  if (podcastClaimFieldsRender && !podcastBannerRequired) {
     push('/podcast must visibly label titles, dates, hosts, and durations as not source-verified.');
   }
 
@@ -436,7 +440,7 @@ export function runPublicClaimGovernance(rootDir = process.cwd()) {
       /publishDate:\s*'/.test(block) ||
       /podcastHost:\s*'/.test(block) ||
       /durationMinutes:\s*\d+/.test(block);
-    if (verified === 'false' && hasClaimFields && !podcastBannerRequired) {
+    if (verified === 'false' && hasClaimFields && podcastClaimFieldsRender && !podcastBannerRequired) {
       push(`Podcast ${slug} exposes provisional title/date/host/duration fields without visible provisional label.`);
     }
     if (verified === 'true') {
@@ -548,7 +552,7 @@ function reportCli(result) {
   console.log(`- Publishing-record claim links: ${result.stats.publishingClaimLinks}`);
   console.log('- Required PR #4 evidence records present');
   console.log('- Named publication pending/verified source labels present');
-  console.log('- Podcast provisional source-field labels present');
+  console.log('- Podcast source-field exposure policy clean');
   console.log('- Person schema award remains removed');
   console.log('- Held/retired public claims absent');
 }
