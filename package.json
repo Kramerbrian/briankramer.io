@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit --incremental false",
     "test": "vitest run",
     "test:e2e": "playwright test",
@@ -20,14 +20,14 @@
   "dependencies": {
     "@mdx-js/loader": "3.0.1",
     "@mdx-js/react": "3.0.1",
-    "@next/mdx": "14.2.15",
+    "@next/mdx": "^16.2.12",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "clsx": "2.1.1",
     "gray-matter": "4.0.3",
-    "next": "14.2.15",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "next": "^16.2.12",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "sharp": "^0.35.3",
     "tailwind-merge": "2.5.4"
   },
@@ -38,16 +38,20 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/mdx": "2.0.13",
     "@types/node": "^20.19.25",
-    "@types/react": "18.3.11",
-    "@types/react-dom": "18.3.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "autoprefixer": "10.4.20",
-    "eslint": "8.57.1",
-    "eslint-config-next": "14.2.15",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.12",
     "jsdom": "^29.1.1",
-    "postcss": "8.4.47",
+    "postcss": "^8.5.23",
     "tailwindcss": "3.4.13",
     "typescript": "5.6.3",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3"
   }
 }

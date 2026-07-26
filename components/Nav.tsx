@@ -22,11 +22,6 @@ export function Nav() {
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Close the drawer whenever the route changes.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   // While open: Escape to close, lock body scroll, move focus into the panel.
   useEffect(() => {
     if (!open) return;
@@ -100,6 +95,7 @@ export function Nav() {
                     key={link.href}
                     href={link.href}
                     aria-current={active ? 'page' : undefined}
+                    onClick={() => setOpen(false)}
                     className={
                       'flex min-h-[52px] items-center border-b border-line py-3 text-base last:border-b-0 ' +
                       (active ? 'font-semibold text-accent' : 'text-ink')

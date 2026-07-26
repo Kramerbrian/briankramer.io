@@ -4,7 +4,7 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
 });
 
-const contentSecurityPolicyReportOnly = [
+const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -19,6 +19,11 @@ const contentSecurityPolicyReportOnly = [
   "media-src 'self' https://open.spotify.com",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
+].join('; ');
+
+const contentSecurityPolicyReportOnly = [
+  contentSecurityPolicy,
+  "report-to default",
 ].join('; ');
 
 const permissionsPolicy = [
@@ -47,6 +52,9 @@ const permissionsPolicy = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
   },
@@ -61,6 +69,10 @@ const nextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: contentSecurityPolicy,
           },
           {
             key: 'Content-Security-Policy-Report-Only',
