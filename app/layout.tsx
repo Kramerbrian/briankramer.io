@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { siteConfig } from '@/lib/utils';
@@ -81,6 +83,8 @@ const personSchema = {
   ],
 };
 
+const enableVercelInsights = process.env.VERCEL === '1';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -94,6 +98,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        {enableVercelInsights && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
         <Script
           id="schema-person"
           type="application/ld+json"

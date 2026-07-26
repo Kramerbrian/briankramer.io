@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { TrackedAnchor, TrackedForm } from '@/components/TrackedConversion';
 import { siteConfig } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -31,12 +32,14 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             <div>
               <dt className="eyebrow">Email</dt>
               <dd className="mt-1">
-                <a
+                <TrackedAnchor
                   href={`mailto:${siteConfig.author.email}`}
+                  events={['contact_email_click']}
+                  location="contact_page"
                   className="text-lg font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-accent"
                 >
                   {siteConfig.author.email}
-                </a>
+                </TrackedAnchor>
               </dd>
             </div>
             <div>
@@ -63,17 +66,27 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
           {sent === 'error' && (
             <p className="mb-6 rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm text-ink-muted">
               Something went wrong — try again or email{' '}
-              <a href="mailto:bkramer@cars.com" className="text-accent underline">
+              <TrackedAnchor
+                href="mailto:bkramer@cars.com"
+                events={['contact_email_click']}
+                location="contact_error"
+                className="text-accent underline"
+              >
                 bkramer@cars.com
-              </a>
+              </TrackedAnchor>
               .
             </p>
           )}
-          <form
+          <TrackedForm
             action="/api/contact"
             method="post"
-            className="rounded-3xl border border-line bg-surface/70 p-8 shadow-glass backdrop-blur-xl md:p-10"
+            pendingLabel="Sending your message..."
+            className="group/form rounded-3xl border border-line bg-surface/70 p-8 shadow-glass backdrop-blur-xl md:p-10"
           >
+            <div className="pointer-events-none absolute -left-[100vw] h-px w-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="contact-company">Company</label>
+              <input id="contact-company" name="company" tabIndex={-1} autoComplete="off" />
+            </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink">
@@ -83,7 +96,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   id="name"
                   name="name"
                   required
-                  className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft"
+                  className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
                 />
               </div>
               <div>
@@ -95,7 +108,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft"
+                  className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
                 />
               </div>
             </div>
@@ -107,7 +120,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 id="topic"
                 name="topic"
                 defaultValue="Speaking"
-                className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft"
+                className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
               >
                 {topics.map((t) => (
                   <option key={t}>{t}</option>
@@ -123,7 +136,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 name="message"
                 required
                 rows={6}
-                className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft"
+                className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
               />
             </div>
             <div className="mt-8 flex items-center justify-between gap-4">
@@ -132,12 +145,13 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               </p>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft group-data-[submitting=true]/form:pointer-events-none group-data-[submitting=true]/form:opacity-70"
               >
-                Send
+                <span className="group-data-[submitting=true]/form:hidden">Send</span>
+                <span className="hidden group-data-[submitting=true]/form:inline">Sending...</span>
               </button>
             </div>
-          </form>
+          </TrackedForm>
         </div>
       </div>
     </section>

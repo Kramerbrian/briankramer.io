@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { TrackedAnchor } from '@/components/TrackedConversion';
 import { credentials, pressMentions } from '@/content/press';
 import { siteConfig } from '@/lib/utils';
 
@@ -103,12 +104,14 @@ export default function AboutPage() {
               </h2>
             </div>
             <div className="flex md:justify-end">
-              <a
+              <TrackedAnchor
                 href={`mailto:${siteConfig.author.email}`}
+                events={['contact_email_click']}
+                location="about_page"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft"
               >
                 {siteConfig.author.email}
-              </a>
+              </TrackedAnchor>
             </div>
           </div>
         </div>

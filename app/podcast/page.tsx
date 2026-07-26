@@ -15,7 +15,7 @@ export const metadata: Metadata = archiveRecord
   : {
       title: 'Podcast',
       description:
-        'Provisional podcast archive on dealer operations, acquisition, trust, and digital transformation. Sources are being verified before listen links are published.',
+        'Selected podcast conversations on dealer operations, acquisition, trust, and digital transformation.',
       alternates: { canonical: '/podcast' },
     };
 
@@ -45,7 +45,7 @@ export default function PodcastPage() {
         '@type': 'CollectionPage',
         name: 'Podcast conversations. One thread.',
         description:
-          'Provisional public podcast archive. Titles and summaries may appear; listen links require source verification.',
+          'Selected podcast conversations on dealer operations, acquisition, trust, and digital transformation.',
         url: 'https://www.briankramer.io/podcast',
         isPartOf: {
           '@type': 'WebSite',
@@ -65,11 +65,7 @@ export default function PodcastPage() {
       <h1 className="mt-3 text-display font-semibold text-ink">Podcast conversations. One thread.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
         Conversations on dealer operations, acquisition economics, trust, and what comes after
-        paperless. The archive is being verified before links are published.
-      </p>
-      <p className="mt-6 max-w-2xl rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm leading-relaxed text-ink-muted">
-        Provisional archive: titles, dates, hosts, and durations are not source-verified yet.
-        Listen links stay hidden until the source record is verified.
+        paperless. Listen links publish as durable source records are added.
       </p>
 
       <ul className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -114,7 +110,7 @@ export default function PodcastPage() {
                     Listen on {platformLabels[pod.sourcePlatform] ?? 'Web'} →
                   </a>
                 ) : (
-                  <span className="text-xs text-ink-faint">Source verification pending</span>
+                  <span className="text-xs text-ink-faint">Listen link coming soon</span>
                 )}
               </div>
             </GlassCard>

@@ -103,7 +103,7 @@ export const canonicalContent: CanonicalContentRecord[] = [
       'Retail close rate gets the meeting. Appraisal Look-to-Book usually does not — and that silence is expensive.',
     newsletterSubject: 'The Look-to-Book number every dealer should track',
     approvedSummary:
-      'Defines Look-to-Book as an appraisal operating metric and refuses universal healthy ranges pending local proof.',
+      'Defines Look-to-Book as an appraisal operating metric and explains why healthy ranges should be proven locally.',
     doctrineIds: ['appraisal-look-to-book', 'appraisal-full-opportunity-set'],
     formulaIds: [],
     approvedClaimIds: [
@@ -191,7 +191,7 @@ export const canonicalContent: CanonicalContentRecord[] = [
     lastDriftReview: DRIFT_REVIEW,
   },
 
-  // —— Playbook index (public coming-soon placeholder; detail routes blocked) ——
+  // —— Playbook index (public coming-soon route; detail routes blocked) ——
   {
     contentId: 'bk-playbook-index-2026-001',
     canonicalOwner: 'briankramer.io',
@@ -202,7 +202,7 @@ export const canonicalContent: CanonicalContentRecord[] = [
       'Operating tools with owners, cadence, proof, and success measures — publishing when source material is ready.',
     newsletterSubject: 'Playbook: operating tools, coming soon',
     approvedSummary:
-      'Public placeholder for dealer operating playbooks. Detail routes remain unpublished until source-verified and governed.',
+      'Dealer operating playbooks are being prepared for publication, with detail routes held until source material is ready.',
     doctrineIds: ['execution-contract', 'execution-standardization'],
     formulaIds: [],
     approvedClaimIds: [],
@@ -350,7 +350,7 @@ export const canonicalContent: CanonicalContentRecord[] = [
     lastDriftReview: DRIFT_REVIEW,
   },
 
-  // —— Podcast collection + provisional public archive entries ——
+  // —— Podcast collection + public archive entries ——
   {
     contentId: 'bk-podcast-archive-2026-001',
     canonicalOwner: 'briankramer.io',
@@ -358,10 +358,10 @@ export const canonicalContent: CanonicalContentRecord[] = [
     canonicalTitle: 'Podcast conversations. One thread.',
     seoTitle: 'Podcast — Brian Kramer',
     linkedinHook:
-      'A provisional podcast archive on dealer operations — listen links publish only after source verification.',
-    newsletterSubject: 'Podcast archive (sources being verified)',
+      'Podcast conversations on dealer operations, acquisition economics, trust, and what comes after paperless.',
+    newsletterSubject: 'Podcast conversations on dealer operations',
     approvedSummary:
-      'Provisional public podcast archive. Titles and summaries may appear; listen links require sourceVerified and a real URL.',
+      'Selected podcast conversations on dealer operations, acquisition economics, trust, and digital transformation.',
     doctrineIds: [],
     formulaIds: [],
     approvedClaimIds: ['pub-podcast-archive-provisional'],

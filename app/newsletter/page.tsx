@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
 import { GlassCard } from '@/components/GlassCard';
+import { TrackedAnchor } from '@/components/TrackedConversion';
 import { getNewsletterEditions } from '@/content/newsletter/editions';
 import { getCanonicalContentByPath } from '@/content/publishing/records';
 import { collectionPageJsonLd, metadataFromRecord } from '@/lib/seo';
@@ -68,14 +69,16 @@ export default function NewsletterPage() {
       </p>
 
       <div className="mt-10">
-        <a
+        <TrackedAnchor
           href={LINKEDIN_SUBSCRIBE_URL}
+          events={['newsletter_signup', 'subscribe_linkedin_click']}
+          location="newsletter_page"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft"
         >
           Subscribe on LinkedIn
-        </a>
+        </TrackedAnchor>
         <p className="mt-3 text-xs text-ink-faint">
           Follow Brian Kramer on LinkedIn for new Automotive Update editions.
         </p>

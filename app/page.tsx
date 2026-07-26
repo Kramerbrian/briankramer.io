@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { HeroGlassPanel } from '@/components/HeroGlassPanel';
 import { GlassCard } from '@/components/GlassCard';
 import { LinkButton } from '@/components/Button';
+import { TrackedAnchor, TrackedForm } from '@/components/TrackedConversion';
 import { pressMentions } from '@/content/press';
 import { siteConfig } from '@/lib/utils';
 
@@ -105,17 +106,29 @@ export default function HomePage({ searchParams }: HomePageProps) {
             {waitlistStatus === 'error' && (
               <p className="mt-8 rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm text-ink-muted">
                 Something went wrong — try again or email{' '}
-                <a href="mailto:bkramer@cars.com" className="text-accent underline">
+                <TrackedAnchor
+                  href="mailto:bkramer@cars.com"
+                  events={['contact_email_click']}
+                  location="home_waitlist_error"
+                  className="text-accent underline"
+                >
                   bkramer@cars.com
-                </a>
+                </TrackedAnchor>
                 .
               </p>
             )}
-            <form
+            <TrackedForm
+              event="book_waitlist_submit"
+              location="home_waitlist"
+              pendingLabel="Joining the waitlist..."
               action="/api/waitlist"
               method="post"
-              className="mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+              className="group/form mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
             >
+              <div className="pointer-events-none absolute -left-[100vw] h-px w-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="waitlist-company">Company</label>
+                <input id="waitlist-company" name="company" tabIndex={-1} autoComplete="off" />
+              </div>
               <label htmlFor="waitlist-email" className="sr-only">
                 Email
               </label>
@@ -125,15 +138,16 @@ export default function HomePage({ searchParams }: HomePageProps) {
                 type="email"
                 required
                 placeholder="you@dealership.com"
-                className="flex-1 rounded-full border border-line bg-surface px-5 py-3 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft"
+                className="flex-1 rounded-full border border-line bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft group-data-[submitting=true]/form:pointer-events-none group-data-[submitting=true]/form:opacity-70"
               >
-                Join the waitlist
+                <span className="group-data-[submitting=true]/form:hidden">Join the waitlist</span>
+                <span className="hidden group-data-[submitting=true]/form:inline">Joining...</span>
               </button>
-            </form>
+            </TrackedForm>
             <p className="mt-3 text-xs text-ink-faint">
               One email when it ships. No newsletter, no spam.
             </p>
