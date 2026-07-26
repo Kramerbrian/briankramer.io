@@ -5,12 +5,15 @@ import { GlassCard } from '@/components/GlassCard';
 import { getNewsletterEditions } from '@/content/newsletter/editions';
 import { getCanonicalContentByPath } from '@/content/publishing/records';
 import { collectionPageJsonLd, metadataFromRecord } from '@/lib/seo';
-import { siteConfig } from '@/lib/utils';
 
 const newsletterRecord = getCanonicalContentByPath('/newsletter');
 
-/** LinkedIn profile is the verified subscribe destination present in-repo. */
-const LINKEDIN_SUBSCRIBE_URL = siteConfig.socials.linkedin;
+/**
+ * LinkedIn "Automotive Update" newsletter-follow endpoint — one-tap subscribe
+ * for signed-in members (not the profile link, which does not subscribe).
+ */
+const LINKEDIN_SUBSCRIBE_URL =
+  'https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6876750479435583488';
 
 export const metadata: Metadata = newsletterRecord
   ? {

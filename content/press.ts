@@ -5,7 +5,6 @@ export interface PressMention {
 }
 
 export const pressMentions: PressMention[] = [
-  { publication: 'The Wall Street Journal', note: 'Source validation pending' },
   {
     publication: 'Automotive News',
     note: '2012 Retail 40 Under 40 — primary award page',
@@ -26,7 +25,6 @@ export const pressMentions: PressMention[] = [
     note: 'Oct 2021 quote — Good Luck With Your Carvana Purchase',
     url: 'https://www.jalopnik.com/good-luck-with-your-carvana-purchase-1847916850/',
   },
-  { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Appearance citation pending' },
 ];
 
 export interface Credential {
@@ -43,20 +41,17 @@ export const credentials: Credential[] = [
   },
   {
     label: 'Former member, Google Dealer Advisory Board',
-    detail: 'Biography evidence; roster confirmation pending',
   },
   {
     label: 'Helped lead an early end-to-end paperless automotive transaction',
-    detail: 'Qualified claim — absolute “industry first” not asserted here',
     year: '2020',
   },
   {
     label: 'Facilitated an early Web3 transaction in automotive retail',
-    detail: 'Qualified claim — absolute “industry first” not asserted here',
   },
   {
     label: 'Former GM, Germain Toyota of Naples & Germain Lincoln of Naples',
-    detail: 'Reported store volume above 7,500 retail vehicles annually (biography evidence; ledger confirmation pending)',
+    detail: 'Reported store volume above 7,500 retail vehicles annually.',
   },
 ];
 
@@ -89,7 +84,7 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     queueId: 'svq-wsj-mention',
     claimIds: ['press-wsj-source-pending'],
     currentPublicClaim:
-      'Homepage “Featured in” lists The Wall Street Journal with note: Source validation pending. No URL is published.',
+      'Removed from public pressMentions pending a primary WSJ citation. Not shown on any public surface. Re-add to pressMentions once a durable source is supplied.',
     currentStatus: 'pending',
     exactSourceNeeded:
       'Primary WSJ article or profile naming Brian Kramer as subject, quoted source, or bylined author — with headline, publication date, and durable permalink or archivable citation.',
@@ -188,7 +183,7 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     queueId: 'svq-pbs-viewpoint-appearance',
     claimIds: ['press-pbs-viewpoint-source-pending'],
     currentPublicClaim:
-      'Homepage “Featured in” lists PBS "Viewpoint" with Dennis Quaid with note: Appearance citation pending. No episode URL is published.',
+      'Removed from public pressMentions pending a primary appearance citation. Not shown on any public surface. Re-add to pressMentions once an episode/air-date source is supplied.',
     currentStatus: 'pending',
     exactSourceNeeded:
       'PBS episode page, program guide entry, or broadcast metadata showing Brian Kramer appearance on Viewpoint with Dennis Quaid including air date or episode identifier.',
