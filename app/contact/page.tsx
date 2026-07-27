@@ -115,54 +115,42 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField id="name" label="Name" required>
-                {(fieldProps) => (
-                  <input
-                    {...fieldProps}
-                    name="name"
-                    required
-                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
-                  />
-                )}
+                <input
+                  name="name"
+                  required
+                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                />
               </FormField>
               <FormField id="email" label="Email" required>
-                {(fieldProps) => (
-                  <input
-                    {...fieldProps}
-                    name="email"
-                    type="email"
-                    required
-                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
-                  />
-                )}
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                />
               </FormField>
             </div>
             <div className="mt-6">
               <FormField id="topic" label="What's this about?">
-                {(fieldProps) => (
-                  <select
-                    {...fieldProps}
-                    name="topic"
-                    defaultValue="Speaking"
-                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
-                  >
-                    {topics.map((t) => (
-                      <option key={t}>{t}</option>
-                    ))}
-                  </select>
-                )}
+                <select
+                  name="topic"
+                  defaultValue="Speaking"
+                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                >
+                  {topics.map((t) => (
+                    <option key={t}>{t}</option>
+                  ))}
+                </select>
               </FormField>
             </div>
             <div className="mt-6">
               <FormField id="message" label="Message" required>
-                {(fieldProps) => (
-                  <textarea
-                    {...fieldProps}
-                    name="message"
-                    required
-                    rows={6}
-                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
-                  />
-                )}
+                <textarea
+                  name="message"
+                  required
+                  rows={6}
+                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                />
               </FormField>
             </div>
             <div className="mt-8 flex items-center justify-between gap-4">

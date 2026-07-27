@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import type { FormEvent, ReactNode } from 'react';
+import { cloneElement, isValidElement, useState } from 'react';
+import type { FormEvent, ReactElement } from 'react';
 
 /**
  * Wraps a native form control (input/select/textarea) to add:
@@ -10,21 +10,24 @@ import type { FormEvent, ReactNode } from 'react';
  *   populated from the browser's own validation message on an invalid submit
  *   attempt, and cleared as soon as the field becomes valid again.
  *
- * The child control must accept `id`, `aria-invalid`, and `aria-describedby`
- * props via `React.cloneElement`-style injection, so this takes a render
- * function rather than a plain child.
+ * Takes the field as a single JSX element child (a plain, serializable
+ * React element — safe to pass from a Server Component) and clones it with
+ * the extra props injected client-side, rather than taking a render-prop
+ * function (which cannot cross the server/client boundary).
  */
+type FieldElement = ReactElement<{
+  id?: string;
+  'aria-invalid'?: boolean;
+  'aria-describedby'?: string;
+  onInvalid?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onInput?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+}>;
+
 interface FormFieldProps {
   id: string;
   label: string;
   required?: boolean;
-  children: (fieldProps: {
-    id: string;
-    'aria-invalid': boolean | undefined;
-    'aria-describedby': string | undefined;
-    onInvalid: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-    onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-  }) => ReactNode;
+  children: FieldElement;
   className?: string;
   labelClassName?: string;
 }
@@ -40,6 +43,22 @@ export function FormField({
   const [error, setError] = useState<string | null>(null);
   const errorId = `${id}-error`;
 
+  const field = isValidElement(children)
+    ? cloneElement(children as FieldElement, {
+        id,
+        'aria-invalid': error ? true : undefined,
+        'aria-describedby': error ? errorId : undefined,
+        onInvalid: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+          setError(e.currentTarget.validationMessage || 'This field is invalid.');
+        },
+        onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+          if (e.currentTarget.validity.valid) {
+            setError(null);
+          }
+        },
+      })
+    : children;
+
   return (
     <div className={className}>
       <label htmlFor={id} className={labelClassName}>
@@ -51,19 +70,7 @@ export function FormField({
         )}
         {required && <span className="sr-only"> (required)</span>}
       </label>
-      {children({
-        id,
-        'aria-invalid': error ? true : undefined,
-        'aria-describedby': error ? errorId : undefined,
-        onInvalid: (e) => {
-          setError(e.currentTarget.validationMessage || 'This field is invalid.');
-        },
-        onInput: (e) => {
-          if (e.currentTarget.validity.valid) {
-            setError(null);
-          }
-        },
-      })}
+      {field}
       {error && (
         <p id={errorId} role="alert" className="mt-2 text-sm text-red-700">
           {error}

@@ -140,16 +140,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 className="flex-1"
                 labelClassName="sr-only"
               >
-                {(fieldProps) => (
-                  <input
-                    {...fieldProps}
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@dealership.com (required)"
-                    className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
-                  />
-                )}
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@dealership.com (required)"
+                  className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                />
               </FormField>
               <button
                 type="submit"
