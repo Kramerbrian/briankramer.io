@@ -1,0 +1,49 @@
+name: Writing Route Canary
+
+on:
+  deployment_status: {}
+  schedule:
+    # Daily at 13:17 UTC — off the hour to avoid GitHub's cron thundering herd.
+    - cron: '17 13 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  deployments: read
+
+jobs:
+  post-deploy:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    name: Check writing routes on production deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Route canary against deployed URL
+        run: >
+          node scripts/check-writing-routes.mjs
+          --base "${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}"
+
+  scheduled:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    name: Daily route canary against production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Route canary against production
+        run: node scripts/check-writing-routes.mjs
