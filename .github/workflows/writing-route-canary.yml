@@ -26,10 +26,14 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Route canary against deployed URL
-        run: >
-          node scripts/check-writing-routes.mjs
-          --base "${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}"
+      - name: Route canary against production
+        # Vercel's deployment_status target_url/environment_url points at the
+        # immutable per-deployment alias, which is gated by Vercel
+        # Authentication even for Production deploys — it can't be reached
+        # headlessly. Use the stable custom domain (the script's default)
+        # instead; the `environment == 'Production'` guard above already
+        # ensures this only runs once the prod alias has actually swapped.
+        run: node scripts/check-writing-routes.mjs
 
   scheduled:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
