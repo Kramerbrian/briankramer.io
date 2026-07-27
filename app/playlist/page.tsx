@@ -48,8 +48,8 @@ export default function PlaylistPage() {
     <section className="container-page pt-16 pb-24 md:pt-24">
       <JsonLd id="schema-playlist" data={playlistSchema} />
 
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
-        <div className="animate-fade-up lg:col-span-5">
+      <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="animate-fade-up lg:col-span-4">
           <p className="eyebrow">Spotify</p>
           <h1 className="mt-3 text-display font-semibold text-ink">The working playlist.</h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
@@ -66,13 +66,13 @@ export default function PlaylistPage() {
           </div>
         </div>
 
-        <GlassCard as="section" className="overflow-hidden p-3 lg:col-span-7">
+        <GlassCard as="section" className="overflow-hidden p-3 lg:col-span-8">
           <iframe
             title="Brian Kramer Spotify playlist"
-            className="block min-h-[352px] w-full rounded-xl border-0"
+            className="block min-h-[560px] w-full rounded-xl border-0"
             src={playlistEmbedUrl}
             width="100%"
-            height="352"
+            height="560"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />

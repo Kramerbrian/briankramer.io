@@ -92,7 +92,7 @@ export default async function EssayPage({ params }: Props) {
       <JsonLd id={`schema-essay-${essay.slug}`} data={schema} />
       <Link
         href="/writing"
-        className="text-sm font-medium text-accent hover:text-accent-hover"
+        className="inline-flex min-h-[44px] items-center py-3 text-sm font-medium text-accent hover:text-accent-hover"
       >
         ← All essays
       </Link>

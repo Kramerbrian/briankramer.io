@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { HeroGlassPanel } from '@/components/HeroGlassPanel';
 import { GlassCard } from '@/components/GlassCard';
 import { LinkButton } from '@/components/Button';
+import { FormField } from '@/components/FormField';
 import { TrackedAnchor, TrackedForm } from '@/components/TrackedConversion';
 import { pressMentions } from '@/content/press';
 import { siteConfig } from '@/lib/utils';
@@ -122,31 +123,40 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 props: { source: 'homepage' },
               }}
               pendingLabel="Joining the waitlist..."
+              successMessage="You're on the list. One email when it ships."
+              errorMessage="Something went wrong — try again or email bkramer@cars.com."
               action="/api/waitlist"
               method="post"
-              className="group/form mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+              className="group/form mt-8 flex max-w-md flex-col gap-3 sm:flex-row sm:items-start"
             >
               <div className="pointer-events-none absolute -left-[100vw] h-px w-px overflow-hidden" aria-hidden="true">
                 <label htmlFor="waitlist-company">Company</label>
                 <input id="waitlist-company" name="company" tabIndex={-1} autoComplete="off" />
               </div>
-              <label htmlFor="waitlist-email" className="sr-only">
-                Email
-              </label>
-              <input
+              <FormField
                 id="waitlist-email"
-                name="email"
-                type="email"
+                label="Email"
                 required
-                placeholder="you@dealership.com"
-                className="flex-1 rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
-              />
+                className="flex-1"
+                labelClassName="sr-only"
+              >
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@dealership.com (required)"
+                  className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                />
+              </FormField>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft group-data-[submitting=true]/form:pointer-events-none group-data-[submitting=true]/form:opacity-70"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft group-data-[submitting=true]/form:pointer-events-none group-data-[submitting=true]/form:opacity-70 group-data-[result=success]/form:bg-accent-hover"
               >
-                <span className="group-data-[submitting=true]/form:hidden">Join the waitlist</span>
+                <span className="group-data-[submitting=true]/form:hidden group-data-[result=success]/form:hidden">
+                  Join the waitlist
+                </span>
                 <span className="hidden group-data-[submitting=true]/form:inline">Joining...</span>
+                <span className="hidden group-data-[result=success]/form:inline">Joined ✓</span>
               </button>
             </TrackedForm>
             <p className="mt-3 text-xs text-ink-faint">
