@@ -35,7 +35,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 <TrackedAnchor
                   href={`mailto:${siteConfig.author.email}`}
                   conversion={{ name: 'contact_mailto_click', props: { source: 'contact_page' } }}
-                  className="text-lg font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-accent"
+                  className="inline-flex min-h-[44px] items-center text-lg font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-accent"
                 >
                   {siteConfig.author.email}
                 </TrackedAnchor>
@@ -44,9 +44,30 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <div>
               <dt className="eyebrow">Elsewhere</dt>
               <dd className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-ink-muted">
-                <a href={siteConfig.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-ink">LinkedIn</a>
-                <a href={siteConfig.socials.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-ink">YouTube</a>
-                <a href={siteConfig.socials.linktree} target="_blank" rel="noopener noreferrer" className="hover:text-ink">Linktree</a>
+                <a
+                  href={siteConfig.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-[44px] items-center hover:text-ink"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href={siteConfig.socials.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-[44px] items-center hover:text-ink"
+                >
+                  YouTube
+                </a>
+                <a
+                  href={siteConfig.socials.linktree}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-[44px] items-center hover:text-ink"
+                >
+                  Linktree
+                </a>
               </dd>
             </div>
             <div>
