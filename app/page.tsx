@@ -50,6 +50,33 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </div>
       </section>
 
+      {/* Doctrine spine. Order is a dependency stack, not a ranking: trust is the
+          ground everything rests on, clarity is what survives the handoff. Definitions
+          are verbatim from the pyramid artifact in The Best End User — do not reword. */}
+      <section className="container-page pb-24">
+        <div className="hairline" />
+        <dl className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {[
+            { term: 'Trust', def: 'The ground truth moves on.' },
+            { term: 'Truth', def: 'What the VIN can prove.' },
+            { term: 'Clarity', def: 'Truth that survives the handoff.' },
+          ].map((d) => (
+            <div key={d.term}>
+              <dt className="text-lg font-semibold tracking-tight text-ink">{d.term}</dt>
+              <dd className="mt-2 text-base leading-relaxed text-ink-muted">{d.def}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-10">
+          <Link
+            href="/doctrine"
+            className="text-sm font-medium text-accent hover:text-accent-hover"
+          >
+            The argument, made visible →
+          </Link>
+        </p>
+      </section>
+
       <section className="container-page pb-24">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
@@ -222,10 +249,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           />
         </div>
         <div className="mt-8 text-center md:hidden">
-          <Link
-            href="/writing"
-            className="inline-flex min-h-[44px] items-center text-sm font-medium text-accent"
-          >
+          <Link href="/writing" className="text-sm font-medium text-accent">
             All essays →
           </Link>
         </div>

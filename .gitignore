@@ -34,3 +34,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+.env*
+
+# supabase local state (contains pooler URL / project refs)
+supabase/.temp/

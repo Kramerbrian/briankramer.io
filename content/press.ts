@@ -258,6 +258,46 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
     removalTrigger:
       'Remove numeric claim or replace with non-quantified biography if ledger cannot be supplied. Do not present as audited industry data.',
   },
+  {
+    queueId: 'svq-years-automotive-retail-27',
+    claimIds: ['bio-years-automotive-retail'],
+    currentPublicClaim:
+      'Homepage hero and About page state 27 years in automotive retail. Verified against employment history; published without hedge.',
+    currentStatus: 'verified',
+    exactSourceNeeded:
+      'Continuous employment history across automotive retail roles establishing a 27-year span, with start date and current date defining the period.',
+    acceptableEvidenceTypes: [
+      'Employer letters confirming role and dates of service',
+      'W-2 or payroll tenure records across employers (author-held, redacted as needed)',
+      'Dated franchise or dealership appointment records',
+      'LinkedIn position history with start and end dates for each role',
+    ],
+    publicTreatmentUntilVerified: 'label',
+    remainPublic: true,
+    publicSurfaces: ['app/page.tsx (hero)', 'app/about/page.tsx'],
+    removalTrigger:
+      'Revert to a non-quantified span ("more than two decades") if the continuous 27-year period cannot be substantiated. Supersedes the retired bio-years-retail-gm framing.',
+  },
+  {
+    queueId: 'svq-years-dealership-gm-19',
+    claimIds: ['bio-years-dealership-gm'],
+    currentPublicClaim:
+      'Homepage hero and About page state 19 years running dealerships as a General Manager. Verified against employment history; published without hedge.',
+    currentStatus: 'verified',
+    exactSourceNeeded:
+      'Employment history covering General Manager appointments across import, domestic, and luxury stores, with appointment and end dates establishing a 19-year cumulative span in the GM role specifically.',
+    acceptableEvidenceTypes: [
+      'Employer letters confirming GM appointment and dates of service',
+      'W-2 or payroll tenure records covering the GM years (author-held, redacted as needed)',
+      'Dated franchise or GM appointment records per rooftop',
+      'LinkedIn position history with start and end dates for each GM role',
+    ],
+    publicTreatmentUntilVerified: 'label',
+    remainPublic: true,
+    publicSurfaces: ['app/page.tsx (hero)', 'app/about/page.tsx'],
+    removalTrigger:
+      'Revert to "two decades as a General Manager" if the 19-year cumulative GM span cannot be substantiated. Supersedes the retired bio-years-retail-gm framing. This claim covers GM tenure only and must not be conflated with total retail tenure (see svq-years-automotive-retail-27).',
+  },
 ];
 
 export function getSourceValidationQueueItem(

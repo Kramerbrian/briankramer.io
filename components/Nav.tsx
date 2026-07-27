@@ -7,6 +7,7 @@ import { Logo } from './Logo';
 
 const links = [
   { href: '/writing', label: 'Writing' },
+  { href: '/doctrine', label: 'Doctrine' },
   { href: '/newsletter', label: 'Newsletter' },
   { href: '/playbook', label: 'Playbook' },
   { href: '/podcast', label: 'Podcast' },

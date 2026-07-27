@@ -8,6 +8,7 @@ const CORE_PUBLIC_ROUTES = [
   '/about',
   '/contact',
   '/writing',
+  '/doctrine',
   '/podcast',
   '/playlist',
   '/playbook',
