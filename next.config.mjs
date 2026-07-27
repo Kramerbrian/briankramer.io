@@ -47,7 +47,6 @@ const contentSecurityPolicyReportOnly = [
   "media-src 'self' https://open.spotify.com",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
-  'upgrade-insecure-requests',
   "report-to default",
 ].join('; ');
 
