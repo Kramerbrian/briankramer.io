@@ -20,15 +20,16 @@ const pillarLabels: Record<string, string> = {
 };
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getEssaySlugs().map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const essay = getEssay(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const essay = getEssay(slug);
   if (!essay) return {};
 
   const record = getEssayPublishingRecord(essay.slug);
@@ -43,8 +44,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function EssayPage({ params }: Props) {
-  const essay = getEssay(params.slug);
+export default async function EssayPage({ params }: Props) {
+  const { slug } = await params;
+  const essay = getEssay(slug);
   if (!essay) notFound();
 
   const record = getEssayPublishingRecord(essay.slug);
