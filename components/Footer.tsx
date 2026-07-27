@@ -36,19 +36,25 @@ export function Footer() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition-colors hover:text-ink"
+                    className="flex min-h-[44px] items-center py-3 transition-colors hover:text-ink"
                   >
                     {s.label}
                   </a>
                 </li>
               ))}
               <li>
-                <Link href="/playlist" className="transition-colors hover:text-ink">
+                <Link
+                  href="/playlist"
+                  className="flex min-h-[44px] items-center py-3 transition-colors hover:text-ink"
+                >
                   Playlist
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="transition-colors hover:text-ink">
+                <Link
+                  href="/contact"
+                  className="flex min-h-[44px] items-center py-3 transition-colors hover:text-ink"
+                >
                   Contact
                 </Link>
               </li>

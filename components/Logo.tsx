@@ -11,7 +11,7 @@ export function Logo({ className, href = '/' }: LogoProps) {
     <Link
       href={href}
       className={cn(
-        'inline-flex items-center gap-2 font-display text-base font-semibold tracking-tight text-ink',
+        'inline-flex h-11 items-center gap-2 font-display text-base font-semibold tracking-tight text-ink',
         'transition-opacity hover:opacity-70 focus-visible:opacity-70',
         className,
       )}
