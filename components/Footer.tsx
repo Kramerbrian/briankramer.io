@@ -65,7 +65,15 @@ export function Footer() {
         <div className="hairline mt-12" />
         <div className="mt-6 flex flex-col gap-2 text-xs text-ink-faint md:flex-row md:items-center md:justify-between">
           <p>© {year} Brian Kramer. All rights reserved.</p>
-          <p>Naples, FL · Built with Next.js on Vercel.</p>
+          <p className="flex flex-wrap items-center gap-x-2">
+            <span>Naples, FL · Built with Next.js on Vercel ·</span>
+            <Link
+              href="/changelog"
+              className="flex min-h-[44px] items-center underline decoration-line underline-offset-2 transition-colors hover:text-ink"
+            >
+              Changelog
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

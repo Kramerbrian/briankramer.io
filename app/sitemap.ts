@@ -12,6 +12,7 @@ const CORE_PUBLIC_ROUTES = [
   '/playlist',
   '/playbook',
   '/newsletter',
+  '/changelog',
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
