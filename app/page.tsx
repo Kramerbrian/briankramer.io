@@ -14,13 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-interface HomePageProps {
-  searchParams?: Promise<{ waitlist?: string }>;
-}
-
-export default async function HomePage({ searchParams }: HomePageProps) {
-  const waitlistStatus = (await searchParams)?.waitlist;
-
+export default function HomePage() {
   return (
     <>
       <section className="container-page pt-16 pb-24 md:pt-24 md:pb-32">
@@ -99,24 +93,22 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               Built from GM reps, appraisal spreadsheets, and the trust math that actually moves a
               store.
             </p>
-            {waitlistStatus === '1' && (
-              <p className="mt-8 rounded-2xl border border-accent/30 bg-accent-soft px-5 py-4 text-sm text-ink">
-                You&apos;re on the list. One email when it ships.
-              </p>
-            )}
-            {waitlistStatus === 'error' && (
-              <p className="mt-8 rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm text-ink-muted">
-                Something went wrong — try again or email{' '}
-                <TrackedAnchor
-                  href="mailto:bkramer@cars.com"
-                  conversion={{ name: 'contact_mailto_click', props: { source: 'homepage' } }}
-                  className="text-accent underline"
-                >
-                  bkramer@cars.com
-                </TrackedAnchor>
-                .
-              </p>
-            )}
+            {/*
+             * No server-rendered success/error banner here: TrackedForm below
+             * already renders successMessage/errorMessage client-side after a
+             * followed redirect (see components/TrackedConversion.tsx), using
+             * history.replaceState instead of a full navigation. A prior
+             * version of this page also read `searchParams` here to render an
+             * equivalent banner server-side — that forced this entire route
+             * into Next's dynamic/streamed rendering path (visible in the
+             * build output as `ƒ /`), which surfaced as a confirmed ~0.31-0.39
+             * CLS regression: Next's automatic Suspense fallback for the
+             * dynamic-API boundary is a small loading skeleton, and swapping
+             * it for the full ~4,900px homepage in one synchronous DOM
+             * mutation pushes the footer down by hundreds of pixels after
+             * first paint. Removing the `searchParams` read lets this page
+             * render synchronously with no streaming shell.
+             */}
             <TrackedForm
               successConversion={{
                 name: 'waitlist_submit',

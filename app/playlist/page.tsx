@@ -45,7 +45,7 @@ const playlistSchema = {
 
 export default function PlaylistPage() {
   return (
-    <section className="container-page pt-16 pb-24 md:pt-24">
+    <section className="container-page pt-16 pb-12 md:pb-16 md:pt-24">
       <JsonLd id="schema-playlist" data={playlistSchema} />
 
       <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">

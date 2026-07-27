@@ -11,13 +11,7 @@ export const metadata: Metadata = {
 
 const topics = ['Speaking', 'Consulting', 'The Best End User', 'Press', 'Other'];
 
-interface ContactPageProps {
-  searchParams?: Promise<{ sent?: string }>;
-}
-
-export default async function ContactPage({ searchParams }: ContactPageProps) {
-  const sent = (await searchParams)?.sent;
-
+export default function ContactPage() {
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
@@ -79,24 +73,20 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
 
         <div className="lg:col-span-7">
-          {sent === '1' && (
-            <p className="mb-6 rounded-2xl border border-accent/30 bg-accent-soft px-5 py-4 text-sm text-ink">
-              Message sent. I read everything — expect a reply within a few days.
-            </p>
-          )}
-          {sent === 'error' && (
-            <p className="mb-6 rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm text-ink-muted">
-              Something went wrong — try again or email{' '}
-              <TrackedAnchor
-                href="mailto:bkramer@cars.com"
-                conversion={{ name: 'contact_mailto_click', props: { source: 'contact_page' } }}
-                className="text-accent underline"
-              >
-                bkramer@cars.com
-              </TrackedAnchor>
-              .
-            </p>
-          )}
+          {/*
+           * No server-rendered success/error banner here — TrackedForm below
+           * already renders successMessage/errorMessage client-side after a
+           * followed redirect (see components/TrackedConversion.tsx). A prior
+           * version of this page read `searchParams` here to render an
+           * equivalent banner server-side, which forced this route into
+           * Next's dynamic/streamed rendering path and caused a confirmed
+           * CLS regression identical to the one fixed on the homepage:
+           * Next's automatic Suspense fallback for a dynamic-API boundary
+           * is a small loading skeleton, and swapping it for the real page
+           * content in one synchronous DOM mutation shifts everything below
+           * it. Removing the `searchParams` read lets this page render
+           * synchronously with no streaming shell.
+           */}
           <TrackedForm
             action="/api/contact"
             method="post"

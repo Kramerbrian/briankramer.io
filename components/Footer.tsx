@@ -12,7 +12,7 @@ const socialLinks = [
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-32 border-t border-line bg-bg">
+    <footer className="mt-16 border-t border-line bg-bg md:mt-32">
       <div className="container-page py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-md">
