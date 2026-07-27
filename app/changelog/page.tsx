@@ -19,6 +19,17 @@ interface ChangelogEntry {
 const entries: ChangelogEntry[] = [
   {
     publishDate: '2026-07-27',
+    title: 'Follow-up fixes: contact form redirect, layout shift, and playlist spacing',
+    summary:
+      'A re-audit after the previous remediation pass found three items that still needed work: a redirect-handling edge case in the contact and waitlist forms, a layout shift caused by an unused loading state, and leftover excess spacing on the playlist page.',
+    items: [
+      'Contact and waitlist forms: switched fetch to follow redirects directly and read the final response URL, instead of manually reading a redirect header that browsers do not expose for cross-origin-style redirect responses. Also isolated the browser history update so it cannot downgrade an already-successful submission to an error state.',
+      'Removed an unused root-level loading state and a redundant server-rendered confirmation banner on the homepage and contact page. Both were forcing those routes into dynamic rendering and triggering a streaming placeholder swap that shifted the footer position after the page settled \u2014 removing them lets both routes render as static output with no shift.',
+      'Softened the footer\u2019s top margin on small screens so shorter pages, including the playlist page, do not end with an oversized gap before the footer.',
+    ],
+  },
+  {
+    publishDate: '2026-07-27',
     title: 'UX audit remediation: contrast, forms, CLS, and tap targets',
     summary:
       'A UX/UI audit covering Fitts\u2019s Law, contrast, Gestalt, keyboard focus, and form error states surfaced nine findings across the homepage, essay pages, contact form, footer, and playlist page. All nine are addressed below.',
