@@ -19,6 +19,17 @@ interface ChangelogEntry {
 const entries: ChangelogEntry[] = [
   {
     publishDate: '2026-07-27',
+    title: 'Contact page and homepage tap targets',
+    summary:
+      'A follow-up mobile sweep found two more spots with the same undersized tap-target pattern, missed by the earlier pass.',
+    items: [
+      'The mobile-only "All essays" link on the homepage was still a ~19px hit box.',
+      'The Contact page has its own separate email and social links (LinkedIn, YouTube, Linktree) that were not covered by the earlier footer fix — email link was ~24px tall, social links ~20px.',
+      'All expanded to a 44px minimum tap target using the same flex layout pattern as the earlier fixes.',
+    ],
+  },
+  {
+    publishDate: '2026-07-27',
     title: 'Newsletter inline-link tap targets',
     summary:
       'Expanded the "Read on LinkedIn" and "Related on this site" links on each newsletter edition to a full 44px tap target.',
@@ -44,7 +55,7 @@ const entries: ChangelogEntry[] = [
     summary:
       'Fixed real mobile tap-target issues found in a 375×812 layout sweep, and two unrelated pre-existing bugs in the content-governance CI checks that surfaced along the way.',
     items: [
-      'Footer social links, Playlist, and Contact links expanded from a ~19px hit box to a full 44px target, with more breathing room between wrapped rows.',
+      'Footer social links, Playlist, and Contact links expanded from a ~19px hit box to a full 44px target.',
       'Header logo expanded from a ~28px tap target to 44px, matching the nav menu button’s existing sizing.',
       'Fixed a content-governance false positive where a test fixture URL (a placeholder LinkedIn link used only in tests) was mistaken for a real placeholder link left in public content.',
       'Fixed a second false positive where the public-claims checker read an internal code comment (JSDoc) as public-facing copy and flagged an absolute-sounding word in that comment as a risky claim.',

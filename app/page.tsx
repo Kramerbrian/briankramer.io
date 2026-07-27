@@ -212,7 +212,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           />
         </div>
         <div className="mt-8 text-center md:hidden">
-          <Link href="/writing" className="text-sm font-medium text-accent">
+          <Link
+            href="/writing"
+            className="inline-flex min-h-[44px] items-center text-sm font-medium text-accent"
+          >
             All essays →
           </Link>
         </div>
