@@ -190,7 +190,7 @@ describe('TrackedAnchor', () => {
     const user = userEvent.setup();
     render(
       <TrackedAnchor
-        href="https://www.linkedin.com/example"
+        href="https://www.linkedin.com/in/test-fixture"
         conversion={{
           name: 'newsletter_subscribe_click',
           props: { source: 'newsletter_page' },
@@ -206,7 +206,7 @@ describe('TrackedAnchor', () => {
       name: 'newsletter_subscribe_click',
       props: {
         source: 'newsletter_page',
-        destination: 'https://www.linkedin.com/example',
+        destination: 'https://www.linkedin.com/in/test-fixture',
       },
     });
   });

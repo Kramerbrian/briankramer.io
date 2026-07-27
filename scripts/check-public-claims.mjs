@@ -157,6 +157,8 @@ const APPEARANCE_COUNT_PATTERNS = [
 const LINE_SKIP_RES = [
   /^import /,
   /^\/\//,
+  /^\/\*/,
+  /^\*/,
   /leading-relaxed|leading-snug/,
   /leading-tight|object-\[/,
   /href\?:\s*never/,
