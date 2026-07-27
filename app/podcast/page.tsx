@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import { JsonLd } from '@/components/JsonLd';
 import { getCanonicalContentByPath } from '@/content/publishing/records';
 import { collectionPageJsonLd, metadataFromRecord } from '@/lib/seo';
 
@@ -36,11 +36,7 @@ export default function PodcastPage() {
 
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
-      <Script
-        id="schema-podcast"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd id="schema-podcast" data={schema} />
       <p className="eyebrow">Podcast</p>
       <h1 className="mt-3 text-display font-semibold text-ink">Podcast conversations. One thread.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">

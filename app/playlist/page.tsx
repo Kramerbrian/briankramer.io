@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { GlassCard } from '@/components/GlassCard';
+import { JsonLd } from '@/components/JsonLd';
 import { LinkButton } from '@/components/Button';
 import { siteConfig } from '@/lib/utils';
 
@@ -46,11 +46,7 @@ const playlistSchema = {
 export default function PlaylistPage() {
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
-      <Script
-        id="schema-playlist"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(playlistSchema) }}
-      />
+      <JsonLd id="schema-playlist" data={playlistSchema} />
 
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="animate-fade-up lg:col-span-5">

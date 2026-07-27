@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
+import { JsonLd } from '@/components/JsonLd';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { siteConfig } from '@/lib/utils';
@@ -114,11 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data-sdkn="@vercel/speed-insights/next"
           data-sdkv="2.0.0"
         />
-        <Script
-          id="schema-person"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-        />
+        <JsonLd id="schema-person" data={personSchema} />
       </body>
     </html>
   );

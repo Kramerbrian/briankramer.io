@@ -24,7 +24,7 @@ export function HeroGlassPanel({ className }: HeroGlassPanelProps) {
         fill
         priority
         sizes="(min-width: 1024px) 40vw, 100vw"
-        className="object-cover object-[50%_22%]"
+        className="object-cover object-top"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-ink/0 to-ink/0" />
       <figcaption className="absolute bottom-5 left-5 text-white">

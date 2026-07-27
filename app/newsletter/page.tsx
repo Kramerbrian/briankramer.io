@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Script from 'next/script';
 import { GlassCard } from '@/components/GlassCard';
+import { JsonLd } from '@/components/JsonLd';
 import { TrackedAnchor } from '@/components/TrackedConversion';
 import { getNewsletterEditions } from '@/content/newsletter/editions';
 import { getCanonicalContentByPath } from '@/content/publishing/records';
@@ -55,11 +55,7 @@ export default function NewsletterPage() {
 
   return (
     <section className="container-page pt-16 pb-24 md:pt-24">
-      <Script
-        id="schema-newsletter"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd id="schema-newsletter" data={schema} />
 
       <p className="eyebrow">Newsletter</p>
       <h1 className="mt-3 text-display font-semibold text-ink">Automotive Update</h1>
@@ -71,8 +67,10 @@ export default function NewsletterPage() {
       <div className="mt-10">
         <TrackedAnchor
           href={LINKEDIN_SUBSCRIBE_URL}
-          events={['newsletter_signup', 'subscribe_linkedin_click']}
-          location="newsletter_page"
+          conversion={{
+            name: 'newsletter_subscribe_click',
+            props: { source: 'newsletter_page' },
+          }}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft"

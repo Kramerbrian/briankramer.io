@@ -2,24 +2,25 @@
 
 import { track } from '@vercel/analytics';
 
-type ConversionEvent =
-  | 'newsletter_signup'
-  | 'book_waitlist_submit'
-  | 'subscribe_linkedin_click'
-  | 'contact_email_click';
+export type ConversionName =
+  | 'newsletter_subscribe_click'
+  | 'waitlist_submit'
+  | 'contact_submit'
+  | 'contact_mailto_click';
 
-type ConversionProperties = {
-  location:
-    | 'home_waitlist'
-    | 'newsletter_page'
-    | 'contact_page'
-    | 'about_page'
-    | 'contact_error'
-    | 'home_waitlist_error';
+export type ConversionProps = {
+  source?: string;
+  topic?: string;
   destination?: string;
 };
 
-export function trackConversion(event: ConversionEvent, properties: ConversionProperties) {
-  track(event, properties);
+/**
+ * Fire a named conversion to Vercel Analytics.
+ * Call with `{ name, props }` — forms should only call after a successful POST.
+ */
+export function trackConversion(input: {
+  name: ConversionName;
+  props?: ConversionProps;
+}) {
+  track(input.name, input.props ?? {});
 }
-

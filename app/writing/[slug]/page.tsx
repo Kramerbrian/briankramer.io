@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { EssayBody } from '@/components/EssayBody';
+import { JsonLd } from '@/components/JsonLd';
 import { getEssay, getEssaySlugs } from '@/content/essays';
 import {
   articleJsonLd,
@@ -87,11 +87,7 @@ export default function EssayPage({ params }: Props) {
 
   return (
     <article className="container-prose pt-16 pb-24 md:pt-24">
-      <Script
-        id={`schema-essay-${essay.slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd id={`schema-essay-${essay.slug}`} data={schema} />
       <Link
         href="/writing"
         className="text-sm font-medium text-accent hover:text-accent-hover"

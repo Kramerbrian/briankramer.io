@@ -34,8 +34,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               <dd className="mt-1">
                 <TrackedAnchor
                   href={`mailto:${siteConfig.author.email}`}
-                  events={['contact_email_click']}
-                  location="contact_page"
+                  conversion={{ name: 'contact_mailto_click', props: { source: 'contact_page' } }}
                   className="text-lg font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-accent"
                 >
                   {siteConfig.author.email}
@@ -68,8 +67,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               Something went wrong — try again or email{' '}
               <TrackedAnchor
                 href="mailto:bkramer@cars.com"
-                events={['contact_email_click']}
-                location="contact_error"
+                conversion={{ name: 'contact_mailto_click', props: { source: 'contact_page' } }}
                 className="text-accent underline"
               >
                 bkramer@cars.com
@@ -80,6 +78,10 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
           <TrackedForm
             action="/api/contact"
             method="post"
+            successConversion={{
+              name: 'contact_submit',
+              topicFromField: 'topic',
+            }}
             pendingLabel="Sending your message..."
             className="group/form rounded-3xl border border-line bg-surface/70 p-8 shadow-glass backdrop-blur-xl md:p-10"
           >
@@ -96,7 +98,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   id="name"
                   name="name"
                   required
-                  className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
                 />
               </div>
               <div>
@@ -108,7 +110,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
                 />
               </div>
             </div>
@@ -120,7 +122,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 id="topic"
                 name="topic"
                 defaultValue="Speaking"
-                className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
               >
                 {topics.map((t) => (
                   <option key={t}>{t}</option>
@@ -136,7 +138,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 name="message"
                 required
                 rows={6}
-                className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
               />
             </div>
             <div className="mt-8 flex items-center justify-between gap-4">

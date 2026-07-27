@@ -108,8 +108,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
                 Something went wrong — try again or email{' '}
                 <TrackedAnchor
                   href="mailto:bkramer@cars.com"
-                  events={['contact_email_click']}
-                  location="home_waitlist_error"
+                  conversion={{ name: 'contact_mailto_click', props: { source: 'homepage' } }}
                   className="text-accent underline"
                 >
                   bkramer@cars.com
@@ -118,8 +117,10 @@ export default function HomePage({ searchParams }: HomePageProps) {
               </p>
             )}
             <TrackedForm
-              event="book_waitlist_submit"
-              location="home_waitlist"
+              successConversion={{
+                name: 'waitlist_submit',
+                props: { source: 'homepage' },
+              }}
               pendingLabel="Joining the waitlist..."
               action="/api/waitlist"
               method="post"
@@ -138,7 +139,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
                 type="email"
                 required
                 placeholder="you@dealership.com"
-                className="flex-1 rounded-full border border-line bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                className="flex-1 rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
               />
               <button
                 type="submit"
