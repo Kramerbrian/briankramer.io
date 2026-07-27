@@ -36,7 +36,7 @@ export function Footer() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex min-h-[44px] items-center py-3 transition-colors hover:text-ink"
+                    className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
                   >
                     {s.label}
                   </a>
@@ -45,7 +45,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/playlist"
-                  className="flex min-h-[44px] items-center py-3 transition-colors hover:text-ink"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
                 >
                   Playlist
                 </Link>
@@ -53,7 +53,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="flex min-h-[44px] items-center py-3 transition-colors hover:text-ink"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
                 >
                   Contact
                 </Link>

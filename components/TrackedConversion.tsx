@@ -18,6 +18,10 @@ type SuccessConversion =
 interface TrackedFormProps extends FormHTMLAttributes<HTMLFormElement> {
   successConversion?: SuccessConversion;
   pendingLabel?: string;
+  /** Inline banner text shown immediately once a successful submit is confirmed. */
+  successMessage?: string;
+  /** Inline banner text shown immediately once a failed submit is confirmed. */
+  errorMessage?: string;
   children: ReactNode;
 }
 
@@ -38,6 +42,15 @@ function isSuccessRedirect(location: string): boolean {
   }
 }
 
+function isErrorRedirect(location: string): boolean {
+  try {
+    const url = new URL(location, window.location.origin);
+    return url.searchParams.get('waitlist') === 'error' || url.searchParams.get('sent') === 'error';
+  } catch {
+    return false;
+  }
+}
+
 function fireSuccessConversion(conversion: SuccessConversion, formData: FormData) {
   if (conversion.name === 'waitlist_submit') {
     trackConversion({ name: 'waitlist_submit', props: conversion.props });
@@ -53,17 +66,24 @@ function fireSuccessConversion(conversion: SuccessConversion, formData: FormData
  * Form wrapper that only tracks conversions after a successful POST redirect
  * (`?waitlist=1` or `?sent=1`). Native validation still blocks invalid submits
  * before fetch runs; click alone never fires a conversion.
+ *
+ * Also exposes `data-result` ("success" | "error" | "idle") on the form as
+ * soon as the response is known, and renders an inline banner immediately —
+ * so a confirmation is visible even before any redirect/reload completes.
  */
 export function TrackedForm({
   successConversion,
   onSubmit,
   children,
   pendingLabel = 'Submitting...',
+  successMessage,
+  errorMessage,
   action,
   method = 'post',
   ...props
 }: TrackedFormProps) {
   const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState<'idle' | 'success' | 'error'>('idle');
 
   return (
     <form
@@ -72,6 +92,7 @@ export function TrackedForm({
       method={method}
       aria-busy={submitting}
       data-submitting={submitting ? 'true' : 'false'}
+      data-result={result}
       onSubmit={(e) => {
         if (submitting) {
           e.preventDefault();
@@ -86,6 +107,7 @@ export function TrackedForm({
 
         e.preventDefault();
         setSubmitting(true);
+        setResult('idle');
 
         const form = e.currentTarget;
         const formData = new FormData(form);
@@ -104,9 +126,13 @@ export function TrackedForm({
 
             const location = res.headers.get('Location');
             if (location) {
-              if (successConversion && isSuccessRedirect(location)) {
+              const succeeded = isSuccessRedirect(location);
+              const failed = isErrorRedirect(location);
+              if (succeeded && successConversion) {
                 fireSuccessConversion(successConversion, formData);
               }
+              // Surface the outcome immediately, then follow the redirect.
+              setResult(succeeded ? 'success' : failed ? 'error' : 'idle');
               window.location.assign(new URL(location, window.location.origin).toString());
               return;
             }
@@ -115,9 +141,14 @@ export function TrackedForm({
             if (res.ok && successConversion) {
               fireSuccessConversion(successConversion, formData);
             }
-            window.location.reload();
+            setSubmitting(false);
+            setResult(res.ok ? 'success' : 'error');
+            if (res.ok) {
+              window.location.reload();
+            }
           } catch {
             setSubmitting(false);
+            setResult('error');
           }
         })();
       }}
@@ -126,6 +157,24 @@ export function TrackedForm({
       <span className="sr-only" role="status" aria-live="polite">
         {submitting ? pendingLabel : ''}
       </span>
+      {result === 'success' && successMessage && (
+        <p
+          role="status"
+          aria-live="polite"
+          className="mt-4 rounded-2xl border border-accent/30 bg-accent-soft px-5 py-4 text-sm text-ink"
+        >
+          {successMessage}
+        </p>
+      )}
+      {result === 'error' && errorMessage && (
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="mt-4 rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm text-ink-muted"
+        >
+          {errorMessage}
+        </p>
+      )}
     </form>
   );
 }

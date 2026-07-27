@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { FormField } from '@/components/FormField';
 import { TrackedAnchor, TrackedForm } from '@/components/TrackedConversion';
 import { siteConfig } from '@/lib/utils';
 
@@ -104,6 +105,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               topicFromField: 'topic',
             }}
             pendingLabel="Sending your message..."
+            successMessage="Message sent. I read everything — expect a reply within a few days."
+            errorMessage="Something went wrong — try again, or email bkramer@cars.com directly."
             className="group/form rounded-3xl border border-line bg-surface/70 p-8 shadow-glass backdrop-blur-xl md:p-10"
           >
             <div className="pointer-events-none absolute -left-[100vw] h-px w-px overflow-hidden" aria-hidden="true">
@@ -111,56 +114,56 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <input id="contact-company" name="company" tabIndex={-1} autoComplete="off" />
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <div>
-                <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium text-ink">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
-                />
-              </div>
+              <FormField id="name" label="Name" required>
+                {(fieldProps) => (
+                  <input
+                    {...fieldProps}
+                    name="name"
+                    required
+                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                  />
+                )}
+              </FormField>
+              <FormField id="email" label="Email" required>
+                {(fieldProps) => (
+                  <input
+                    {...fieldProps}
+                    name="email"
+                    type="email"
+                    required
+                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                  />
+                )}
+              </FormField>
             </div>
             <div className="mt-6">
-              <label htmlFor="topic" className="mb-2 block text-sm font-medium text-ink">
-                What&apos;s this about?
-              </label>
-              <select
-                id="topic"
-                name="topic"
-                defaultValue="Speaking"
-                className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
-              >
-                {topics.map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
-              </select>
+              <FormField id="topic" label="What's this about?">
+                {(fieldProps) => (
+                  <select
+                    {...fieldProps}
+                    name="topic"
+                    defaultValue="Speaking"
+                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
+                  >
+                    {topics.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                )}
+              </FormField>
             </div>
             <div className="mt-6">
-              <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={6}
-                className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft sm:text-sm"
-              />
+              <FormField id="message" label="Message" required>
+                {(fieldProps) => (
+                  <textarea
+                    {...fieldProps}
+                    name="message"
+                    required
+                    rows={6}
+                    className="w-full rounded-xl border border-ink-faint bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                  />
+                )}
+              </FormField>
             </div>
             <div className="mt-8 flex items-center justify-between gap-4">
               <p className="text-xs text-ink-faint">
@@ -168,10 +171,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </p>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft group-data-[submitting=true]/form:pointer-events-none group-data-[submitting=true]/form:opacity-70"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-soft group-data-[submitting=true]/form:pointer-events-none group-data-[submitting=true]/form:opacity-70 group-data-[result=success]/form:bg-accent-hover"
               >
-                <span className="group-data-[submitting=true]/form:hidden">Send</span>
+                <span className="group-data-[submitting=true]/form:hidden group-data-[result=success]/form:hidden">
+                  Send
+                </span>
                 <span className="hidden group-data-[submitting=true]/form:inline">Sending...</span>
+                <span className="hidden group-data-[result=success]/form:inline">Sent ✓</span>
               </button>
             </div>
           </TrackedForm>

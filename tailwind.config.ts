@@ -20,10 +20,10 @@ const config: Config = {
         ink: {
           DEFAULT: '#0F1B24',
           muted: '#41525C',
-          faint: '#646F77',
+          faint: '#586268',
         },
         accent: {
-          DEFAULT: '#0E7C86',
+          DEFAULT: '#0A6E78',
           hover: '#0A616A',
           soft: '#D6EBED',
         },

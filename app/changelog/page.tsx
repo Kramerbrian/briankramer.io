@@ -19,6 +19,23 @@ interface ChangelogEntry {
 const entries: ChangelogEntry[] = [
   {
     publishDate: '2026-07-27',
+    title: 'UX audit remediation: contrast, forms, CLS, and tap targets',
+    summary:
+      'A UX/UI audit covering Fitts\u2019s Law, contrast, Gestalt, keyboard focus, and form error states surfaced nine findings across the homepage, essay pages, contact form, footer, and playlist page. All nine are addressed below.',
+    items: [
+      'Hero photo caption on the homepage: strengthened the gradient overlay and added a solid backdrop chip behind the caption text so contrast stays well above the AA floor regardless of the underlying photo brightness.',
+      'Homepage CLS: gave the hero portrait panel an explicit aspect-ratio so layout does not shift as the image and footer settle.',
+      'Contact form and homepage waitlist form: added an inline success banner plus a button-label state change after a confirmed submit, and wired aria-invalid/aria-describedby so validation errors are announced to assistive technology instead of relying only on native browser tooltips.',
+      'The \u2190 All essays back-link at the top of each essay page was expanded to a 44px-tall tap target (shared template, so it applies across all six essay routes).',
+      'Added tabindex="-1" to the main landmark so activating the skip link moves keyboard focus into the content, not just the scroll position.',
+      'Added visible required-field markers to the contact form and homepage waitlist form.',
+      'Widened the Spotify playlist embed column and increased its height so the gap before the footer on /playlist is largely closed, and the wider embed gives Spotify\u2019s own widget more room for its title text.',
+      'Footer links (TikTok, Linktree, Playlist, Contact) now carry a 44px min-width floor in addition to the existing 44px height, so footer tap targets clear both dimensions.',
+      'Darkened the teal link/label color and the muted footer/meta text color slightly for a larger contrast safety margin above the AA floor.',
+    ],
+  },
+  {
+    publishDate: '2026-07-27',
     title: 'Contact page and homepage tap targets',
     summary:
       'A follow-up mobile sweep found two more spots with the same undersized tap-target pattern, missed by the earlier pass.',
