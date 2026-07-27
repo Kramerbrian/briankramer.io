@@ -109,13 +109,13 @@ export default function NewsletterPage() {
                   href={edition.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-accent hover:text-accent-hover"
+                  className="flex min-h-[44px] items-center font-medium text-accent hover:text-accent-hover"
                 >
                   Read on LinkedIn →
                 </a>
                 <Link
                   href={edition.relatedPath}
-                  className="text-ink-muted hover:text-accent"
+                  className="flex min-h-[44px] items-center text-ink-muted hover:text-accent"
                 >
                   Related on this site →
                 </Link>
