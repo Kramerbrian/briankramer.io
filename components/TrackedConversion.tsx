@@ -118,33 +118,39 @@ export function TrackedForm({
 
         void (async () => {
           try {
+            // Note: `redirect: 'manual'` produces an opaque response in real
+            // browsers (type: 'opaqueredirect', status: 0, no readable headers)
+            // per the Fetch spec — Location is NOT readable that way client-side,
+            // despite working in Node-based test runners. Let fetch follow the
+            // redirect automatically instead and read the resulting `res.url`,
+            // which IS readable after a followed redirect.
             const res = await fetch(actionUrl, {
               method: (method || 'post').toString().toUpperCase(),
               body: formData,
-              redirect: 'manual',
+              redirect: 'follow',
             });
 
-            const location = res.headers.get('Location');
-            if (location) {
-              const succeeded = isSuccessRedirect(location);
-              const failed = isErrorRedirect(location);
-              if (succeeded && successConversion) {
-                fireSuccessConversion(successConversion, formData);
-              }
-              // Surface the outcome immediately, then follow the redirect.
-              setResult(succeeded ? 'success' : failed ? 'error' : 'idle');
-              window.location.assign(new URL(location, window.location.origin).toString());
-              return;
-            }
+            const succeeded = isSuccessRedirect(res.url);
+            const failed = isErrorRedirect(res.url);
 
-            // JSON or unexpected response — treat 2xx as success for non-redirect clients.
-            if (res.ok && successConversion) {
+            if (succeeded && successConversion) {
               fireSuccessConversion(successConversion, formData);
             }
+
             setSubmitting(false);
-            setResult(res.ok ? 'success' : 'error');
-            if (res.ok) {
-              window.location.reload();
+            setResult(succeeded ? 'success' : failed ? 'error' : res.ok ? 'success' : 'error');
+
+            // Sync the address bar to the final redirected URL (e.g. ?sent=1)
+            // without a full navigation, since we already have the outcome.
+            // Guarded separately: replaceState can throw (e.g. cross-origin
+            // res.url from an unexpected proxy/redirect target) and must never
+            // downgrade an already-determined success/error result.
+            if (succeeded || failed) {
+              try {
+                window.history.replaceState(null, '', res.url);
+              } catch {
+                // Non-fatal: address bar just won't reflect the redirect target.
+              }
             }
           } catch {
             setSubmitting(false);

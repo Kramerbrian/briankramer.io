@@ -67,16 +67,17 @@ describe('TrackedForm', () => {
 
   it('tracks waitlist_submit only after a successful POST redirect', async () => {
     const user = userEvent.setup();
-    const assign = vi.fn();
+    const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
     Object.defineProperty(window, 'location', {
       configurable: true,
-      value: { ...originalLocation, assign, origin: 'http://localhost' },
+      value: { ...originalLocation, origin: 'http://localhost' },
     });
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({
-        ok: false,
-        headers: { get: (name: string) => (name === 'Location' ? '/?waitlist=1' : null) },
+        ok: true,
+        redirected: true,
+        url: 'http://localhost/?waitlist=1',
       }),
     );
 
@@ -91,23 +92,25 @@ describe('TrackedForm', () => {
         props: { source: 'homepage' },
       });
     });
-    expect(assign).toHaveBeenCalledWith('http://localhost/?waitlist=1');
-    expect(document.querySelector('form')).toHaveAttribute('aria-busy', 'true');
-    expect(screen.getByRole('status')).toHaveTextContent('Joining the waitlist...');
+    // Address bar should sync to the final redirected URL via replaceState
+    // (no full navigation) once the outcome is known.
+    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', 'http://localhost/?waitlist=1');
+    expect(document.querySelector('form')).toHaveAttribute('data-result', 'success');
+    replaceStateSpy.mockRestore();
   });
 
   it('does not track when the POST redirects to an error status', async () => {
     const user = userEvent.setup();
-    const assign = vi.fn();
     Object.defineProperty(window, 'location', {
       configurable: true,
-      value: { ...originalLocation, assign, origin: 'http://localhost' },
+      value: { ...originalLocation, origin: 'http://localhost' },
     });
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({
-        ok: false,
-        headers: { get: (name: string) => (name === 'Location' ? '/?waitlist=error' : null) },
+        ok: true,
+        redirected: true,
+        url: 'http://localhost/?waitlist=error',
       }),
     );
 
@@ -116,23 +119,23 @@ describe('TrackedForm', () => {
     await user.click(screen.getByRole('button', { name: /join the waitlist/i }));
 
     await waitFor(() => {
-      expect(assign).toHaveBeenCalled();
+      expect(document.querySelector('form')).toHaveAttribute('data-result', 'error');
     });
     expect(trackConversion).not.toHaveBeenCalled();
   });
 
   it('tracks contact_submit with the selected topic after success', async () => {
     const user = userEvent.setup();
-    const assign = vi.fn();
     Object.defineProperty(window, 'location', {
       configurable: true,
-      value: { ...originalLocation, assign, origin: 'http://localhost' },
+      value: { ...originalLocation, origin: 'http://localhost' },
     });
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({
-        ok: false,
-        headers: { get: (name: string) => (name === 'Location' ? '/contact?sent=1' : null) },
+        ok: true,
+        redirected: true,
+        url: 'http://localhost/contact?sent=1',
       }),
     );
 
@@ -176,8 +179,9 @@ describe('TrackedForm', () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
     resolveFetch?.({
-      ok: false,
-      headers: { get: () => '/?waitlist=1' },
+      ok: true,
+      redirected: true,
+      url: 'http://localhost/?waitlist=1',
     });
     await waitFor(() => {
       expect(trackConversion).toHaveBeenCalledTimes(1);
