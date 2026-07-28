@@ -4,7 +4,7 @@ Personal brand and content site for **Brian Kramer** (EVP, Cars Commerce), built
 
 ## Tech stack
 
-- **Framework:** Next.js 14 (App Router), React 18, TypeScript (strict)
+- **Framework:** Next.js 16 (App Router, Turbopack), React 19, TypeScript (strict)
 - **Styling:** Tailwind CSS + PostCSS
 - **Content:** MDX (`@next/mdx`) + TypeScript modules under `content/`
 - **API routes:** Edge runtime (`app/api/*`)
@@ -43,7 +43,7 @@ Without these, the contact and waitlist forms submit successfully end-to-end but
 | `npm run dev` | Start the dev server on port 3000 |
 | `npm run build` | Production build (also type-checks the app) |
 | `npm run start` | Serve the production build |
-| `npm run lint` | ESLint via `next lint` |
+| `npm run lint` | ESLint (flat config, `eslint.config.mjs`) |
 | `npm test` | Unit + component tests (Vitest) |
 | `npm run test:watch` | Vitest in watch mode |
 | `npm run test:e2e` | End-to-end smoke tests (Playwright) |
@@ -56,6 +56,15 @@ Without these, the contact and waitlist forms submit successfully end-to-end but
 - **Content governance** validates public claims in content against a source-evidence registry; it runs in CI and via `check:content-governance`.
 
 CI (`.github/workflows/public-site-governance.yml`) runs lint, unit tests, build, content governance, and Playwright e2e on every push/PR.
+
+## Dependency security notes
+
+`package.json` pins two `overrides` to keep `npm audit --omit=dev` clean while staying on the latest stable Next.js:
+
+- `sharp` → `^0.35.3` — Next 16 depends on `sharp ^0.34.5`, which inherits libvips CVEs; the override forces the patched release.
+- `postcss` → `^8.5.19` — forces the copy bundled inside Next.js up to a patched version.
+
+Revisit/remove these once a stable Next.js release ships the patched transitive versions.
 
 ## Project structure
 
