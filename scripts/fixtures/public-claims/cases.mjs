@@ -5,6 +5,26 @@
  * one mutation. The test runner writes trees to a temp dir and asserts.
  *
  * No production content files are modified by these fixtures.
+ *
+ * Acceptance matrix (required fail/pass proofs):
+ *   FAIL — Person schema Automotive News award          → fail-person-schema-award
+ *   FAIL — honorificAward schema key                    → fail-honorific-award
+ *   FAIL — Homepage “Coming 2026”                       → fail-coming-2026
+ *   FAIL — Named publication without pending label      → fail-named-publication-no-label
+ *   FAIL — Dynamic press entry outside legacy list      → fail-dynamic-publication-no-label
+ *   FAIL — Distant pending label outside tight window   → fail-distant-pending-label
+ *   FAIL — Podcast duration without provisional label   → fail-podcast-duration-no-provisional
+ *   FAIL — Held 70% / 35% / $2,000 claims               → fail-held-70-35-2000
+ *   FAIL — “first” / “leading” without registry coverage → fail-first-leading-no-coverage
+ *   FAIL — File sourcePath alone does not blanket file  → fail-file-coverage-not-blanket
+ *   FAIL — Verified press claim without https URL       → fail-verified-press-missing-url
+ *   PASS — Pending publication with visible label       → pass-pending-publication-label
+ *   PASS — Book “In progress”                           → pass-book-in-progress
+ *   PASS — Podcast provisional archive disclaimer       → pass-podcast-provisional
+ *   PASS — Verified/qualified claim with claim-text coverage
+ *        → pass-verified-registry-coverage, pass-qualified-registry-coverage
+ *   PASS — FP trim: most recently / best practices / bare year
+ *        → pass-superlative-year-false-positives
  */
 
 /** Required claim IDs the live gate expects in the evidence registry. */
@@ -20,17 +40,35 @@ const REQUIRED_RECORDS = [
   ['schema-person-award-removed', 'app/layout.tsx'],
 ];
 
+/**
+ * @param {Array<[string, string] | [string, string, string, string] | [string, string, string, string, string]>} extraRecords
+ *   [id, sourcePath] or [id, sourcePath, evidenceStatus, publicTreatment]
+ *   or [id, sourcePath, evidenceStatus, publicTreatment, claimText]
+ */
 function evidenceRegistry(extraRecords = []) {
-  const rows = [...REQUIRED_RECORDS, ...extraRecords]
+  const requiredRows = REQUIRED_RECORDS.map(
+    ([id, sourcePath]) => [id, sourcePath, 'pending', 'label', `${id} fixture claim.`],
+  );
+  const extraRows = extraRecords.map((row) => {
+    const [
+      id,
+      sourcePath,
+      evidenceStatus = 'pending',
+      publicTreatment = 'label',
+      claimText = `${id} fixture claim.`,
+    ] = row;
+    return [id, sourcePath, evidenceStatus, publicTreatment, claimText];
+  });
+  const rows = [...requiredRows, ...extraRows]
     .map(
-      ([id, sourcePath]) => `  record(
+      ([id, sourcePath, evidenceStatus, publicTreatment, claimText]) => `  record(
     '${id}',
-    '${id} fixture claim.',
+    '${claimText.replace(/'/g, "\\'")}',
     'source-validation',
-    'pending',
+    '${evidenceStatus}',
     '${sourcePath}',
     'Fixture registry coverage.',
-    'label',
+    '${publicTreatment}',
     'Fixture note.',
   ),`,
     )
@@ -60,6 +98,7 @@ function recordsFile(approvedIds = []) {
 function pressFile({
   wsjNote = 'Source validation pending',
   includeWsj = true,
+  extraEntries = '',
 } = {}) {
   const wsj = includeWsj
     ? `  { publication: 'The Wall Street Journal', note: '${wsjNote}' },\n`
@@ -70,7 +109,7 @@ ${wsj}  { publication: 'Automotive News', note: 'citation pending' },
   { publication: 'Digital Dealer Magazine', note: 'Source validation pending' },
   { publication: 'Jalopnik', note: 'Source validation pending' },
   { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Appearance citation pending' },
-];
+${extraEntries}];
 `;
 }
 
@@ -178,10 +217,31 @@ export const FIXTURE_CASES = [
   {
     id: 'fail-person-schema-award',
     expect: 'fail',
+    errorIncludes: [
+      'Unsupported Person schema award claim appears in app/layout.tsx',
+    ],
+    build: () =>
+      passingScaffold({
+        // award value is Automotive News 40 Under 40 (see layoutFile).
+        'app/layout.tsx': layoutFile({ withAward: true }),
+      }),
+  },
+  {
+    id: 'fail-honorific-award',
+    expect: 'fail',
     errorIncludes: ['Unsupported Person schema award claim appears in app/layout.tsx'],
     build: () =>
       passingScaffold({
-        'app/layout.tsx': layoutFile({ withAward: true }),
+        'app/layout.tsx': `const personSchema = {
+  '@type': 'Person',
+  name: 'Brian Kramer',
+  honorificAward: 'Automotive News 40 Under 40',
+};
+
+export default function RootLayout({ children }) {
+  return <html><body>{children}</body></html>;
+}
+`,
       }),
   },
   {
@@ -206,6 +266,38 @@ export const FIXTURE_CASES = [
       passingScaffold({
         // Cross-entry pending text must NOT satisfy WSJ's own entry.
         'content/press.ts': pressFile({ wsjNote: 'Featured mention' }),
+      }),
+  },
+  {
+    id: 'fail-dynamic-publication-no-label',
+    expect: 'fail',
+    errorIncludes: [
+      'Named publication lacks visible pending/source label in content/press.ts: Car and Driver',
+    ],
+    build: () =>
+      passingScaffold({
+        'content/press.ts': pressFile({
+          extraEntries: `  { publication: 'Car and Driver', note: 'Featured profile' },\n`,
+        }),
+      }),
+  },
+  {
+    id: 'fail-distant-pending-label',
+    expect: 'fail',
+    errorIncludes: [
+      'Named publication "The Wall Street Journal" lacks registry coverage or visible pending label',
+    ],
+    build: () =>
+      passingScaffold({
+        'app/about/page.tsx': `export default function AboutPage() {
+  return (
+    <div>
+      <p>The Wall Street Journal covered the operator story in detail across several desks.</p>
+      <p>${'x'.repeat(200)} Source validation pending for unrelated copy.</p>
+    </div>
+  );
+}
+`,
       }),
   },
   {
@@ -249,6 +341,29 @@ export const FIXTURE_CASES = [
       passingScaffold({
         'components/ClaimCard.tsx': `export function ClaimCard() {
   return <p>We are the leading platform and the first to ship this model.</p>;
+}
+`,
+      }),
+  },
+  {
+    id: 'fail-file-coverage-not-blanket',
+    expect: 'fail',
+    errorIncludes: ['Risky superlative/absolute claim lacks registry coverage'],
+    build: () =>
+      passingScaffold({
+        // about/page.tsx is a registered sourcePath for other claims, but file listing
+        // alone must not exempt an unrelated promotional superlative.
+        'content/publishing/public-claim-evidence.ts': evidenceRegistry([
+          [
+            'bio-fixture-about-other',
+            'app/about/page.tsx',
+            'pending',
+            'label',
+            'Two decades as a General Manager with biography evidence pending.',
+          ],
+        ]),
+        'app/about/page.tsx': `export default function AboutPage() {
+  return <p>We are the leading platform for dealer growth desks.</p>;
 }
 `,
       }),
@@ -347,7 +462,7 @@ export default function AboutPage() {
       });
       files['content/publishing/public-claim-evidence.ts'] = evidenceRegistry().replace(
         "'press-automotive-news-source-pending',\n    'press-automotive-news-source-pending fixture claim.',\n    'source-validation',\n    'pending',",
-        "'press-automotive-news-source-pending',\n    'press-automotive-news-source-pending fixture claim.',\n    'source-validation',\n    'verified',",
+        "'press-automotive-news-source-pending',\n    'Automotive News mention and 40 Under 40 recognition.',\n    'source-validation',\n    'verified',",
       );
       return files;
     },
@@ -385,11 +500,54 @@ export default function AboutPage() {
     build: () =>
       passingScaffold({
         'content/publishing/public-claim-evidence.ts': evidenceRegistry([
-          ['pub-fixture-covered-claim', 'components/CoveredClaim.tsx'],
+          [
+            'pub-fixture-covered-claim',
+            'components/CoveredClaim.tsx',
+            'verified',
+            'publish',
+            'A leading operator narrative with first-party operating proof.',
+          ],
         ]),
         'content/publishing/records.ts': recordsFile(['pub-fixture-covered-claim']),
         'components/CoveredClaim.tsx': `export function CoveredClaim() {
   return <p>A leading operator narrative with first-party operating proof.</p>;
+}
+`,
+      }),
+  },
+  {
+    id: 'pass-qualified-registry-coverage',
+    expect: 'pass',
+    build: () =>
+      passingScaffold({
+        'content/publishing/public-claim-evidence.ts': evidenceRegistry([
+          [
+            'pub-fixture-qualified-claim',
+            'components/QualifiedClaim.tsx',
+            'qualified',
+            'qualify',
+            'A leading desk practice with first-pass proof still being qualified.',
+          ],
+        ]),
+        'content/publishing/records.ts': recordsFile(['pub-fixture-qualified-claim']),
+        'components/QualifiedClaim.tsx': `export function QualifiedClaim() {
+  return <p>A leading desk practice with first-pass proof still being qualified.</p>;
+}
+`,
+      }),
+  },
+  {
+    id: 'pass-superlative-year-false-positives',
+    expect: 'pass',
+    build: () =>
+      passingScaffold({
+        'components/OperatorNote.tsx': `export function OperatorNote() {
+  return (
+    <p>
+      Most recently we used best practices from the 2024 floor guide. Fix that first.
+      The first set will publish when source material is ready.
+    </p>
+  );
 }
 `,
       }),
