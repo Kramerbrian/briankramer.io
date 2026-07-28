@@ -18,6 +18,18 @@ interface ChangelogEntry {
 
 const entries: ChangelogEntry[] = [
   {
+    publishDate: '2026-07-28',
+    title: 'Close /playlist podcast listen bypass',
+    summary:
+      'A hostile content audit found /playlist embedding and outbound-linking a dealership-podcasts Spotify playlist while on-site podcast listen links stay unpublished until source records are verified. The route is now a pointer page only.',
+    items: [
+      'Removed the Spotify iframe and “Open in Spotify” outbound link from /playlist so the route cannot publish listen access ahead of podcast source verification.',
+      'Rewrote page copy and Open Graph metadata to use the real playlist title (Brian Kramer Dealership Podcasts in Retail Automotive) and to point visitors to the podcast archive instead.',
+      'Dropped MusicPlaylist structured data that linked the Spotify URL; the page keeps lightweight WebPage JSON-LD only.',
+      'Aligned the Open Graph title to the site title template (em dash) and added a content-governance guard so /playlist cannot reintroduce Spotify playlist embeds or links while podcast listen links remain unpublished.',
+    ],
+  },
+  {
     publishDate: '2026-07-27',
     title: 'Follow-up fixes: contact form redirect, layout shift, and playlist spacing',
     summary:
