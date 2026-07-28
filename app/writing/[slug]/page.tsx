@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { EssayBody } from '@/components/EssayBody';
 import { JsonLd } from '@/components/JsonLd';
-import { getEssay, getEssaySlugs } from '@/content/essays';
+import { getEssay, getEssaySlugs, getReadingMinutes } from '@/content/essays';
 import {
   articleJsonLd,
   getEssayPublishingRecord,
@@ -112,7 +112,7 @@ export default async function EssayPage({ params }: Props) {
       <div className="mt-6 flex items-center gap-4 text-sm text-ink-faint">
         <time dateTime={datePublished}>{formattedDate}</time>
         <span aria-hidden="true">·</span>
-        <span>{essay.readingMinutes} min read</span>
+        <span>{getReadingMinutes(essay.body)} min read</span>
       </div>
 
       <div className="hairline mt-10" />
@@ -120,6 +120,27 @@ export default async function EssayPage({ params }: Props) {
       <div className="mt-10">
         <EssayBody body={essay.body} />
       </div>
+
+      {essay.sources && essay.sources.length > 0 && (
+        <div className="mt-14">
+          <div className="hairline" />
+          <p className="eyebrow mt-8 text-ink-faint">Sources</p>
+          <ul className="mt-3 space-y-2">
+            {essay.sources.map((source) => (
+              <li key={source.url} className="text-sm text-ink-muted">
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline underline-offset-2 hover:text-accent-hover"
+                >
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </article>
   );
 }
