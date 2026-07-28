@@ -23,6 +23,12 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// Only the slugs returned by generateStaticParams() are valid routes.
+// Without this, Next renders unknown slugs on demand; notFound() then fires
+// after the static shell is committed, producing HTTP 200 with a not-found
+// body (a soft 404 Google drops but keeps re-crawling).
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getEssaySlugs().map((slug) => ({ slug }));
 }
