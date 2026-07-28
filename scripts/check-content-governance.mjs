@@ -237,10 +237,32 @@ for (const raw of podcastBlocks) {
 }
 
 // —— TOTAL_PODCAST_COUNT without verification ——
+const verifiedPodcastCount = podcastBlocks.filter((raw) => {
+  const block = `id: 'pod-${raw}`;
+  return /sourceVerified:\s*true/.test(block);
+}).length;
+const publishablePodcastListenCount = podcastBlocks.filter((raw) => {
+  const block = `id: 'pod-${raw}`;
+  const verified = /sourceVerified:\s*true/.test(block);
+  const urlMatch = /sourceUrl:\s*(null|'[^']*'|"[^"]*")/.exec(block);
+  return verified && !!urlMatch && urlMatch[1] !== 'null';
+}).length;
 if (/\bTOTAL_PODCAST_COUNT\b/.test(podcastsSrc)) {
-  const verifiedCount = [...podcastsSrc.matchAll(/sourceVerified:\s*true/g)].length;
-  if (verifiedCount === 0) {
+  if (verifiedPodcastCount === 0) {
     push('TOTAL_PODCAST_COUNT appears while no podcast sources are verified.');
+  }
+}
+
+// —— /playlist must not publish Spotify listen access while podcast listen links stay gated ——
+if (exists('app/playlist/page.tsx') && publishablePodcastListenCount === 0) {
+  const playlistSrc = read('app/playlist/page.tsx');
+  if (/open\.spotify\.com\/(?:embed\/)?playlist\//i.test(playlistSrc)) {
+    push(
+      '/playlist must not embed or link Spotify playlist URLs while podcast listen links are unpublished.',
+    );
+  }
+  if (/<iframe[\s\S]*spotify/i.test(playlistSrc)) {
+    push('/playlist must not iframe Spotify while podcast listen links are unpublished.');
   }
 }
 
