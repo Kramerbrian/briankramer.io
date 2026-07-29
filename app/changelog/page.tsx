@@ -19,6 +19,17 @@ interface ChangelogEntry {
 const entries: ChangelogEntry[] = [
   {
     publishDate: '2026-07-28',
+    title: 'Mobile menu overlay fix and a visible keyboard focus ring',
+    summary:
+      'Fixed a bug where the mobile navigation menu did not actually block the page behind it, and replaced a focus-ring color that had almost no contrast against the page background.',
+    items: [
+      'The mobile menu\u2019s dimming layer sat inside the header, and the header\u2019s blur effect was quietly changing how the browser measured that layer\u2019s size \u2014 it was rendering at zero height, so buttons on the page behind the open menu could still be reached. Moved the dimming layer and the menu panel outside the header so they size against the full screen instead, and marked the page content behind the open menu as inert so it can\u2019t be tabbed into or clicked while the menu is up.',
+      'The ring that appears around a link or button when you tab to it with a keyboard used a color with barely any contrast against the page background, so tabbing through the top navigation showed no visible focus at all. Switched it to the site\u2019s teal accent color, which now clears the recommended contrast minimum for on-screen indicators.',
+      'Added two automated tests covering the menu fix so a future change can\u2019t quietly reintroduce either issue.',
+    ],
+  },
+  {
+    publishDate: '2026-07-28',
     title: 'Dynamic reading time, essay source citations, and playbook launch',
     summary:
       'Merged the dynamic-route soft-404 fix, corrected reading-time labels across all six essays, added named external citations where a claim has a real supporting source, and published four operating playbooks that had been finished but held behind a coming-soon gate.',

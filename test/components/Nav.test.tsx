@@ -54,4 +54,43 @@ describe('Nav', () => {
       'page',
     );
   });
+
+  it('makes #main inert and aria-hidden while the mobile drawer is open, and restores it on close', async () => {
+    const user = userEvent.setup();
+    render(
+      <>
+        <Nav />
+        <main id="main">
+          <button type="button">Read the essays</button>
+        </main>
+      </>,
+    );
+
+    const main = document.getElementById('main')!;
+    expect(main).not.toHaveAttribute('inert');
+    expect(main).not.toHaveAttribute('aria-hidden');
+
+    await user.click(screen.getByRole('button', { name: /open menu/i }));
+    expect(main).toHaveAttribute('inert');
+    expect(main).toHaveAttribute('aria-hidden', 'true');
+
+    await user.click(screen.getByRole('button', { name: /close menu/i }));
+    expect(main).not.toHaveAttribute('inert');
+    expect(main).not.toHaveAttribute('aria-hidden');
+  });
+
+  it('renders a scrim that fills the viewport below the header so it can catch pointer events', async () => {
+    const user = userEvent.setup();
+    render(<Nav />);
+
+    await user.click(screen.getByRole('button', { name: /open menu/i }));
+
+    const scrim = document.querySelector('button[aria-hidden="true"]');
+    expect(scrim).not.toBeNull();
+    // Regression guard for the bug where the scrim was nested inside a
+    // backdrop-blur <header>, giving it a new containing block and collapsing
+    // its fixed top/bottom inset to 0 height. The scrim must be a sibling of
+    // <header>, not a descendant, so `fixed` resolves against the viewport.
+    expect(scrim!.closest('header')).toBeNull();
+  });
 });
