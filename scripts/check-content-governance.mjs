@@ -78,6 +78,9 @@ const newsletterSrc = exists('content/newsletter/editions.ts')
 const playbookSlugSrc = read('app/playbook/[slug]/page.tsx');
 const playbookIndexSrc = read('app/playbook/page.tsx');
 const sitemapSrc = read('app/sitemap.ts');
+const playbookEntriesSrc = exists('content/playbook/entries.ts')
+  ? read('content/playbook/entries.ts')
+  : '';
 
 const recordUrls = [...recordsSrc.matchAll(/canonicalUrl:\s*`\$\{SITE\}([^`]+)`/g)].map(
   (m) => m[1],
@@ -86,6 +89,9 @@ const essaySlugs = [...essaysSrc.matchAll(/^\s*slug:\s*'([^']+)'/gm)].map((m) =>
 const podcastSlugs = [...podcastsSrc.matchAll(/^\s*slug:\s*'([^']+)'/gm)].map((m) => m[1]);
 const newsletterSlugs = newsletterSrc
   ? [...newsletterSrc.matchAll(/^\s*slug:\s*'([^']+)'/gm)].map((m) => m[1])
+  : [];
+const playbookSlugs = playbookEntriesSrc
+  ? [...playbookEntriesSrc.matchAll(/^\s*slug:\s*'([^']+)'/gm)].map((m) => m[1])
   : [];
 
 // —— Public content items must have publishing records ——
@@ -98,6 +104,18 @@ for (const slug of essaySlugs) {
 
 if (!recordUrls.includes('/playbook')) {
   push('Public playbook index missing publishing record: /playbook');
+}
+
+// Playbook detail routes are only public once BOTH: (a) the slug is exposed
+// via app/playbook/[slug]/page.tsx (checked below) and (b) it carries its own
+// publishing record. A record's evidenceStatus governs sitemap inclusion
+// (verified/qualified only, via listSitemapCanonicalRecords) but not whether
+// the route itself is reachable — that is a separate, explicit editorial call.
+for (const slug of playbookSlugs) {
+  const expected = `/playbook/${slug}`;
+  if (!recordUrls.includes(expected)) {
+    push(`Public playbook entry missing publishing record: ${expected}`);
+  }
 }
 
 if (!recordUrls.includes('/podcast')) {
@@ -168,7 +186,10 @@ for (const urlPath of recordUrls) {
     continue;
   }
   if (urlPath.startsWith('/playbook/')) {
-    push(`Publishing record points to blocked playbook detail route: ${urlPath}`);
+    const slug = urlPath.slice('/playbook/'.length);
+    if (!playbookSlugs.includes(slug)) {
+      push(`Publishing record points to missing playbook slug: ${urlPath}`);
+    }
     continue;
   }
   if (urlPath === '/newsletter' || urlPath === '/speaking') {
@@ -244,22 +265,39 @@ if (/\bTOTAL_PODCAST_COUNT\b/.test(podcastsSrc)) {
   }
 }
 
-// —— Playbook detail routes must not be public while unverified ——
-const playbooksUnverified = true; // no verified playbook publishing records for detail pages
-const detailRendersContent =
-  /playbookEntries/.test(playbookSlugSrc) ||
-  (!/notFound\(\)/.test(playbookSlugSrc) && /export default function/.test(playbookSlugSrc));
-const detailAlwaysNotFound =
-  /notFound\(\)/.test(playbookSlugSrc) && !/playbookEntries/.test(playbookSlugSrc);
+// —— Playbook detail routes: public only for slugs with a publishing record ——
+// A slug may render real content ONLY if it has a canonical publishing record
+// in content/publishing/records.ts (any evidenceStatus — pending is allowed to
+// render per editorial decision, but is excluded from the sitemap separately
+// by listSitemapCanonicalRecords()). Any playbook slug that exists in
+// content/playbook/entries.ts but lacks a record must stay 404'd.
+const recordedPlaybookSlugs = recordUrls
+  .filter((u) => u.startsWith('/playbook/'))
+  .map((u) => u.slice('/playbook/'.length));
+const unrecordedPlaybookSlugs = playbookSlugs.filter((s) => !recordedPlaybookSlugs.includes(s));
 
-if (playbooksUnverified && detailRendersContent) {
-  push('Playbook detail routes are public while playbooks remain unverified.');
+const slugImportsPlaybookEntries = /from ['"]@\/content\/playbook\/entries['"]/.test(
+  playbookSlugSrc,
+);
+const slugStillCallsNotFoundUnconditionally =
+  /notFound\(\)/.test(playbookSlugSrc) && !slugImportsPlaybookEntries;
+
+if (recordedPlaybookSlugs.length === 0 && !slugStillCallsNotFoundUnconditionally) {
+  push('Playbook detail page must call notFound() and must not import playbookEntries while no slug has a publishing record.');
 }
-if (playbooksUnverified && !detailAlwaysNotFound) {
-  push('Playbook detail page must call notFound() and must not import playbookEntries while unverified.');
+if (recordedPlaybookSlugs.length > 0 && !slugImportsPlaybookEntries) {
+  push('Playbook detail page has recorded slugs but does not render from playbookEntries.');
 }
-if (!/Operating tools, coming soon/.test(playbookIndexSrc)) {
-  push('Playbook index must remain the coming-soon archive while details are unverified.');
+if (unrecordedPlaybookSlugs.length > 0) {
+  push(
+    `Playbook entries exist without a publishing record (must stay unpublished): ${unrecordedPlaybookSlugs.join(', ')}`,
+  );
+}
+if (recordedPlaybookSlugs.length === 0 && !/Operating tools, coming soon/.test(playbookIndexSrc)) {
+  push('Playbook index must remain the coming-soon archive while no playbook detail has a publishing record.');
+}
+if (recordedPlaybookSlugs.length > 0 && /Operating tools, coming soon/.test(playbookIndexSrc)) {
+  push('Playbook index still shows the coming-soon copy even though detail routes are published — update the index.');
 }
 
 // —— Public-copy scans ——

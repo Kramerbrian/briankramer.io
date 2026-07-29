@@ -1,14 +1,40 @@
 import type { TopicPillar } from '@/lib/streams/types';
 
+export interface EssaySource {
+  label: string;
+  url: string;
+}
+
 export interface EssayEntry {
   slug: string;
   title: string;
   dek: string;
   topicPillar: TopicPillar;
-  readingMinutes: number;
   publishDate: string;
   featured: boolean;
   body: string;
+  /**
+   * Named external sources for claims made in the body. Only add a source
+   * when it is real, independently verifiable, and directly supports a
+   * specific claim in the text — do not add for essays with no externally
+   * checkable claim just to have a citation.
+   */
+  sources?: EssaySource[];
+}
+
+/**
+ * Reading time is derived from the actual body, never hand-entered. A static
+ * number drifts from the real word count the moment either changes and
+ * silently overstates depth (previously every essay claimed 6-7 min
+ * regardless of length, including 346-word pieces at roughly 2 min).
+ * 200 wpm, rounded up, floor of 2 min so short pieces don't read as trivial.
+ */
+const WORDS_PER_MINUTE = 200;
+const MIN_READING_MINUTES = 2;
+
+export function getReadingMinutes(body: string): number {
+  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(MIN_READING_MINUTES, Math.ceil(words / WORDS_PER_MINUTE));
 }
 
 export const essays: EssayEntry[] = [
@@ -17,7 +43,6 @@ export const essays: EssayEntry[] = [
     title: "Why AI can't cite your VDP — and what it's costing you",
     dek: 'Structured data, canonical stability, and the invisible tax dealers pay when ChatGPT and Perplexity skip their inventory.',
     topicPillar: 'ai-search',
-    readingMinutes: 7,
     publishDate: '2026-03-15',
     featured: true,
     body: `A customer asks ChatGPT: "Who's the best Toyota dealer near me?" The model answers with a short list of store names. Yours is not one of them, and you may never see the missed consideration.
@@ -69,13 +94,18 @@ You don't need an agency for this. You need an afternoon and a browser you never
 - Set a monthly cadence to repeat the probe and log the trend.
 
 AI visibility isn't a project. It's a beat — the new local SEO. Dealers who treat their digital footprint like a citable source of record now are positioned to show up in these answers later.`,
+    sources: [
+      {
+        label: 'Google Search Central — Rich Results Test',
+        url: 'https://developers.google.com/search/docs/appearance/structured-data',
+      },
+    ],
   },
   {
     slug: 'service-drive-acquisition',
     title: 'Service drive is a search problem, not a sales problem',
     dek: 'Why strong acquisition programs look like SREs at work, not appraisers with clipboards.',
     topicPillar: 'acquisition',
-    readingMinutes: 6,
     publishDate: '2026-02-28',
     featured: true,
     body: `Every day, trade-ready vehicles roll through your service drive. Many stores let them roll right back out. The ones that don't treat acquisition like infrastructure — not sales.
@@ -133,7 +163,6 @@ The service drive isn't a sales problem. It's a search problem. Treat it like on
     title: 'The Look-to-Book number every dealer should track',
     dek: 'You know your close rate on retail. Do you know your close rate on appraisal? That gap is still under-measured in used-car acquisition.',
     topicPillar: 'appraisal',
-    readingMinutes: 6,
     publishDate: '2026-02-10',
     featured: false,
     body: `Every 20-group meeting talks about closing ratio on retail traffic. Almost nobody talks about closing ratio on appraisal traffic. That silence is expensive.
@@ -175,7 +204,6 @@ Used cars are an appraisal game dressed up as a sales game. Measure the game you
     title: 'The digital trust audit: what your store looks like before a customer walks in',
     dek: 'Many shoppers form a dealer preference before they call. If you have not audited what they see, you are running blind.',
     topicPillar: 'trust',
-    readingMinutes: 6,
     publishDate: '2026-01-22',
     featured: false,
     body: `Trust used to be a handshake on the lot. Now it is a first-screen problem.
@@ -217,7 +245,6 @@ Trust is a compounding practice, not a project. Bad reviews are not just a marke
     title: 'What paperless actually taught me about dealer operations',
     dek: 'Helping lead an early end-to-end paperless transaction was never about the PDF. It was about removing friction that operators had learned to live with.',
     topicPillar: 'digital-transformation',
-    readingMinutes: 7,
     publishDate: '2025-12-12',
     featured: false,
     body: `I helped lead what we believed was an early end-to-end paperless automotive transaction. People still ask me about the tech stack. That is the wrong question.
@@ -257,7 +284,6 @@ The lesson still holds: do not buy the tool to look current. Buy the change that
     title: 'Dealer AI schema: the boring work that decides if ChatGPT names you',
     dek: 'Structured data is one of the machine-readable inputs models can use. In audits I have run, broken or missing schema is common enough to treat as a design problem, not a marketing problem.',
     topicPillar: 'ai-search',
-    readingMinutes: 6,
     publishDate: '2026-01-08',
     featured: false,
     body: `When a shopper asks ChatGPT or Perplexity for the best dealer in town, the model does not care about your billboard. It cares whether it can lift clean facts about you with confidence.
@@ -293,6 +319,12 @@ A clear third-party mention often beats a pile of paid backlinks the model does 
 Ask the models the same questions every month. Screenshot the answers. Log whether you are named more, less, or not at all. Watch competitors.
 
 AI visibility is not a one-time SEO ticket. It is a beat. Dealers who treat schema like a living operating surface are better positioned to show up in the answers. Dealers who treat it like a web-provider checkbox keep paying the invisible tax.`,
+    sources: [
+      {
+        label: 'Google Search Central — Rich Results Test',
+        url: 'https://developers.google.com/search/docs/appearance/structured-data',
+      },
+    ],
   },
 ];
 

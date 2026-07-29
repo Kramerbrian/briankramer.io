@@ -18,6 +18,19 @@ interface ChangelogEntry {
 
 const entries: ChangelogEntry[] = [
   {
+    publishDate: '2026-07-28',
+    title: 'Dynamic reading time, essay source citations, and playbook launch',
+    summary:
+      'Merged the dynamic-route soft-404 fix, corrected reading-time labels across all six essays, added named external citations where a claim has a real supporting source, and published four operating playbooks that had been finished but held behind a coming-soon gate.',
+    items: [
+      'Reading time on each essay is now computed from the actual body word count at render time instead of a hand-typed number \u2014 several essays had drifted from their true length by several minutes.',
+      'Added a Sources section to the two essays that reference Google\u2019s Rich Results Test by name, linking to Google Search Central\u2019s structured-data documentation. The other four essays make no externally checkable claims, so no citation was added to them.',
+      'Published four playbooks \u2014 service-drive sourcing, Look-to-Book, digital trust audit, and AI search visibility quick-start \u2014 at their own /playbook routes. Each carries a publishing record with a pending evidence status, so the routes are live but held out of the sitemap until formally verified.',
+      'Re-audited all four playbooks\u2019 step text against the no-universal-benchmark rule and rewrote a few lines that read like internal notes-to-self rather than customer-facing guidance.',
+      'Extended the content-governance script to check playbook detail routes against their own publishing records instead of a single hardcoded flag, so future playbook slugs follow the same record-gated pattern as essays.',
+    ],
+  },
+  {
     publishDate: '2026-07-27',
     title: 'Follow-up fixes: contact form redirect, layout shift, and playlist spacing',
     summary:

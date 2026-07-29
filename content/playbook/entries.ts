@@ -15,8 +15,12 @@ export interface PlaybookEntry {
 }
 
 /**
- * Unpublished source material. Public /playbook routes are coming-soon / notFound.
- * Held benchmarks and universal thresholds must stay out of public UI.
+ * Source material for /playbook/[slug] detail routes.
+ * A slug only becomes publicly reachable once it has a matching canonical
+ * publishing record in content/publishing/records.ts (see
+ * scripts/check-content-governance.mjs, which enforces the pairing and
+ * blocks any slug without one). Universal numeric benchmarks/thresholds must
+ * still stay out of step text — use locally-provable language instead.
  */
 export const playbookEntries: PlaybookEntry[] = [
   {
@@ -31,7 +35,7 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 1,
         headline: 'Get every RO through a used-car eye before it leaves the lane.',
         detail:
-          'Your service advisors write the ticket. Your used-car team decides whether that vehicle is worth an offer. Those roles often do not talk. Fix that handoff. Set a short SLA from write-up to buyer notification; exact timing must be proven locally. Every RO over a store-defined threshold gets a text with year/make/model/mileage/VIN to a used-car buyer before the customer leaves the write-up desk.',
+          'Your service advisors write the ticket. Your used-car team decides whether that vehicle is worth an offer. Those roles often do not talk. Fix that handoff. Set a short SLA from write-up to buyer notification, and tune the exact minutes to what your lane can actually support. Every RO over a store-defined threshold gets a text with year/make/model/mileage/VIN to a used-car buyer before the customer leaves the write-up desk.',
       },
       {
         n: 2,
@@ -43,19 +47,19 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 3,
         headline: 'Give the service advisor a stake.',
         detail:
-          'The advisor is not paid to sell you cars. They are paid to sell hours and parts. If you want their attention, they need a defined spiff on any vehicle acquired through their lane. Amount should be tested and governed locally — do not publish a universal dollar band.',
+          'The advisor is not paid to sell you cars. They are paid to sell hours and parts. If you want their attention, they need a defined spiff on any vehicle acquired through their lane. Set the amount locally and test it against your own close rate — pay plans that work in one market can be wrong in yours.',
       },
       {
         n: 4,
         headline: 'Follow up while the offer is still warm.',
         detail:
-          'The customer left the store thinking about the offer. Their spouse got home. The number percolated. Follow up while the relationship is still warm, then prove the timing window locally. If the moment fades, you are competing with CarMax again.',
+          'The customer left the store thinking about the offer. Their spouse got home. The number percolated. Follow up while the relationship is still warm — find the window that works for your team through trial, not a borrowed rule of thumb. If the moment fades, you are competing with CarMax again.',
       },
       {
         n: 5,
         headline: 'Track close rate on drive-sourced offers, not just volume.',
         detail:
-          'Track offers made, offers accepted, and gross per unit. Diagnose offer quality and follow-up speed from the channel report. Do not apply a universal close-rate floor, ceiling, or healthy band without a defined comparable dataset.',
+          'Track offers made, offers accepted, and gross per unit. Diagnose offer quality and follow-up speed from your own channel report — a close rate that looks strong at one store can be mediocre at another with a different inventory mix.',
       },
       {
         n: 6,
@@ -89,7 +93,7 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 3,
         headline: 'Publish the Look-to-Book rate weekly, by appraiser.',
         detail:
-          'Not a punishment. A mirror. Spreads between appraisers are usually coachable — training, judgment, and confidence. Do not publish illustrative percentages as universal benchmarks.',
+          'Not a punishment. A mirror. Spreads between appraisers are usually a training, judgment, and confidence gap — not a fixed talent ceiling. Coach to the gap you actually see in your own report, not to a number you read somewhere else.',
       },
       {
         n: 4,
@@ -101,7 +105,7 @@ export const playbookEntries: PlaybookEntry[] = [
         n: 5,
         headline: 'Set a floor and a ceiling — then prove them locally.',
         detail:
-          'Build the report first. Then set a floor and a ceiling your UCM can defend in the meeting. Universal Look-to-Book healthy ranges are retired doctrine and must not be published.',
+          'Build the report first. Then set a floor and a ceiling your UCM can defend in the meeting. A healthy Look-to-Book range depends on your inventory mix, your market, and your appraisal volume — there is no single number that transfers across stores.',
       },
       {
         n: 6,
@@ -204,3 +208,11 @@ export const playbookEntries: PlaybookEntry[] = [
     ],
   },
 ];
+
+export function getPlaybookEntry(slug: string): PlaybookEntry | undefined {
+  return playbookEntries.find((e) => e.slug === slug);
+}
+
+export function getPlaybookSlugs(): string[] {
+  return playbookEntries.map((e) => e.slug);
+}

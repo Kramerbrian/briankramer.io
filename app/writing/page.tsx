@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getAllEssays } from '@/content/essays';
+import { getAllEssays, getReadingMinutes } from '@/content/essays';
 
 export const metadata: Metadata = {
   title: 'Writing',
@@ -48,7 +48,7 @@ export default function WritingPage() {
                   <p className="mt-3 text-base leading-relaxed text-ink-muted">{essay.dek}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-4 text-sm text-ink-faint md:flex-col md:items-end md:pt-8">
-                  <span>{essay.readingMinutes} min read</span>
+                  <span>{getReadingMinutes(essay.body)} min read</span>
                   <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </Link>

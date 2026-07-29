@@ -215,6 +215,98 @@ export const canonicalContent: CanonicalContentRecord[] = [
     lastDriftReview: DRIFT_REVIEW,
   },
 
+  // —— Playbook detail entries (published live; evidenceStatus pending until
+  // formally verified, per Brian's explicit call — excluded from the
+  // sitemap by listSitemapCanonicalRecords() until upgraded to qualified/verified) ——
+  {
+    contentId: 'bk-playbook-service-drive-sourcing-2026-001',
+    canonicalOwner: 'briankramer.io',
+    canonicalUrl: `${SITE}/playbook/service-drive-sourcing`,
+    canonicalTitle: 'Service-drive sourcing: the acquisition channel you already own',
+    seoTitle: 'Service-drive sourcing playbook — Brian Kramer',
+    linkedinHook:
+      'Trade-ready vehicles roll through your service drive every day. Most stores let them roll back out.',
+    newsletterSubject: 'Service-drive sourcing playbook',
+    approvedSummary:
+      'A 6-step operating playbook for treating the service drive as its own acquisition channel, with locally proven SLAs and incentives instead of universal benchmarks.',
+    doctrineIds: ['acquisition-consumer-source', 'acquisition-appraisal-coverage'],
+    formulaIds: [],
+    approvedClaimIds: [],
+    evidenceStatus: 'pending',
+    version: '1.0.0',
+    datePublished: '2026-07-28',
+    dateModified: '2026-07-28',
+    linkedinUrl: null,
+    substackUrl: null,
+    lastDriftReview: DRIFT_REVIEW,
+  },
+  {
+    contentId: 'bk-playbook-look-to-book-2026-001',
+    canonicalOwner: 'briankramer.io',
+    canonicalUrl: `${SITE}/playbook/look-to-book`,
+    canonicalTitle: 'The Look-to-Book number every dealer should track',
+    seoTitle: 'Look-to-Book playbook — Brian Kramer',
+    linkedinHook:
+      'You know your close rate on retail. Do you know your close rate on appraisal?',
+    newsletterSubject: 'Look-to-Book playbook',
+    approvedSummary:
+      'A 6-step operating playbook for defining, instrumenting, and reporting Look-to-Book without publishing a universal healthy range.',
+    doctrineIds: ['appraisal-look-to-book', 'appraisal-full-opportunity-set'],
+    formulaIds: [],
+    approvedClaimIds: [],
+    evidenceStatus: 'pending',
+    version: '1.0.0',
+    datePublished: '2026-07-28',
+    dateModified: '2026-07-28',
+    linkedinUrl: null,
+    substackUrl: null,
+    lastDriftReview: DRIFT_REVIEW,
+  },
+  {
+    contentId: 'bk-playbook-digital-trust-audit-2026-001',
+    canonicalOwner: 'briankramer.io',
+    canonicalUrl: `${SITE}/playbook/digital-trust-audit`,
+    canonicalTitle: 'The digital trust audit: what your store looks like before a customer walks in',
+    seoTitle: 'Digital trust audit playbook — Brian Kramer',
+    linkedinHook:
+      'Audit the store a stranger sees — reviews, phone, and VDP — before you spend another dollar on awareness.',
+    newsletterSubject: 'Digital trust audit playbook',
+    approvedSummary:
+      'A 6-step quarterly audit playbook for reviews, phone experience, and VDP trust signals, without unsupported shopper-percentage benchmarks.',
+    doctrineIds: ['trust-reviews-as-evidence', 'trust-proof-before-promotion'],
+    formulaIds: [],
+    approvedClaimIds: [],
+    evidenceStatus: 'pending',
+    version: '1.0.0',
+    datePublished: '2026-07-28',
+    dateModified: '2026-07-28',
+    linkedinUrl: null,
+    substackUrl: null,
+    lastDriftReview: DRIFT_REVIEW,
+  },
+  {
+    contentId: 'bk-playbook-ai-search-quick-start-2026-001',
+    canonicalOwner: 'briankramer.io',
+    canonicalUrl: `${SITE}/playbook/ai-search-quick-start`,
+    canonicalTitle: 'AI search visibility quick-start: showing up when ChatGPT recommends a dealer',
+    seoTitle: 'AI search visibility quick-start playbook — Brian Kramer',
+    linkedinHook:
+      'Whether ChatGPT mentions your store is a design problem, not a marketing problem.',
+    newsletterSubject: 'AI search visibility quick-start playbook',
+    approvedSummary:
+      'A 6-step installation playbook for dealer schema, quotable about pages, third-party mentions, and stable VDPs for AI answer visibility.',
+    doctrineIds: ['ai-seo-eligibility', 'ai-evidence-quality'],
+    formulaIds: [],
+    approvedClaimIds: [],
+    evidenceStatus: 'pending',
+    version: '1.0.0',
+    datePublished: '2026-07-28',
+    dateModified: '2026-07-28',
+    linkedinUrl: null,
+    substackUrl: null,
+    lastDriftReview: DRIFT_REVIEW,
+  },
+
   // —— Newsletter index + verified Automotive Update editions ——
   {
     contentId: 'bk-newsletter-index-2026-001',
