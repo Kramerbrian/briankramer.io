@@ -19,6 +19,20 @@ interface ChangelogEntry {
 const entries: ChangelogEntry[] = [
   {
     publishDate: '2026-07-28',
+    title: 'Podcast archive wired up, dead-end pages linked forward, and stale-content signals',
+    summary:
+      'A site-wide findability and content-freshness review found the podcast archive was still an empty placeholder despite eight recorded episodes, several pages ended in a dead end with nowhere to go next, and stale sections gave no signal about whether that staleness was expected.',
+    items: [
+      'The /podcast page rendered only a heading and one paragraph even though eight episodes already existed in the content source with full publishing records. Built out the episode list with pillar, date, host, duration, and platform for each entry, gated so a "Listen" link only appears once that episode\u2019s source has been formally verified \u2014 today that is none of them, so each shows a plain "publishes once verified" note instead, matching the governance rule already written for this exact case.',
+      'The homepage\u2019s Playbook section still said "coming soon" with no link to /playbook, even though four playbooks have been live since the previous release. Rewrote the copy to match reality and added a direct link.',
+      'The About page ended on a contact button with no path forward. Added a set of links to the essays, playbook, podcast, and newsletter directly below it.',
+      'About and Podcast were only reachable from the persistent top navigation \u2014 no other page pointed to them. Added a homepage link to About, an About-page link to Podcast, and a Podcast-page link to Playlist.',
+      'Newsletter and podcast content had gone 110 and 259 days respectively without a new entry, with nothing on either page indicating whether that gap was normal. Added a small note on each page stating the date of the latest entry and that updates are not on a fixed schedule, rather than asserting an unverified cadence.',
+      'The playlist page was reachable only from a footer row mixed in with external social links, despite being real on-site content. Split the footer into an "On this site" group (Playlist, Contact) separate from "Elsewhere" (external profiles) so internal content is not visually grouped with off-site links.',
+    ],
+  },
+  {
+    publishDate: '2026-07-28',
     title: 'Mobile menu overlay fix and a visible keyboard focus ring',
     summary:
       'Fixed a bug where the mobile navigation menu did not actually block the page behind it, and replaced a focus-ring color that had almost no contrast against the page background.',
