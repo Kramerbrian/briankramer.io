@@ -19,8 +19,13 @@
     font-feature-settings: 'kern', 'liga', 'calt', 'ss01';
   }
 
+  /* accent-soft (#D6EBED) measures ~1.14:1 against bg (#F7F5F1) — far below
+     the 3:1 WCAG 1.4.11 minimum for non-text UI indicators, and effectively
+     invisible on plain text links that have no border/background of their
+     own to provide edge contrast. accent (#0A6E78) measures well above 3:1
+     against bg and is already the site's interactive/link color. */
   :focus-visible {
-    @apply outline-none ring-4 ring-accent-soft ring-offset-2 ring-offset-bg rounded;
+    @apply outline-none ring-4 ring-accent ring-offset-2 ring-offset-bg rounded;
   }
 
   ::selection {
