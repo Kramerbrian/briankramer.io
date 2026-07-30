@@ -65,7 +65,7 @@ export default function PodcastPage() {
         paperless. Listen links publish as durable source records are added.
       </p>
       <p className="mt-3 text-sm text-ink-faint">
-        Source verification pending: titles, dates, hosts, and durations are not source-verified yet. Treat every entry below as provisional until it carries a verified listen link.
+        Source verification in progress: titles, dates, hosts, and durations are not source-verified yet. Treat every entry below as unconfirmed until it carries a verified listen link.
       </p>
       {podcasts[0] && (
         <p className="mt-2 text-sm text-ink-faint">

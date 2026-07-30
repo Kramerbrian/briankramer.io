@@ -421,7 +421,7 @@ export function runPublicClaimGovernance(rootDir = process.cwd()) {
     /pod\.(?:title|publishDate|podcastHost|durationMinutes)/.test(podcastPageSrc);
   const podcastBannerRequired =
     /titles, dates, hosts, and durations are not source-verified yet/.test(podcastPageSrc) &&
-    /Source verification pending/.test(podcastPageSrc);
+    /Source verification in progress/.test(podcastPageSrc);
 
   if (podcastClaimFieldsRender && !podcastBannerRequired) {
     push('/podcast must visibly label titles, dates, hosts, and durations as not source-verified.');
