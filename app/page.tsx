@@ -36,6 +36,12 @@ export default function HomePage() {
                 Read the newsletter
               </LinkButton>
             </div>
+            <Link
+              href="/about"
+              className="inline-flex min-h-[44px] items-center text-sm font-medium text-ink-muted underline decoration-line underline-offset-4 hover:text-ink hover:decoration-accent"
+            >
+              More about Brian →
+            </Link>
           </div>
 
           <div className="animate-fade-in">
@@ -227,16 +233,18 @@ export default function HomePage() {
         <GlassCard as="article" className="p-8 md:p-10">
           <p className="eyebrow text-accent">Playbook</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-            Operating tools, coming soon.
+            Operating tools you can run this week.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-            I am turning the operating doctrine into practical tools with clear owners, cadence,
-            proof, and success measures. They will publish when the source material and examples
-            are ready.
+            The operating doctrine turned into practical tools with clear owners, cadence, proof,
+            and success measures. More publish as source material clears review.
           </p>
-          <p className="mt-6 text-sm text-ink-faint">
-            Until then, the unpublished playbook source stays internal and unlinked.
-          </p>
+          <Link
+            href="/playbook"
+            className="mt-6 inline-flex min-h-[44px] items-center text-sm font-medium text-accent hover:text-accent-hover"
+          >
+            Open the playbook →
+          </Link>
         </GlassCard>
       </section>
 

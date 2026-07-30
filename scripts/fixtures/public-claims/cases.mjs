@@ -115,8 +115,8 @@ export default function RootLayout({ children }) {
 
 function podcastPageFile({ withProvisional = true, withDuration = true } = {}) {
   const banner = withProvisional
-    ? `<p>Provisional archive: titles, dates, hosts, and durations are not source-verified yet.</p>
-      <span>Source verification pending</span>`
+    ? `<p>Working archive: titles, dates, hosts, and durations are not source-verified yet.</p>
+      <span>Source verification in progress</span>`
     : `<p>Podcast archive</p>`;
   const duration = withDuration ? `<span>{pod.durationMinutes} min</span>` : '';
   return `export default function PodcastPage() {

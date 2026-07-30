@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { TrackedAnchor } from '@/components/TrackedConversion';
 import { credentials, pressMentions } from '@/content/press';
@@ -114,6 +115,44 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-page pb-24">
+        <p className="eyebrow">Keep reading</p>
+        <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-base">
+          <li>
+            <Link
+              href="/writing"
+              className="flex min-h-[44px] items-center font-medium text-accent hover:text-accent-hover"
+            >
+              Read the essays →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/playbook"
+              className="flex min-h-[44px] items-center font-medium text-accent hover:text-accent-hover"
+            >
+              Open the playbook →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/podcast"
+              className="flex min-h-[44px] items-center font-medium text-accent hover:text-accent-hover"
+            >
+              Listen to the podcast →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/newsletter"
+              className="flex min-h-[44px] items-center font-medium text-accent hover:text-accent-hover"
+            >
+              Subscribe to the newsletter →
+            </Link>
+          </li>
+        </ul>
       </section>
     </>
   );

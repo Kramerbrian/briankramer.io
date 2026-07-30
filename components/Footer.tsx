@@ -27,38 +27,46 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <p className="eyebrow">Elsewhere</p>
-            <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-muted">
-              {socialLinks.map((s) => (
-                <li key={s.href}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+          <div className="flex flex-col gap-8 sm:flex-row md:gap-12">
+            <div className="flex flex-col gap-4">
+              <p className="eyebrow">On this site</p>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-muted">
+                <li>
+                  <Link
+                    href="/playlist"
                     className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
                   >
-                    {s.label}
-                  </a>
+                    Playlist
+                  </Link>
                 </li>
-              ))}
-              <li>
-                <Link
-                  href="/playlist"
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
-                >
-                  Playlist
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <p className="eyebrow">Elsewhere</p>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-muted">
+                {socialLinks.map((s) => (
+                  <li key={s.href}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 

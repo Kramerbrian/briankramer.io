@@ -63,6 +63,20 @@ export default function NewsletterPage() {
         Concise summaries of verified LinkedIn Automotive Update editions. Full text lives on
         LinkedIn — this page does not republish articles.
       </p>
+      {editions[0] && (
+        <p className="mt-3 text-sm text-ink-faint">
+          Latest edition summarized here:{' '}
+          <time dateTime={editions[0].publishDate}>
+            {new Date(editions[0].publishDate).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          . Newer editions may already be live on LinkedIn before this page catches up — subscribe
+          there for the current one.
+        </p>
+      )}
 
       <div className="mt-10">
         <TrackedAnchor
