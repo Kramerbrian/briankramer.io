@@ -6,12 +6,12 @@
  * ------
  * Dependency-free Node script that fails CI when public surfaces contain risky
  * claim patterns without evidence-registry coverage, publishing-record linkage,
- * or visible pending/qualified labels.
+ * or approved internal records.
  *
  * Authority chain:
  *   1. content/publishing/public-claim-evidence.ts — claim registry (record())
  *   2. content/publishing/records.ts — approvedClaimIds linkage
- *   3. Visible UI labels — pending / provisional / in progress / citation pending
+ *   3. Visible UI labels — allowed only for non-internal status language such as in progress
  *
  * Scan roots (public route + content surfaces):
  *   app/, components/, content/ (except content/doctrine/), lib/
@@ -22,6 +22,7 @@
  *
  * Detection lanes:
  *   A. Registry integrity — required claim IDs + publishing-record linkage
+ *   A2. Public status-language ban — internal editorial terms never render publicly
  *   B. Structural guards — Person schema awards, book release dates, press labels
  *   C. Podcast provisional gate — duration/title/date/host fields when unverified
  *   D. Held/retired snippet ban — known bad claims must not reappear publicly
@@ -46,6 +47,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const PUBLIC_ROOTS = ['app', 'components', 'content', 'lib'];
+const PUBLIC_STATUS_LANGUAGE_ROOTS = ['app', 'components', 'public'];
 const PUBLIC_EXTENSIONS = ['.ts', '.tsx', '.js', '.mjs', '.md', '.mdx'];
 const EVIDENCE_PATH = 'content/publishing/public-claim-evidence.ts';
 const DOCTRINE_PREFIX = 'content/doctrine/';
@@ -103,6 +105,15 @@ const RISKY_PATTERNS = [
 
 const LABEL_RE =
   /pending|source-verified|source verification|citation pending|in progress|qualified|provisional|withheld/i;
+
+const PUBLIC_STATUS_LANGUAGE_PATTERNS = [
+  { name: 'pending', re: /\bpending\b/i },
+  { name: 'provisional', re: /\bprovisional\b/i },
+  { name: 'placeholder', re: /\bplaceholder\b/i },
+  { name: 'not asserted', re: /not asserted/i },
+  { name: 'source validation', re: /source validation/i },
+  { name: 'ledger confirmation', re: /ledger confirmation/i },
+];
 
 const NAMED_PUBLICATIONS = [
   'The Wall Street Journal',
@@ -268,6 +279,34 @@ function scanHighRiskText(push, surface, text) {
   }
 }
 
+function extractStringLiterals(src) {
+  const literals = [];
+  const re = /(['"`])((?:\\[\s\S]|(?!\1)[\s\S])*?)\1/g;
+  for (const match of src.matchAll(re)) {
+    literals.push({ value: match[2], index: match.index ?? 0 });
+  }
+  return literals;
+}
+
+function scanPublicStatusLanguage(push, surface, text) {
+  if (!text.trim()) return;
+  if (/placeholder:/.test(text)) return;
+  for (const pattern of PUBLIC_STATUS_LANGUAGE_PATTERNS) {
+    if (pattern.re.test(text)) {
+      push(`Public internal/editorial status language (${pattern.name}) appears in ${surface}`);
+    }
+  }
+}
+
+function shouldSkipPublicStatusLine(trimmed) {
+  if (!trimmed) return true;
+  if (/^\/\//.test(trimmed) || /^\/\*/.test(trimmed) || /^\*/.test(trimmed)) return true;
+  if (/placeholder[:=]/.test(trimmed)) return true;
+  if (/pendingLabel/.test(trimmed)) return true;
+  if (/PUBLIC_STATUS_LANGUAGE|publicStatusLanguage/.test(trimmed)) return true;
+  return false;
+}
+
 /**
  * Run the public-claim governance gate against a repository root.
  * @param {string} [rootDir=process.cwd()]
@@ -310,6 +349,9 @@ export function runPublicClaimGovernance(rootDir = process.cwd()) {
   const layoutSrc = read('app/layout.tsx');
 
   const publicFiles = PUBLIC_ROOTS.flatMap((rel) => walkFiles(rel, PUBLIC_EXTENSIONS));
+  const publicStatusFiles = PUBLIC_STATUS_LANGUAGE_ROOTS.flatMap((rel) =>
+    walkFiles(rel, [...PUBLIC_EXTENSIONS, '.txt']),
+  );
   const scanFiles = publicFiles.filter(isPublicScanFile);
 
   for (const claimId of REQUIRED_CLAIM_IDS) {
@@ -327,6 +369,52 @@ export function runPublicClaimGovernance(rootDir = process.cwd()) {
   for (const claimId of approvedClaimIds) {
     if (!evidenceClaimIds.has(claimId)) {
       push(`Publishing record references missing public-claim evidence record: ${claimId}`);
+    }
+  }
+
+  // —— Lane A2: public status-language ban ——
+  for (const rel of publicStatusFiles) {
+    if (rel.startsWith('public/')) {
+      const text = read(rel);
+      text.split('\n').forEach((line, index) => {
+        scanPublicStatusLanguage(push, `${rel}:${index + 1}`, line);
+      });
+      continue;
+    }
+
+    const text = read(rel);
+    text.split('\n').forEach((line, index) => {
+      const trimmed = line.trim();
+      if (shouldSkipPublicStatusLine(trimmed)) return;
+      scanPublicStatusLanguage(push, `${rel}:${index + 1}`, trimmed);
+    });
+    for (const literal of extractStringLiterals(text)) {
+      scanPublicStatusLanguage(
+        push,
+        `${rel}:${lineNumber(text, literal.index)}`,
+        literal.value,
+      );
+    }
+  }
+
+  const pressPublicSrc = pressSrc.split('/** Source-validation queue status.')[0] ?? pressSrc;
+  for (const literal of extractStringLiterals(pressPublicSrc)) {
+    scanPublicStatusLanguage(
+      push,
+      `content/press.ts:${lineNumber(pressPublicSrc, literal.index)}`,
+      literal.value,
+    );
+  }
+  for (const fieldName of ['title', 'dek', 'body', 'summary', 'approvedSummary', 'seoTitle', 'canonicalTitle']) {
+    for (const field of extractSingleQuotedFields(recordsSrc, fieldName)) {
+      scanPublicStatusLanguage(
+        push,
+        `content/publishing/records.ts ${fieldName}`,
+        field.value,
+      );
+    }
+    for (const field of extractSingleQuotedFields(podcastSeedSrc, fieldName)) {
+      scanPublicStatusLanguage(push, `content/podcasts/seed.ts ${fieldName}`, field.value);
     }
   }
 

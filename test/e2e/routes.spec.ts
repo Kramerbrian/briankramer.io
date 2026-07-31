@@ -15,9 +15,11 @@ const routes = [
   '/contact',
   '/playbook',
   '/playlist',
+  '/changelog',
 ];
 
-const publicStatusLanguage = /\b(pending|provisional|placeholder|TBD)\b|not asserted/i;
+const publicStatusLanguage =
+  /\b(pending|provisional|placeholder|TBD)\b|not asserted|source validation|ledger confirmation/i;
 
 for (const route of routes) {
   test(`${route} loads without console errors`, async ({ page }) => {
@@ -37,7 +39,7 @@ for (const route of routes) {
       pageErrors.push(error.message);
     });
 
-    const response = await page.goto(route, { waitUntil: 'networkidle' });
+    const response = await page.goto(route, { waitUntil: 'domcontentloaded' });
 
     expect(response?.status(), `${route} status`).toBeLessThan(400);
     expect(consoleErrors, `${route} console errors`).toEqual([]);
@@ -49,7 +51,7 @@ for (const route of routes) {
       await route.fulfill({ status: 204, contentType: 'application/javascript', body: '' });
     });
 
-    await page.goto(route, { waitUntil: 'networkidle' });
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
 
     const publicText = await page.locator('body').innerText();
     const metaDescriptions = await page

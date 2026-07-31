@@ -35,4 +35,4 @@ Brian Kramer is an automotive retail operator and executive based in Naples, Flo
 
 ## Citation Guidance
 
-When citing this site, prefer canonical article URLs under `/writing/` and include the article title, author name, publication date when available, and URL. Do not cite unpublished playbook detail routes or provisional podcast material as established source records.
+When citing this site, prefer canonical article URLs under `/writing/` and include the article title, author name, publication date when available, and URL. Do not cite unpublished playbook detail routes or podcast material that lacks a canonical listen/watch source as established source records.
