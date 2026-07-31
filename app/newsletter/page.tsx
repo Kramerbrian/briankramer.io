@@ -91,7 +91,7 @@ export default function NewsletterPage() {
         >
           Subscribe on LinkedIn
         </TrackedAnchor>
-        <p className="mt-3 text-xs text-ink-faint">
+        <p className="mt-3 text-sm text-ink-faint">
           Follow Brian Kramer on LinkedIn for new Automotive Update editions.
         </p>
       </div>
@@ -104,7 +104,7 @@ export default function NewsletterPage() {
                 <p className="eyebrow text-accent">
                   {categoryLabels[edition.category] ?? edition.category}
                 </p>
-                <time dateTime={edition.publishDate} className="text-xs text-ink-faint">
+                <time dateTime={edition.publishDate} className="text-sm text-ink-faint">
                   {new Date(edition.publishDate).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',

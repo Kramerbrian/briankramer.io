@@ -72,7 +72,7 @@ export function Footer() {
         </div>
 
         <div className="hairline mt-12" />
-        <div className="mt-6 flex flex-col gap-2 text-xs text-ink-faint md:flex-row md:items-center md:justify-between">
+        <div className="mt-6 flex flex-col gap-2 text-sm text-ink-faint md:flex-row md:items-center md:justify-between">
           <p>© {year} Brian Kramer. All rights reserved.</p>
           <p className="flex flex-wrap items-center gap-x-2">
             <span>Naples, FL · Built with Next.js on Vercel ·</span>
