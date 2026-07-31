@@ -27,6 +27,13 @@ const config: Config = {
           hover: '#0A616A',
           soft: '#D6EBED',
         },
+        coral: {
+          DEFAULT: '#A83E21',
+          hover: '#8F351C',
+        },
+        sage: {
+          DEFAULT: '#5B7B6B',
+        },
         hero: {
           sky: '#BFE0E6',
           sand: '#E9E1D3',
@@ -58,6 +65,13 @@ const config: Config = {
           'Helvetica',
           'Arial',
           'sans-serif',
+        ],
+        serif: [
+          '"Iowan Old Style"',
+          '"Palatino Linotype"',
+          '"URW Palladio L"',
+          'P052',
+          'serif',
         ],
       },
       fontSize: {

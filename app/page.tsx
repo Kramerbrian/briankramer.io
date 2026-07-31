@@ -23,6 +23,7 @@ export default function HomePage() {
             <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
             <h1 className="text-display-lg font-semibold text-ink">
               Dealer growth, earned through trust.
+              <span className="subline mt-2 text-3xl md:text-4xl">Clarity compounds.</span>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
               Automotive retail operator and executive, now leading dealer growth at Cars Commerce.
