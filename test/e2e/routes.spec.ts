@@ -14,6 +14,7 @@ const routes = [
   '/podcast',
   '/contact',
   '/playbook',
+  '/speaking',
   '/playlist',
   '/changelog',
 ];

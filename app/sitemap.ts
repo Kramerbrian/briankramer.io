@@ -11,6 +11,7 @@ const CORE_PUBLIC_ROUTES = [
   '/podcast',
   '/playlist',
   '/playbook',
+  '/speaking',
   '/newsletter',
   '/changelog',
 ] as const;
