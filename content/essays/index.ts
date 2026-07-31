@@ -32,8 +32,12 @@ export interface EssayEntry {
 const WORDS_PER_MINUTE = 200;
 const MIN_READING_MINUTES = 2;
 
+export function getWordCount(body: string): number {
+  return body.trim().split(/\s+/).filter(Boolean).length;
+}
+
 export function getReadingMinutes(body: string): number {
-  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  const words = getWordCount(body);
   return Math.max(MIN_READING_MINUTES, Math.ceil(words / WORDS_PER_MINUTE));
 }
 

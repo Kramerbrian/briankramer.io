@@ -3,6 +3,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { TrackedAnchor } from '@/components/TrackedConversion';
 import { credentials, pressMentions } from '@/content/press';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbListJsonLd } from '@/lib/seo';
 import { siteConfig } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -13,8 +15,14 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const breadcrumbSchema = breadcrumbListJsonLd([
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' },
+  ]);
+
   return (
     <>
+      <JsonLd id="schema-breadcrumb-about" data={breadcrumbSchema} />
       <section className="container-page pt-16 pb-16 md:pt-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
