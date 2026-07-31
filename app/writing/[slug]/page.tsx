@@ -196,7 +196,7 @@ export default async function EssayPage({ params }: Props) {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent underline underline-offset-2 hover:text-accent-hover"
+                  className="inline-flex min-h-[44px] items-center text-accent underline underline-offset-2 hover:text-accent-hover"
                 >
                   {source.label}
                 </a>

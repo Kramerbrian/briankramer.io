@@ -108,7 +108,7 @@ export default function PodcastPage() {
               <p className="eyebrow text-accent">{ep.show}</p>
               <h2 className="mt-2 text-lg font-semibold leading-snug text-ink">{ep.title}</h2>
               <div className="mt-3 flex items-center justify-between gap-3">
-                <time dateTime={ep.publishDate} className="text-xs text-ink-faint">
+                <time dateTime={ep.publishDate} className="text-sm text-ink-faint">
                   {new Date(ep.publishDate).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -178,7 +178,7 @@ export default function PodcastPage() {
 
       <p className="mt-14 text-sm text-ink-muted">
         Prefer music over conversation?{' '}
-        <Link href="/playlist" className="font-medium text-accent hover:text-accent-hover">
+        <Link href="/playlist" className="inline-flex min-h-[44px] items-center font-medium text-accent hover:text-accent-hover">
           Open the working playlist →
         </Link>
       </p>

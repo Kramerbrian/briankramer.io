@@ -163,7 +163,7 @@ export default function ChangelogPage() {
         {entries.map((entry) => (
           <li key={`${entry.publishDate}-${entry.title}`}>
             <GlassCard as="article" className="p-8 md:p-10">
-              <time dateTime={entry.publishDate} className="text-xs text-ink-faint">
+              <time dateTime={entry.publishDate} className="text-sm text-ink-faint">
                 {new Date(`${entry.publishDate}T00:00:00Z`).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',

@@ -144,7 +144,7 @@ export default function HomePage() {
                   type="email"
                   required
                   placeholder="you@dealership.com (required)"
-                  className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                  className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600"
                 />
               </FormField>
               <button
@@ -158,7 +158,7 @@ export default function HomePage() {
                 <span className="hidden group-data-[result=success]/form:inline">Joined ✓</span>
               </button>
             </TrackedForm>
-            <p className="mt-3 text-xs text-ink-faint">
+            <p className="mt-3 text-sm text-ink-faint">
               One email when it ships. No newsletter, no spam.
             </p>
           </div>
@@ -167,7 +167,7 @@ export default function HomePage() {
             <div className="relative mx-auto aspect-[3/4] w-full max-w-sm">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-ink to-accent-hover shadow-glass-lift">
                 <div className="flex h-full flex-col justify-between p-8 text-white">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/60">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
                     Brian Kramer
                   </p>
                   <div>
@@ -180,7 +180,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-end justify-between">
                     <div className="h-px w-16 bg-white/40" />
-                    <p className="text-[11px] uppercase tracking-widest text-white/60">In progress</p>
+                    <p className="text-sm uppercase tracking-widest text-white/60">In progress</p>
                   </div>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/writing"
-            className="hidden text-sm font-medium text-accent hover:text-accent-hover md:inline"
+            className="hidden min-h-[44px] items-center text-sm font-medium text-accent hover:text-accent-hover md:inline-flex"
           >
             All essays →
           </Link>
@@ -256,7 +256,7 @@ export default function HomePage() {
             {pressMentions.map((p) => (
               <li key={p.publication} className="rounded-xl border border-line bg-surface/70 p-4">
                 <p className="font-medium text-ink">{p.publication}</p>
-                {p.note && <p className="mt-1 text-xs text-ink-faint">{p.note}</p>}
+                {p.note && <p className="mt-1 text-sm text-ink-faint">{p.note}</p>}
               </li>
             ))}
           </ul>
@@ -289,7 +289,7 @@ function FeaturedEssay({
         {title}
       </h3>
       <p className="mt-3 text-base leading-relaxed text-ink-muted">{dek}</p>
-      <div className="mt-6 flex items-center justify-between text-xs text-ink-faint">
+      <div className="mt-6 flex items-center justify-between text-sm text-ink-faint">
         <span>{minutes} min read</span>
         <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
       </div>
