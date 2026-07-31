@@ -3,9 +3,11 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { EssayBody } from '@/components/EssayBody';
 import { JsonLd } from '@/components/JsonLd';
-import { getEssay, getEssaySlugs, getReadingMinutes } from '@/content/essays';
+import { getEssay, getEssaySlugs, getReadingMinutes, getWordCount } from '@/content/essays';
 import {
   articleJsonLd,
+  absoluteUrl,
+  breadcrumbListJsonLd,
   getEssayPublishingRecord,
   metadataFromRecord,
 } from '@/lib/seo';
@@ -38,15 +40,58 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const essay = getEssay(slug);
   if (!essay) return {};
 
+  const canonicalPath = `/writing/${essay.slug}`;
+  const ogImage = `${canonicalPath}/opengraph-image`;
   const record = getEssayPublishingRecord(essay.slug);
   if (record) {
-    return metadataFromRecord(record);
+    return metadataFromRecord(record, {
+      openGraph: {
+        type: 'article',
+        url: canonicalPath,
+        title: record.seoTitle,
+        description: record.approvedSummary,
+        siteName: 'Brian Kramer',
+        publishedTime: record.datePublished,
+        modifiedTime: record.dateModified,
+        authors: ['Brian Kramer'],
+        images: [
+          {
+            url: ogImage,
+            width: 1200,
+            height: 630,
+            alt: record.canonicalTitle,
+          },
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: record.seoTitle,
+        description: record.approvedSummary,
+        images: [ogImage],
+      },
+    });
   }
 
   return {
     title: essay.title,
     description: essay.dek,
-    alternates: { canonical: `/writing/${essay.slug}` },
+    alternates: { canonical: canonicalPath },
+    openGraph: {
+      type: 'article',
+      url: canonicalPath,
+      title: essay.title,
+      description: essay.dek,
+      publishedTime: essay.publishDate,
+      modifiedTime: essay.publishDate,
+      authors: ['Brian Kramer'],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: essay.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: essay.title,
+      description: essay.dek,
+      images: [ogImage],
+    },
   };
 }
 
@@ -60,6 +105,9 @@ export default async function EssayPage({ params }: Props) {
   const dateModified = record?.dateModified ?? essay.publishDate;
   const description = record?.approvedSummary ?? essay.dek;
   const headline = record?.canonicalTitle ?? essay.title;
+  const canonicalUrl = record?.canonicalUrl ?? absoluteUrl(`/writing/${essay.slug}`);
+  const image = absoluteUrl(`/writing/${essay.slug}/opengraph-image`);
+  const wordCount = getWordCount(essay.body);
 
   const formattedDate = new Date(datePublished).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -68,34 +116,50 @@ export default async function EssayPage({ params }: Props) {
   });
 
   const schema = record
-    ? articleJsonLd({ record, topicPillar: essay.topicPillar })
+    ? articleJsonLd({
+        record,
+        topicPillar: essay.topicPillar,
+        image,
+        wordCount,
+      })
     : {
         '@context': 'https://schema.org',
-        '@type': 'Article',
+        '@type': 'BlogPosting',
+        '@id': `${canonicalUrl}#article`,
         headline,
         description,
         datePublished,
         dateModified,
+        image,
+        wordCount,
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `https://www.briankramer.io/writing/${essay.slug}`,
+          '@id': canonicalUrl,
         },
         author: {
           '@type': 'Person',
+          '@id': 'https://www.briankramer.io/#person',
           name: 'Brian Kramer',
           url: 'https://www.briankramer.io/about',
         },
         publisher: {
           '@type': 'Person',
+          '@id': 'https://www.briankramer.io/#person',
           name: 'Brian Kramer',
           url: 'https://www.briankramer.io',
         },
         keywords: ['Brian Kramer', 'automotive retail', essay.topicPillar],
       };
+  const breadcrumbSchema = breadcrumbListJsonLd([
+    { name: 'Home', url: '/' },
+    { name: 'Writing', url: '/writing' },
+    { name: headline, url: `/writing/${essay.slug}` },
+  ]);
 
   return (
     <article className="container-prose pt-16 pb-24 md:pt-24">
       <JsonLd id={`schema-essay-${essay.slug}`} data={schema} />
+      <JsonLd id={`schema-breadcrumb-${essay.slug}`} data={breadcrumbSchema} />
       <Link
         href="/writing"
         className="inline-flex min-h-[44px] items-center py-3 text-sm font-medium text-accent hover:text-accent-hover"

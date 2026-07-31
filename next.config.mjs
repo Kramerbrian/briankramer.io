@@ -67,6 +67,7 @@ const permissionsPolicy = [
   'xr-spatial-tracking=()',
   'autoplay=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',
   'clipboard-write=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',
+  'compute-pressure=("https://open.spotify.com")',
   'encrypted-media=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',
   'fullscreen=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',
   'picture-in-picture=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',

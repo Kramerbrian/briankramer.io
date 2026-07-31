@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { JsonLd } from '@/components/JsonLd';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
+import { PERSON_SCHEMA_ID } from '@/lib/seo';
 import { siteConfig } from '@/lib/utils';
 import './globals.css';
 
@@ -49,6 +50,7 @@ export const viewport: Viewport = {
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': PERSON_SCHEMA_ID,
   name: siteConfig.author.name,
   url: siteConfig.url,
   jobTitle: 'EVP, Dealer Growth & Success',
