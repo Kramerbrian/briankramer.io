@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
+import { storeContactSubmission } from '@/lib/contact';
 import { escapeHtml, htmlWithLineBreaks } from '@/lib/html';
 
 export const runtime = 'edge';
@@ -31,19 +32,23 @@ export async function POST(req: Request) {
       return contactRedirect(req, 'error');
     }
 
-    const sent = await sendEmail({
-      subject: `[Contact] ${topic} — ${name}`,
-      html: `
-        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Topic:</strong> ${escapeHtml(topic || 'Other')}</p>
-        <p><strong>Message:</strong></p>
-        <p>${htmlWithLineBreaks(message)}</p>
-      `,
-      replyTo: email,
-    });
+    const [stored, sent] = await Promise.all([
+      storeContactSubmission({ name, email, topic, message }),
+      sendEmail({
+        subject: `[Contact] ${topic} — ${name}`,
+        html: `
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Topic:</strong> ${escapeHtml(topic || 'Other')}</p>
+          <p><strong>Message:</strong></p>
+          <p>${htmlWithLineBreaks(message)}</p>
+        `,
+        replyTo: email,
+      }),
+    ]);
 
-    return contactRedirect(req, sent ? '1' : 'error');
+    // Succeed if either durable storage or notification worked.
+    return contactRedirect(req, stored || sent ? '1' : 'error');
   } catch {
     return contactRedirect(req, 'error');
   }
