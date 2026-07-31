@@ -81,8 +81,8 @@ export default function HomePage() {
             <p className="eyebrow text-accent">Digital transformation</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Paperless, and beyond</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Helped lead an early end-to-end paperless automotive transaction; source validation
-              remains in progress. Now working on what comes after: AI-native retail.
+              Helped lead an early end-to-end paperless automotive transaction. Now working on what
+              comes after: AI-native retail, structured data, and clearer operating systems.
             </p>
           </GlassCard>
         </div>

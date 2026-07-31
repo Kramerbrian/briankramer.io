@@ -21,7 +21,7 @@ const entries: ChangelogEntry[] = [
     publishDate: '2026-07-28',
     title: 'Podcast archive wired up, dead-end pages linked forward, and stale-content signals',
     summary:
-      'A site-wide findability and content-freshness review found the podcast archive was still an empty placeholder despite eight recorded episodes, several pages ended in a dead end with nowhere to go next, and stale sections gave no signal about whether that staleness was expected.',
+      'A site-wide findability and content-freshness review found the podcast archive was still an empty shell despite eight recorded episodes, several pages ended in a dead end with nowhere to go next, and stale sections gave no signal about whether that staleness was expected.',
     items: [
       'The /podcast page rendered only a heading and one paragraph even though eight episodes already existed in the content source with full publishing records. Built out the episode list with pillar, date, host, duration, and platform for each entry, gated so a "Listen" link only appears once that episode\u2019s source has been formally verified \u2014 today that is none of them, so each shows a plain "publishes once verified" note instead, matching the governance rule already written for this exact case.',
       'The homepage\u2019s Playbook section still said "coming soon" with no link to /playbook, even though four playbooks have been live since the previous release. Rewrote the copy to match reality and added a direct link.',
@@ -50,7 +50,7 @@ const entries: ChangelogEntry[] = [
     items: [
       'Reading time on each essay is now computed from the actual body word count at render time instead of a hand-typed number \u2014 several essays had drifted from their true length by several minutes.',
       'Added a Sources section to the two essays that reference Google\u2019s Rich Results Test by name, linking to Google Search Central\u2019s structured-data documentation. The other four essays make no externally checkable claims, so no citation was added to them.',
-      'Published four playbooks \u2014 service-drive sourcing, Look-to-Book, digital trust audit, and AI search visibility quick-start \u2014 at their own /playbook routes. Each carries a publishing record with a pending evidence status, so the routes are live but held out of the sitemap until formally verified.',
+      'Published four playbooks \u2014 service-drive sourcing, Look-to-Book, digital trust audit, and AI search visibility quick-start \u2014 at their own /playbook routes. Each carries an internal evidence status, so the routes are live but held out of the sitemap until formally verified.',
       'Re-audited all four playbooks\u2019 step text against the no-universal-benchmark rule and rewrote a few lines that read like internal notes-to-self rather than customer-facing guidance.',
       'Extended the content-governance script to check playbook detail routes against their own publishing records instead of a single hardcoded flag, so future playbook slugs follow the same record-gated pattern as essays.',
     ],
@@ -62,7 +62,7 @@ const entries: ChangelogEntry[] = [
       'A re-audit after the previous remediation pass found three items that still needed work: a redirect-handling edge case in the contact and waitlist forms, a layout shift caused by an unused loading state, and leftover excess spacing on the playlist page.',
     items: [
       'Contact and waitlist forms: switched fetch to follow redirects directly and read the final response URL, instead of manually reading a redirect header that browsers do not expose for cross-origin-style redirect responses. Also isolated the browser history update so it cannot downgrade an already-successful submission to an error state.',
-      'Removed an unused root-level loading state and a redundant server-rendered confirmation banner on the homepage and contact page. Both were forcing those routes into dynamic rendering and triggering a streaming placeholder swap that shifted the footer position after the page settled \u2014 removing them lets both routes render as static output with no shift.',
+      'Removed an unused root-level loading state and a redundant server-rendered confirmation banner on the homepage and contact page. Both were forcing those routes into dynamic rendering and triggering a streaming shell swap that shifted the footer position after the page settled \u2014 removing them lets both routes render as static output with no shift.',
       'Softened the footer\u2019s top margin on small screens so shorter pages, including the playlist page, do not end with an oversized gap before the footer.',
     ],
   },
@@ -123,7 +123,7 @@ const entries: ChangelogEntry[] = [
     items: [
       'Footer social links, Playlist, and Contact links expanded from a ~19px hit box to a full 44px target.',
       'Header logo expanded from a ~28px tap target to 44px, matching the nav menu button’s existing sizing.',
-      'Fixed a content-governance false positive where a test fixture URL (a placeholder LinkedIn link used only in tests) was mistaken for a real placeholder link left in public content.',
+      'Fixed a content-governance false positive where a test fixture URL used only in tests was mistaken for a real unfinished link left in public content.',
       'Fixed a second false positive where the public-claims checker read an internal code comment (JSDoc) as public-facing copy and flagged an absolute-sounding word in that comment as a risky claim.',
       'Verified the governance-script fixes don’t weaken real detection — all existing test fixtures for both checks still pass exactly as before.',
     ],
