@@ -6,6 +6,7 @@ const socialLinks = [
   { href: siteConfig.socials.youtube, label: 'YouTube' },
   { href: siteConfig.socials.instagram, label: 'Instagram' },
   { href: siteConfig.socials.tiktok, label: 'TikTok' },
+  { href: siteConfig.socials.facebook, label: 'Facebook' },
   { href: siteConfig.socials.linktree, label: 'Linktree' },
 ];
 
