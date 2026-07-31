@@ -23,7 +23,6 @@ export default function HomePage() {
             <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
             <h1 className="text-display-lg font-semibold text-ink">
               Dealer growth, earned through trust.
-              <span className="subline mt-2 text-3xl md:text-4xl">Clarity compounds.</span>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
               Automotive retail operator and executive, now leading dealer growth at Cars Commerce.
@@ -51,6 +50,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="container-page pb-16">
+        <div className="hairline" />
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-10">
+          <div>
+            <p className="eyebrow">Clarity</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+              Say the true thing plainly, in the fewest words that carry it.
+            </p>
+          </div>
+          <div>
+            <p className="eyebrow">Trust</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+              Earned in small moments, spent by a single broken promise.
+            </p>
+          </div>
+          <div>
+            <p className="eyebrow">Truth</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+              What the numbers say when the story wants to say something else.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="container-page pb-24">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
@@ -70,8 +93,8 @@ export default function HomePage() {
             </p>
           </GlassCard>
           <GlassCard as="article" className="p-8">
-            <p className="eyebrow text-accent">Trust</p>
-            <h3 className="mt-3 text-xl font-semibold text-ink">Trust as an operating system</h3>
+            <p className="eyebrow text-accent">Reputation economics</p>
+            <h3 className="mt-3 text-xl font-semibold text-ink">Reviews are paid media</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
               Bad reviews aren&apos;t just a marketing problem; they can become a paid-media drag.
               Trust compounds; the lack of it compounds faster.
