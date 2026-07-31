@@ -117,10 +117,9 @@ export const sourceValidationQueue: SourceValidationQueueItem[] = [
       'app/page.tsx (Featured in)',
       'app/about/page.tsx (credentials)',
       'content/press.ts',
-      'content/podcasts/seed.ts (provisional archive entry only)',
     ],
     removalTrigger:
-      'Primary source verified: https://www.autonews.com/awards/2012-40u40-brian-kramer/. Person schema award remains out of scope for this patch.',
+      'Primary source verified: https://www.autonews.com/awards/2012-40u40-brian-kramer/. Person schema award remains out of scope for this patch. Provisional podcast archive entry (content/podcasts/seed.ts) retired when /podcast was rebuilt around the verified Spotify/YouTube embeds.',
   },
   {
     queueId: 'svq-fandi-mention',
