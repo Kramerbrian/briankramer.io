@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <section className="container-page pt-16 pb-24 md:pt-24 md:pb-32">
+      <section className="container-page pt-16 pb-12 md:pt-24 md:pb-16">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="animate-fade-up space-y-7">
             <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
