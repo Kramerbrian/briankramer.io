@@ -14,13 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-interface HomePageProps {
-  searchParams?: Promise<{ waitlist?: string }>;
-}
-
-export default async function HomePage({ searchParams }: HomePageProps) {
-  const waitlistStatus = (await searchParams)?.waitlist;
-
+export default function HomePage() {
   return (
     <>
       <section className="container-page pt-16 pb-24 md:pt-24 md:pb-32">
@@ -29,6 +23,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
             <h1 className="text-display-lg font-semibold text-ink">
               Dealer growth, earned through trust.
+              <span className="subline mt-2 text-3xl md:text-4xl">Clarity compounds.</span>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
               Automotive retail operator and executive, now leading dealer growth at Cars Commerce.
@@ -42,6 +37,12 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 Read the newsletter
               </LinkButton>
             </div>
+            <Link
+              href="/about"
+              className="inline-flex min-h-[44px] items-center text-sm font-medium text-ink-muted underline decoration-line underline-offset-4 hover:text-ink hover:decoration-accent"
+            >
+              More about Brian →
+            </Link>
           </div>
 
           <div className="animate-fade-in">
@@ -96,8 +97,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             </p>
           </GlassCard>
           <GlassCard as="article" className="p-8">
-            <p className="eyebrow text-accent">Trust</p>
-            <h3 className="mt-3 text-xl font-semibold text-ink">Trust as an operating system</h3>
+            <p className="eyebrow text-accent">Reputation economics</p>
+            <h3 className="mt-3 text-xl font-semibold text-ink">Reviews are paid media</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
               Bad reviews aren&apos;t just a marketing problem; they can become a paid-media drag.
               Trust compounds; the lack of it compounds faster.
@@ -107,8 +108,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <p className="eyebrow text-accent">Digital transformation</p>
             <h3 className="mt-3 text-xl font-semibold text-ink">Paperless, and beyond</h3>
             <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              Helped lead an early end-to-end paperless automotive transaction; source validation
-              remains in progress. Now working on what comes after: AI-native retail.
+              Helped lead an early end-to-end paperless automotive transaction. Now working on what
+              comes after: AI-native retail, structured data, and clearer operating systems.
             </p>
           </GlassCard>
         </div>
@@ -126,24 +127,22 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               Built from GM reps, appraisal spreadsheets, and the trust math that actually moves a
               store.
             </p>
-            {waitlistStatus === '1' && (
-              <p className="mt-8 rounded-2xl border border-accent/30 bg-accent-soft px-5 py-4 text-sm text-ink">
-                You&apos;re on the list. One email when it ships.
-              </p>
-            )}
-            {waitlistStatus === 'error' && (
-              <p className="mt-8 rounded-2xl border border-line bg-surface-muted px-5 py-4 text-sm text-ink-muted">
-                Something went wrong — try again or email{' '}
-                <TrackedAnchor
-                  href="mailto:bkramer@cars.com"
-                  conversion={{ name: 'contact_mailto_click', props: { source: 'homepage' } }}
-                  className="text-accent underline"
-                >
-                  bkramer@cars.com
-                </TrackedAnchor>
-                .
-              </p>
-            )}
+            {/*
+             * No server-rendered success/error banner here: TrackedForm below
+             * already renders successMessage/errorMessage client-side after a
+             * followed redirect (see components/TrackedConversion.tsx), using
+             * history.replaceState instead of a full navigation. A prior
+             * version of this page also read `searchParams` here to render an
+             * equivalent banner server-side — that forced this entire route
+             * into Next's dynamic/streamed rendering path (visible in the
+             * build output as `ƒ /`), which surfaced as a confirmed ~0.31-0.39
+             * CLS regression: Next's automatic Suspense fallback for the
+             * dynamic-API boundary is a small loading skeleton, and swapping
+             * it for the full ~4,900px homepage in one synchronous DOM
+             * mutation pushes the footer down by hundreds of pixels after
+             * first paint. Removing the `searchParams` read lets this page
+             * render synchronously with no streaming shell.
+             */}
             <TrackedForm
               successConversion={{
                 name: 'waitlist_submit',
@@ -172,7 +171,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   type="email"
                   required
                   placeholder="you@dealership.com (required)"
-                  className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600 sm:text-sm"
+                  className="w-full rounded-full border border-ink-faint bg-surface px-5 py-3 text-base text-ink placeholder:text-ink-faint focus:outline-none focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent-soft aria-[invalid=true]:border-red-600"
                 />
               </FormField>
               <button
@@ -186,7 +185,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 <span className="hidden group-data-[result=success]/form:inline">Joined ✓</span>
               </button>
             </TrackedForm>
-            <p className="mt-3 text-xs text-ink-faint">
+            <p className="mt-3 text-sm text-ink-faint">
               One email when it ships. No newsletter, no spam.
             </p>
           </div>
@@ -195,7 +194,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <div className="relative mx-auto aspect-[3/4] w-full max-w-sm">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-ink to-accent-hover shadow-glass-lift">
                 <div className="flex h-full flex-col justify-between p-8 text-white">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/60">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
                     Brian Kramer
                   </p>
                   <div>
@@ -208,7 +207,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   </div>
                   <div className="flex items-end justify-between">
                     <div className="h-px w-16 bg-white/40" />
-                    <p className="text-[11px] uppercase tracking-widest text-white/60">In progress</p>
+                    <p className="text-sm uppercase tracking-widest text-white/60">In progress</p>
                   </div>
                 </div>
               </div>
@@ -227,7 +226,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </div>
           <Link
             href="/writing"
-            className="hidden text-sm font-medium text-accent hover:text-accent-hover md:inline"
+            className="hidden min-h-[44px] items-center text-sm font-medium text-accent hover:text-accent-hover md:inline-flex"
           >
             All essays →
           </Link>
@@ -249,7 +248,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           />
         </div>
         <div className="mt-8 text-center md:hidden">
-          <Link href="/writing" className="text-sm font-medium text-accent">
+          <Link
+            href="/writing"
+            className="inline-flex min-h-[44px] items-center text-sm font-medium text-accent"
+          >
             All essays →
           </Link>
         </div>
@@ -259,16 +261,18 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <GlassCard as="article" className="p-8 md:p-10">
           <p className="eyebrow text-accent">Playbook</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-            Operating tools, coming soon.
+            Operating tools you can run this week.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-            I am turning the operating doctrine into practical tools with clear owners, cadence,
-            proof, and success measures. They will publish when the source material and examples
-            are ready.
+            The operating doctrine turned into practical tools with clear owners, cadence, proof,
+            and success measures. More publish as source material clears review.
           </p>
-          <p className="mt-6 text-sm text-ink-faint">
-            Until then, the unpublished playbook source stays internal and unlinked.
-          </p>
+          <Link
+            href="/playbook"
+            className="mt-6 inline-flex min-h-[44px] items-center text-sm font-medium text-accent hover:text-accent-hover"
+          >
+            Open the playbook →
+          </Link>
         </GlassCard>
       </section>
 
@@ -279,7 +283,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             {pressMentions.map((p) => (
               <li key={p.publication} className="rounded-xl border border-line bg-surface/70 p-4">
                 <p className="font-medium text-ink">{p.publication}</p>
-                {p.note && <p className="mt-1 text-xs text-ink-faint">{p.note}</p>}
+                {p.note && <p className="mt-1 text-sm text-ink-faint">{p.note}</p>}
               </li>
             ))}
           </ul>
@@ -312,7 +316,7 @@ function FeaturedEssay({
         {title}
       </h3>
       <p className="mt-3 text-base leading-relaxed text-ink-muted">{dek}</p>
-      <div className="mt-6 flex items-center justify-between text-xs text-ink-faint">
+      <div className="mt-6 flex items-center justify-between text-sm text-ink-faint">
         <span>{minutes} min read</span>
         <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
       </div>
