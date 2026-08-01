@@ -65,6 +65,7 @@ const permissionsPolicy = [
   'sync-xhr=()',
   'usb=()',
   'xr-spatial-tracking=()',
+  'compute-pressure=(self "https://open.spotify.com")',
   'autoplay=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',
   'clipboard-write=(self "https://open.spotify.com" "https://www.youtube-nocookie.com")',
   'compute-pressure=("https://open.spotify.com")',

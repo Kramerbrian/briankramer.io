@@ -58,18 +58,21 @@ function recordsFile(approvedIds = []) {
 }
 
 function pressFile({
-  wsjNote = 'Source validation pending',
+  wsjNote = 'WSJ profile citation',
+  wsjUrl = 'https://news.example/wsj',
   includeWsj = true,
 } = {}) {
   const wsj = includeWsj
-    ? `  { publication: 'The Wall Street Journal', note: '${wsjNote}' },\n`
+    ? `  { publication: 'The Wall Street Journal', note: '${wsjNote}'${
+        wsjUrl ? `, url: '${wsjUrl}'` : ''
+      } },\n`
     : '';
   return `export const pressMentions = [
-${wsj}  { publication: 'Automotive News', note: 'citation pending' },
-  { publication: 'F&I Magazine', note: 'Source validation pending' },
-  { publication: 'Digital Dealer Magazine', note: 'Source validation pending' },
-  { publication: 'Jalopnik', note: 'Source validation pending' },
-  { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Appearance citation pending' },
+${wsj}  { publication: 'Automotive News', note: 'Automotive News profile citation', url: 'https://news.example/automotive-news' },
+  { publication: 'F&I Magazine', note: 'F&I Magazine citation', url: 'https://news.example/fandi' },
+  { publication: 'Digital Dealer Magazine', note: 'Digital Dealer citation', url: 'https://news.example/digital-dealer' },
+  { publication: 'Jalopnik', note: 'Jalopnik citation', url: 'https://news.example/jalopnik' },
+  { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Viewpoint citation', url: 'https://news.example/viewpoint' },
 ];
 `;
 }
@@ -205,7 +208,7 @@ export const FIXTURE_CASES = [
     build: () =>
       passingScaffold({
         // Cross-entry pending text must NOT satisfy WSJ's own entry.
-        'content/press.ts': pressFile({ wsjNote: 'Featured mention' }),
+        'content/press.ts': pressFile({ wsjNote: 'Featured mention', wsjUrl: null }),
       }),
   },
   {
@@ -336,12 +339,12 @@ export default function AboutPage() {
     build: () => {
       const files = passingScaffold({
         'content/press.ts': `export const pressMentions = [
-  { publication: 'The Wall Street Journal', note: 'Source validation pending' },
+  { publication: 'The Wall Street Journal', note: 'WSJ profile citation', url: 'https://news.example/wsj' },
   { publication: 'Automotive News', note: '2012 Retail 40 Under 40 — primary award page' },
-  { publication: 'F&I Magazine', note: 'Source validation pending' },
-  { publication: 'Digital Dealer Magazine', note: 'Source validation pending' },
-  { publication: 'Jalopnik', note: 'Source validation pending' },
-  { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Appearance citation pending' },
+  { publication: 'F&I Magazine', note: 'F&I Magazine citation', url: 'https://news.example/fandi' },
+  { publication: 'Digital Dealer Magazine', note: 'Digital Dealer citation', url: 'https://news.example/digital-dealer' },
+  { publication: 'Jalopnik', note: 'Jalopnik citation', url: 'https://news.example/jalopnik' },
+  { publication: 'PBS "Viewpoint" with Dennis Quaid', note: 'Viewpoint citation', url: 'https://news.example/viewpoint' },
 ];
 `,
       });
@@ -353,11 +356,23 @@ export default function AboutPage() {
     },
   },
   {
-    id: 'pass-pending-publication-label',
+    id: 'fail-public-status-language',
+    expect: 'fail',
+    errorIncludes: ['Public internal/editorial status language (source validation)'],
+    build: () =>
+      passingScaffold({
+        'app/about/page.tsx': `export default function AboutPage() {
+  return <p>Biography source validation remains in progress.</p>;
+}
+`,
+      }),
+  },
+  {
+    id: 'pass-verified-publication-url',
     expect: 'pass',
     build: () =>
       passingScaffold({
-        'content/press.ts': pressFile({ wsjNote: 'Source validation pending' }),
+        'content/press.ts': pressFile(),
       }),
   },
   {
@@ -372,11 +387,11 @@ export default function AboutPage() {
       }),
   },
   {
-    id: 'pass-podcast-provisional',
+    id: 'pass-podcast-without-public-status-language',
     expect: 'pass',
     build: () =>
       passingScaffold({
-        'app/podcast/page.tsx': podcastPageFile({ withProvisional: true, withDuration: true }),
+        'app/podcast/page.tsx': podcastPageFile({ withProvisional: false, withDuration: false }),
       }),
   },
   {

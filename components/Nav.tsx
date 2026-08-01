@@ -9,6 +9,7 @@ const links = [
   { href: '/writing', label: 'Writing' },
   { href: '/newsletter', label: 'Newsletter' },
   { href: '/playbook', label: 'Playbook' },
+  { href: '/speaking', label: 'Speaking' },
   { href: '/podcast', label: 'Podcast' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },

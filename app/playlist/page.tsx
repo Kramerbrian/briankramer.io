@@ -73,7 +73,7 @@ export default function PlaylistPage() {
             src={playlistEmbedUrl}
             width="100%"
             height="560"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allow="autoplay; clipboard-write; compute-pressure; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
         </GlassCard>
