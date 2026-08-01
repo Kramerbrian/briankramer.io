@@ -28,13 +28,14 @@ yarn-error.log*
 # env files
 .env
 .env*.local
+.env*
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-.env*
+audit/
 
 # supabase local state (contains pooler URL / project refs)
 supabase/.temp/
