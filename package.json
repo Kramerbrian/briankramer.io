@@ -14,9 +14,11 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:writing-routes": "node scripts/check-writing-routes.mjs",
+    "check:registry-keys": "node scripts/check-registry-keys.mjs",
+    "check:deployed-sha": "node scripts/check-deployed-sha.mjs",
     "check:public-claims": "node scripts/check-public-claims.mjs",
     "test:public-claims": "node scripts/test-public-claims.mjs",
-    "check:content-governance": "node scripts/check-content-governance.mjs && npm run check:public-claims && npm run test:public-claims"
+    "check:content-governance": "node scripts/check-content-governance.mjs && npm run check:registry-keys && npm run check:public-claims && npm run test:public-claims"
   },
   "dependencies": {
     "@mdx-js/loader": "3.0.1",
