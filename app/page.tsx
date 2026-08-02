@@ -21,13 +21,13 @@ export default function HomePage() {
       <section className="container-page pt-16 pb-12 md:pt-24 md:pb-16">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="animate-fade-up space-y-7">
-            <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
+            <p className="eyebrow">Automotive Retail Operator · Naples, FL</p>
             <h1 className="text-display-lg font-semibold text-ink">
               Dealer growth,{' '}
               <em className="font-serif font-normal italic text-ink">earned through trust.</em>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-              Automotive retail operator and executive, now leading dealer growth at Cars Commerce.
+              Two decades as a dealership GM, now leading dealer growth at Cars Commerce.
               I write, teach, and build for operators who treat trust as an operating system.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
