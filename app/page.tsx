@@ -5,6 +5,7 @@ import { GlassCard } from '@/components/GlassCard';
 import { LinkButton } from '@/components/Button';
 import { FormField } from '@/components/FormField';
 import { TrackedAnchor, TrackedForm } from '@/components/TrackedConversion';
+import { PullQuoteBand } from '@/components/PullQuoteBand';
 import { pressMentions } from '@/content/press';
 import { siteConfig } from '@/lib/utils';
 
@@ -22,7 +23,8 @@ export default function HomePage() {
           <div className="animate-fade-up space-y-7">
             <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
             <h1 className="text-display-lg font-semibold text-ink">
-              Dealer growth, earned through trust.
+              Dealer growth,{' '}
+              <em className="font-serif font-normal italic text-ink">earned through trust.</em>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
               Automotive retail operator and executive, now leading dealer growth at Cars Commerce.
@@ -110,6 +112,8 @@ export default function HomePage() {
           </GlassCard>
         </div>
       </section>
+
+      <PullQuoteBand quote="Trust is produced when message, process, evidence and outcome agree." />
 
       <section className="bg-bg-alt py-24 md:py-32">
         <div className="container-page grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
