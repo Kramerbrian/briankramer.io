@@ -42,14 +42,19 @@ describe('Nav', () => {
   });
 
   it('marks the active mobile route', async () => {
-    pathname = '/newsletter';
+    // Newsletter intentionally removed from primary nav (see Nav.tsx comment):
+    // it's the same content type as Writing and competed for a nav slot
+    // without adding a distinct decision. /newsletter still exists as a real
+    // page (linked from /writing and the homepage), so this test now checks
+    // active-state against a route that remains in nav.
+    pathname = '/playbook';
     const user = userEvent.setup();
     render(<Nav />);
 
     await user.click(screen.getByRole('button', { name: /open menu/i }));
 
     const mobileNav = screen.getByRole('navigation', { name: /primary mobile/i });
-    expect(within(mobileNav).getByRole('link', { name: 'Newsletter' })).toHaveAttribute(
+    expect(within(mobileNav).getByRole('link', { name: 'Playbook' })).toHaveAttribute(
       'aria-current',
       'page',
     );

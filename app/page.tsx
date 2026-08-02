@@ -22,6 +22,11 @@ export default function HomePage() {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="animate-fade-up space-y-7">
             <p className="eyebrow">EVP, Cars Commerce · Naples, FL</p>
+            {/* Inline variant of the .subline treatment (see globals.css): same
+                font-serif italic pairing, but text-ink instead of text-sage since
+                this sits inline inside the H1 rather than as a standalone block—
+                sage would read as a de-emphasized aside here, not a continuation
+                of the headline. Scope rule still applies: index/hub pages only. */}
             <h1 className="text-display-lg font-semibold text-ink">
               Dealer growth,{' '}
               <em className="font-serif font-normal italic text-ink">earned through trust.</em>

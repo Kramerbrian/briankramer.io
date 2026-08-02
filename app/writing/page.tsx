@@ -76,6 +76,12 @@ export default function WritingPage() {
         Operator notes on acquisition, trust, and the systems that compound — written for GMs,
         UCMs, and the people who actually run stores.
       </p>
+      <Link
+        href="/newsletter"
+        className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium text-accent hover:text-accent-hover"
+      >
+        Read the LinkedIn newsletter archive →
+      </Link>
 
       {essays.length > 0 ? (
         <ul className="mt-14 divide-y divide-line border-y border-line">

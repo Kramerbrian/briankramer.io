@@ -5,9 +5,15 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Logo } from './Logo';
 
+// Newsletter intentionally excluded from primary nav: it's the same
+// content type as Writing (essay-adjacent reading) presented as a
+// separate destination confuses first-time visitors about whether the
+// two are duplicates. The page still exists at /newsletter with its own
+// SEO record and conversion tracking — it's linked from within /writing
+// instead of competing for a top-level nav slot. Keeps nav at 6 items,
+// closer to Hick's Law's practical working-memory ceiling.
 const links = [
   { href: '/writing', label: 'Writing' },
-  { href: '/newsletter', label: 'Newsletter' },
   { href: '/playbook', label: 'Playbook' },
   { href: '/speaking', label: 'Speaking' },
   { href: '/podcast', label: 'Podcast' },
