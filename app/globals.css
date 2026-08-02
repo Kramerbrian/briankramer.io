@@ -69,6 +69,15 @@
     @apply text-sm font-semibold uppercase tracking-[0.12em] text-coral;
   }
 
+  /* Mixed sans+italic-serif headline accent.
+   * SCOPE RULE: index/hub pages only (Home, Writing, Playbook) — pages
+   * that introduce a section of the site. Do NOT apply to leaf/utility
+   * pages (About, Speaking, Podcast, Contact, Newsletter): their H1s
+   * don't have a natural two-clause break, and forcing one reads as
+   * arbitrary rather than intentional. If a leaf-page headline is
+   * rewritten to have a genuine two-clause structure, it can adopt this
+   * class — but that's a copy decision to make on purpose, not a
+   * styling decision to apply for consistency's sake alone. */
   .subline {
     @apply block font-serif italic font-normal text-sage;
   }
