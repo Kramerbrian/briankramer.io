@@ -55,14 +55,6 @@ export default function ContactPage() {
                 >
                   YouTube
                 </a>
-                <a
-                  href={siteConfig.socials.linktree}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex min-h-[44px] items-center hover:text-ink"
-                >
-                  Linktree
-                </a>
               </dd>
             </div>
             <div>
