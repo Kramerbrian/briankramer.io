@@ -17,6 +17,7 @@ const routes = [
   '/speaking',
   '/playlist',
   '/changelog',
+  '/links',
 ];
 
 const publicStatusLanguage =

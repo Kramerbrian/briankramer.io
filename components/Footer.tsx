@@ -7,7 +7,6 @@ const socialLinks = [
   { href: siteConfig.socials.instagram, label: 'Instagram' },
   { href: siteConfig.socials.tiktok, label: 'TikTok' },
   { href: siteConfig.socials.facebook, label: 'Facebook' },
-  { href: siteConfig.socials.linktree, label: 'Linktree' },
 ];
 
 export function Footer() {
@@ -46,6 +45,14 @@ export function Footer() {
                     className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
                   >
                     Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/links"
+                    className="flex min-h-[44px] min-w-[44px] items-center justify-center py-3 transition-colors hover:text-ink"
+                  >
+                    Links
                   </Link>
                 </li>
               </ul>

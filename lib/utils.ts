@@ -20,7 +20,6 @@ export const siteConfig = {
   },
   socials: {
     linkedin: 'https://www.linkedin.com/in/kramerbrian/',
-    linktree: 'https://linktr.ee/briankramer',
     youtube: 'https://www.youtube.com/@briankramer',
     instagram: 'https://www.instagram.com/kramerbrian/',
     tiktok: 'https://www.tiktok.com/@kramerbrian',

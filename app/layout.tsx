@@ -72,7 +72,6 @@ const personSchema = {
     siteConfig.socials.instagram,
     siteConfig.socials.tiktok,
     siteConfig.socials.facebook,
-    siteConfig.socials.linktree,
   ],
   knowsAbout: [
     'Automotive retail',

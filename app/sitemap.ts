@@ -14,6 +14,7 @@ const CORE_PUBLIC_ROUTES = [
   '/speaking',
   '/newsletter',
   '/changelog',
+  '/links',
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
